@@ -38,3 +38,11 @@ body {
 .table{
   color:white;
 }
+
+.errorred{
+  color: red;
+}
+
+.error{
+  color: white;
+}
