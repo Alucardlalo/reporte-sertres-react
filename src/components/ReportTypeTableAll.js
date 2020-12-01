@@ -9,6 +9,7 @@ class ReportTypeTableAll extends React.Component{
    
     render () {
         return(
+            
             <div className="container">
                 <h3 className="tableName">Tipo de Reporte</h3>
                 <p className="tableName">tipos de reporte existentes</p>
@@ -16,7 +17,6 @@ class ReportTypeTableAll extends React.Component{
                     <table className="table table-bordered" id="TableTipoReporte">
                         
                     </table>
-
                 </div>
             </div>
         );
