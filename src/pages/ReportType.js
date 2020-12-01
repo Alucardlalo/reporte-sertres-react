@@ -15,16 +15,16 @@ class ReportType extends React.Component{
             <div className="container">
              <ul class="nav nav-pills" role="tablist">
                     <li class="nav-item">
-                      <a class="nav-link" href="/" id="#home">Home</a>
+                      <a class="nav-link" href="/home" id="#home">Home</a>
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link active" href="" id="#menu1">Tipo reporte</a>
+                      <a class="nav-link active" href="/reporttype" id="#menu1">Tipo reporte</a>
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link" href="" id="#menu2">reporte</a>
+                      <a class="nav-link" href="/report" id="#menu2">reporte</a>
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link" href="" id="#menu3">Contenido de reporte</a>
+                      <a class="nav-link" href="/reportbody" id="#menu3">Contenido de reporte</a>
                     </li>
                   </ul>
              </div>
