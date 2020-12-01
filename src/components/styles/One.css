@@ -1,3 +1,12 @@
+.One__header {
+  padding: 0.5rem 0;
+  height: 80px;
+  background: #333333;
+  display: flex;
+  justify-content: center;
+  color: white;
+}
+
 .titleMain{
   color: white;
   padding:15px;

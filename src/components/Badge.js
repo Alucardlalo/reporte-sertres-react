@@ -2,9 +2,6 @@ import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 
-
-import './styles/Badge.css';
-
 class Badge extends React.Component {
   render() {
     return (
@@ -16,16 +13,16 @@ class Badge extends React.Component {
         <div className="container">
          <ul class="nav nav-pills" role="tablist">
 			    <li class="nav-item">
-			      <a class="nav-link active" id="#home">Home</a>
+			      <a class="nav-link active" href="./Badge.js" id="#home">Home</a>
 			    </li>
 			    <li class="nav-item">
-			      <a class="nav-link" href="TipoReporte.jsp" id="#menu1">Tipo reporte</a>
+			      <a class="nav-link" href="" id="#menu1">Tipo reporte</a>
 			    </li>
 			    <li class="nav-item">
-			      <a class="nav-link" href="Reporte.jsp" id="#menu2">reporte</a>
+			      <a class="nav-link" href="" id="#menu2">reporte</a>
 			    </li>
 			    <li class="nav-item">
-			      <a class="nav-link" href="ReporteContenido.jsp" id="#menu3">Contenido de reporte</a>
+			      <a class="nav-link" href="" id="#menu3">Contenido de reporte</a>
 			    </li>
 			  </ul>
          </div>
@@ -38,9 +35,6 @@ class Badge extends React.Component {
               </div>
           </div>  
         </div>
-
-        <div className="Badge__section-info">
-                  </div>
 
         <div className="Badge__footer">
 
