@@ -31,7 +31,6 @@ class ReportType extends React.Component{
         </div>
                 <br></br>
                 <ReportTypeTableAll />
-                
             </React.Fragment>
         
         );
