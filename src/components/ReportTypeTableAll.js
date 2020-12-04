@@ -37,11 +37,14 @@ class ReportTypeTableAll extends React.Component{
     render () {
     if(this.state.loading == true){
         return <div className="container">
-            <button className="btn btn-primary" disabled>
+            <button className="btn btn-primary loadingC" disabled>
                 <span className="spinner-border spinner-border-sm"></span>
-                Loading ...
+                Loading...
             </button>
         </div>
+    }
+    if(this.state.error){
+        return `Error: ${this.state.error.message}`;
     }
             return(
                 <React.Fragment>
@@ -50,18 +53,22 @@ class ReportTypeTableAll extends React.Component{
                         <p className="tableName">tipos de reporte existentes</p>
                         <a href="/reporttype/new" className="buttons"> Nuevo Tipo Reporte</a>
                         <div className="table-responsive-sm">
-                            <table className="table table-bordered">
+                            <table className="table table-dark">
                                 <thead>
-                                    <th>#</th>
-                                    <th>Tipo Reporte</th>
-                                    <th>Descripción</th>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>tipo reporte</th>
+                                        <th>Descripción</th>
+                                    </tr>
                                 </thead>
                                 <tbody>
-
-                                    <tr>
-
+                                {this.state.reportTypes.map((item) => (
+                                    <tr key={item.reportTypeId}>
+                                        <td>{item.reportTypeId}</td>
+                                        <td>{item.reportType}</td>
+                                        <td>{item.descriptionI}</td>
                                     </tr>
-
+                                ))}
                                 </tbody>
                             </table>
                         </div>
