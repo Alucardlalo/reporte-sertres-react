@@ -57,7 +57,7 @@ class ReportTypeTableAll extends React.Component{
                                 <thead>
                                     <tr>
                                         <th>#</th>
-                                        <th>tipo reporte</th>
+                                        <th>Tipo Reporte</th>
                                         <th>Descripción</th>
                                     </tr>
                                 </thead>

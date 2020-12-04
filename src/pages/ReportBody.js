@@ -1,5 +1,7 @@
 import React from 'react';
 
+import ReportBodyTableAll from "../components/ReportBodyTableAll";
+
 
 class Report extends React.Component{
     render(){
@@ -7,7 +9,7 @@ class Report extends React.Component{
             <React.Fragment>
                 <div className="One">
             <div className="One__header">
-              <h2>Reporte Quincenal sertres </h2>
+              <h2>Reporte Quincenal Sertres </h2>
             </div>
     
             <div className="container">
@@ -16,20 +18,20 @@ class Report extends React.Component{
                       <a className="nav-link" href="/home" id="#home">Home</a>
                     </li>
                     <li className="nav-item">
-                      <a className="nav-link" href="/reporttype" id="#menu1">Tipo reporte</a>
+                      <a className="nav-link" href="/reporttype" id="#menu1">Tipo Reporte</a>
                     </li>
                     <li className="nav-item">
-                      <a className="nav-link" href="/report" id="#menu2">reporte</a>
+                      <a className="nav-link" href="/report" id="#menu2">Reporte</a>
                     </li>
                     <li className="nav-item">
-                      <a className="nav-link active" href="/reportbody" id="#menu3">Contenido de reporte</a>
+                      <a className="nav-link active" href="/reportbody" id="#menu3">Contenido de Reporte</a>
                     </li>
                   </ul>
              </div>
         </div>
                 <br></br>
 
-                
+                <ReportBodyTableAll />
             </React.Fragment>
         
         );
