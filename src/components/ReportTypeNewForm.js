@@ -1,5 +1,5 @@
 import React from 'react';
-import './styles/ReportTypeNewForm.css'
+import './styles/ReportTypeNewForm.css';
 
 
 class reportTypeNewForm extends React.Component{
@@ -44,18 +44,20 @@ class reportTypeNewForm extends React.Component{
             <React.Fragment>
                 <div className = "container">
                     <p className = "titleMain">creacion de nuevo tipo de reporte</p>
-                    <form onSubmit={this.handleSubmit} id="formulario">
+                    <form onSubmit={this.handleSubmit}>
                         <div>
                             <table className="col-3 tableNewReportType">
+                                <tbody>
                                 <tr>
-                                    <td>Nombre Nuevo Reporte</td>
+                                    <td>Nombre Nuevo Reporte </td>
                                     <td><input type="text" value={this.state.reportType} name="name" onChange={this.handleChangeName} /></td>
                                 </tr>
-                                <br/><br/>
+                                <tr><td><br/><br/></td></tr>
                                 <tr>
                                     <td>Descripción</td>
-                                    <td><input type="text" value={this.state.descriptionI} name = "desc" onChange={this.handleChangeDesc} /></td>
+                                    <td><textarea type="text" value={this.state.descriptionI} name = "desc" onChange={this.handleChangeDesc} /></td>
                                 </tr>
+                                </tbody>
                             </table>
                             <br/><br/>
                             <div className="col-4">

@@ -1,6 +1,7 @@
 import React from 'react';
 
 import ReportTypeTableAll from '../components/ReportTypeTableAll';
+import '../global.css';
 
 
 class ReportType extends React.Component{
