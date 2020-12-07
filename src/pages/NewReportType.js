@@ -1,4 +1,5 @@
 import React from 'react';
+import ReportTypeNewForm from '../components/ReportTypeNewForm'
 
 class NewReportType extends React.Component{
 
@@ -31,7 +32,9 @@ class NewReportType extends React.Component{
                 <div className="container">
                     <h2 className="titleMain">Nuevo Tipo de Reporte</h2>
                 </div>
-
+                <div>
+                 <ReportTypeNewForm />
+                </div>
             </React.Fragment>
         )
     }
