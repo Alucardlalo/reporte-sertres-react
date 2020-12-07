@@ -49,7 +49,7 @@ class ReportTableAll extends React.Component{
                 <div className="container">
                     <h3 className="tableName">Reporte</h3>
                     <p className="tableName">Reportes existentes</p>
-                    <a href="/reporte/new" className="buttons"> Nuevo Reporte</a>
+                    <a href="/report/new" className="buttons"> Nuevo Reporte</a>
                     <div className="table-responsive-sm">
                         <table className="table table-dark">
                             <thead>
