@@ -1,61 +1,63 @@
 import React from 'react';
 import './styles/ReportTypeNewForm.css';
-
+import axios from 'axios';
+import cors from 'cors'
 
 class reportTypeNewForm extends React.Component{
 
     constructor(props) {
-        super(props);
+        super(props)
+
         this.state = {
-
-                reportType: '',
-                descriptionI: '',
-
-        };
-
-        this.handleChangeName = this.handleChangeName.bind(this);
-        this.handleChangeDesc = this.handleChangeDesc.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
-
+            reportType: '',
+            descriptionI : '',
+        }
     }
 
-
-    handleChangeName(event) {
-        this.setState({
-            reportType: event.target.value
-        });
+    changeHadler = (e) =>{
+        this.setState({[e.target.name]: e.target.value })
     }
 
-    handleChangeDesc(event) {
-        this.setState({
-            descriptionI: event.target.value
-        });
-    }
-
-
-    handleSubmit(event) {
-        alert('A report type was submitted: ' + this.state.reportType);
-        alert('A Description was submitted: ' + this.state.descriptionI);
-        event.preventDefault();
+    submitHadler = async e => {
+        e.preventDefault()
+        console.log(this.state)
+        axios.post('http://localhost:8090/sertresreporte/reporttype/save', this.state)
+            .then(response => {
+                console.log(response)
+            })
+            .catch(error => {
+                console.log(error)
+            })
     }
 
     render(){
+        const { reportType , descriptionI } = this.state
         return (
             <React.Fragment>
                 <div className = "container">
                     <p className = "titleMain">creacion de nuevo tipo de reporte</p>
-                    <form onSubmit={this.handleSubmit}>
+                    <form onSubmit={this.submitHadler}>
                         <div>
                             <table className="col-3 tableNewReportType">
                                 <tbody>
                                 <tr>
-                                    <td>Nombre Nuevo Reporte </td>
-                                    <td><input type="text" value={this.state.reportType} name="name" onChange={this.handleChangeName} /></td>
+                                    <td>Nuevo Tipo Reporte </td>
+                                    <td>
+                                        <input
+                                            type="text"
+                                            name="reportType"
+                                            value={reportType} onChange={this.changeHadler} />
+                                    </td>
                                 </tr>
                                 <tr><td><br/><br/></td></tr>
                                 <tr>
                                     <td>Descripción</td>
-                                    <td><textarea type="text" value={this.state.descriptionI} name = "desc" onChange={this.handleChangeDesc} /></td>
+                                    <td>
+                                        <textarea
+                                            type="text"
+                                            name="descriptionI"
+                                            value={descriptionI} onChange={this.changeHadler}/>
+                                    </td>
                                 </tr>
                                 </tbody>
                             </table>
