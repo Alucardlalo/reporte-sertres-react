@@ -1,6 +1,4 @@
 import React from 'react';
-import $ from 'jquery';
-import Popper from 'popper.js';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
 
 import '../components/styles/ReportTypeTableAll.css';
@@ -35,7 +33,7 @@ class ReportBodyTableAll extends React.Component{
     }
 
     render () {
-        if(this.state.loading == true){
+        if(this.state.loading === true){
             return <div className="container">
                 <button className="btn btn-primary loadingC" disabled>
                     <span className="spinner-border spinner-border-sm"></span>
