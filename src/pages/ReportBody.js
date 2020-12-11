@@ -1,35 +1,70 @@
 import React from 'react';
 
 import ReportBodyTableAll from "../components/ReportBodyTableAll";
+import Navbar from "../components/Navbar";
 
 
 class Report extends React.Component{
+
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            reportTypes : [],
+            loading: true,
+            error: null,
+            reportType: '',
+
+        }
+
+    }
+
+    componentDidMount() {
+        this.fetchReportType()
+
+    }
+
+    fetchReportType = async () =>{
+        this.setState({loading:true, error: null, })
+
+        try{
+            const response = await fetch('http://localhost:8090/sertresreporte/reporttype/all')
+            const reportTypes = await response.json();
+            this.setState({loading:false , reportTypes: reportTypes })
+        }catch(error){
+            this.setState({loading: false , error: error })
+        }
+    }
+
+    changeHadler = (e) =>{
+        this.setState({[e.target.name]: e.target.value })
+    }
+
     render(){
+        const { reportType } = this.state
         return (
             <React.Fragment>
                 <div className="One">
-            <div className="One__header">
-              <h2>Reporte Quincenal Sertres </h2>
-            </div>
-    
-            <div className="container">
-             <ul className="nav nav-pills" role="tablist">
-                    <li className="nav-item">
-                      <a className="nav-link" href="/home" id="#home">Home</a>
-                    </li>
-                    <li className="nav-item">
-                      <a className="nav-link" href="/reporttype" id="#menu1">Tipo Reporte</a>
-                    </li>
-                    <li className="nav-item">
-                      <a className="nav-link" href="/report" id="#menu2">Reporte</a>
-                    </li>
-                    <li className="nav-item">
-                      <a className="nav-link active" href="/reportbody" id="#menu3">Contenido de Reporte</a>
-                    </li>
-                  </ul>
-             </div>
+            <Navbar/>
         </div>
                 <br></br>
+                <div className="container align-content-center">
+                    <table className="table table-dark d-table-row">
+                        <tbody>
+                            <tr>
+                                <td>Seleciona tipo de reporte: </td>
+                                <td>
+                                    <select value={this.state.reportType} onChange={this.changeHadler}>
+                                        {this.state.reportTypes.map((item) =>(
+                                            <option key={item.reportTypeId} value={item.reportTypeId}>{item.reportType}</option>
+                                        ))}
+                                    </select>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <br/>
 
                 <ReportBodyTableAll />
             </React.Fragment>

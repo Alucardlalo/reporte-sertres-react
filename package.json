@@ -13,11 +13,12 @@
   },
   "dependencies": {
     "axios": "^0.21.0",
-    "bootstrap": "^4.3.1",
+    "bootstrap": "^4.5.3",
     "cors": "^2.8.5",
     "jquery": "^3.5.1",
     "popper.js": "^1.16.1",
     "react": "16.8.3",
+    "react-bootstrap": "^1.4.0",
     "react-dom": "16.8.3",
     "react-router-dom": "4.3.1",
     "react-scripts": "2.1.5"
@@ -37,4 +38,3 @@
     "not op_mini all"
   ]
 }
-
