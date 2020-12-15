@@ -44,3 +44,10 @@ body {
     min-height: 10vh;
     width: 20%;
 }
+
+.btnLogout{
+    background: none;
+    border: none;
+    color: cadetblue;
+    font-size: 15px;
+}

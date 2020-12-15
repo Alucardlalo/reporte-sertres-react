@@ -3,6 +3,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 import './styles/One.css';
 import Navbar from "./Navbar";
+import Dashboard from "../pages/Dashboard";
 
 
 class Home extends React.Component {
@@ -16,10 +17,10 @@ class Home extends React.Component {
         <div className="container-fluid">
           <div className="container" >
              <div className="titleMain">
-                <h3 className="seccion">Home</h3>
-                <p>Reportes quincenales de AA UPS y PE</p>
+                <h3 className="seccion">Dashboard</h3>
                 </div>
-          </div>  
+          </div>
+            <Dashboard />
         </div>
       </React.Fragment>
     );

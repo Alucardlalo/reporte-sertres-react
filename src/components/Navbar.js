@@ -1,11 +1,30 @@
 import React from 'react';
-import $ from 'jquery';
-import Popper from 'popper.js';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
+import {Redirect} from "react-router-dom";
 
 
 class Navbar extends React.Component{
+    constructor() {
+        super();
+        this.state = {
+            loginN: true,
+            logoutN: false,
+        }
+        this.logout =this.logout.bind(this);
+    }
+
+    logout(){
+        if(this.state.logoutN === false ){
+           console.log(this.loginN);
+           console.log(this.logoutN)
+            this.setState({loginN:false , logoutN:true })
+        }
+    }
+
     render() {
+        if(this.state.logoutN === true){
+            return(<Redirect to="/" />)
+        }
         return(
             <React.Fragment>
                 <div className="container">
@@ -14,6 +33,9 @@ class Navbar extends React.Component{
                     </div>
                 </div>
                 <div className="container">
+                    <form>
+                       <button className="btnLogout" onClick={this.logout}>salir</button>
+                    </form>
                     <nav className="navbar navbar-expand-md bg-dark navbar-dark">
                         <a className="navbar-brand">Sertres</a>
                         <button className="navbar-toggler" type="button" data-toggle="collapse"
@@ -23,7 +45,7 @@ class Navbar extends React.Component{
                         <div className="collapse navbar-collapse" id="collapsibleNavbar">
                             <ul className="navbar-nav">
                                 <li className="nav-item">
-                                    <a className="nav-link" href="/home">Home</a>
+                                    <a className="nav-link" href="/home">Dashboard</a>
                                 </li>
                                 <li className="nav-item">
                                     <a className="nav-link" href="/reporttype">Tipo Reporte</a>

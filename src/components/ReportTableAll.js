@@ -72,7 +72,7 @@ class ReportTableAll extends React.Component{
                                     <td>{item.commitmentDate}</td>
                                     <td>{item.beginDate}</td>
                                     <td>{item.endDate}</td>
-                                    <td>{item.status}</td>
+                                    <td>{item.reportStatusRel.reportStatusDesc}</td>
                                 </tr>
                             ))}
                             </tbody>

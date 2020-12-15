@@ -49,6 +49,7 @@ class Login extends React.Component{
                                 type="text"
                                 name="user"
                                 placeholder="Usuario"
+                                autoComplete= "null"
                                 onChange={this.onChange}
                             />
                         </div>
