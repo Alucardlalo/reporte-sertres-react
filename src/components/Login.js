@@ -1,49 +1,72 @@
-import React, { useState } from 'react';
-import axios from 'axios';
-import { setUserSession } from '../Utils/Common';
+import React from "react";
 import './styles/Login.css';
+import {Redirect} from "react-router-dom";
 
 
-function Login(props) {
-    const username = useFormInput('');
-    const password = useFormInput('');
-    const [error, setError] = useState(null);
-    const [loading, setLoading] = useState(false);
-
-    // handle button click of login form
-    const handleLogin = () => {
-        props.history.push('/dashboard');
+class Login extends React.Component{
+    constructor(props) {
+        super(props);
+        this.state = {
+            user : '',
+            pass: '',
+            redirect: false,
+            error: false
+        }
+        this.login = this.login.bind(this);
+        this.onChange = this.onChange.bind(this);
     }
 
-    return (
-        <div className="LoginStyleP">
-            <div className="LoginStyleH">
-                <h2>Login</h2><br /><br />
+    login() {
+        if(this.state.user === 'eduardoc' && this.state.pass === 'sertresSAd'){
+            this.setState({redirect : true, error: false });
+        }else{
+           this.setState({redirect: false , error: true })
+            alert('Contraseña o usuario incorrecto');
+        }
+    }
+
+
+    onChange(e){
+        this.setState({[e.target.name]: e.target.value});
+
+    }
+
+    render() {
+        if(this.state.redirect === true){
+            return(<Redirect to="/home" />);
+        }
+        return (
+            <React.Fragment>
                 <div>
-                    <h3>Usuario</h3><br/>
-                    <input type="text" {...username} autoComplete="new-password" />
                 </div>
-                <div style={{ marginTop: 10 }}>
-                    <h3>Contraseña</h3><br />
-                    <input type="password" {...password} autoComplete="new-password" />
+                <form>
+                <div className="LoginStyleP">
+                    <div className="LoginStyleH">
+                        <h2>Login</h2><br /><br />
+                        <div>
+                            <h3>Usuario</h3><br/>
+                            <input
+                                type="text"
+                                name="user"
+                                placeholder="Usuario"
+                                onChange={this.onChange}
+                            />
+                        </div>
+                        <div style={{ marginTop: 10 }}>
+                            <h3>Contraseña</h3><br />
+                            <input
+                                type="password"
+                                name="pass"
+                                placeholder="Contraseña"
+                                onChange={this.onChange}/>
+                        </div>
+                        <br /><br />
+                        <input className="btn btn-dark" type="submit" value="Ingresar" onClick={this.login}/><br />
+                    </div>
                 </div>
-                {error && <><small style={{ color: 'red' }}>{error}</small><br /></>}<br />
-                <input className="btn btn-dark" type="button" value={loading ? 'Loading...' : 'Ingresar'} onClick={handleLogin} disabled={loading} /><br />
-            </div>
-        </div>
-    );
-}
-
-const useFormInput = initialValue => {
-    const [value, setValue] = useState(initialValue);
-
-    const handleChange = e => {
-        setValue(e.target.value);
-    }
-    return {
-        value,
-        onChange: handleChange
+                </form>
+            </React.Fragment>
+        );
     }
 }
-
 export default Login;

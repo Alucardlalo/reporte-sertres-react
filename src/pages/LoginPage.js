@@ -1,7 +1,7 @@
 import React from 'react';
 import Login from "../components/Login";
 
-class Home extends React.Component{
+class LoginPage extends React.Component{
     render() {
         return(
             <React.Fragment>
@@ -15,4 +15,4 @@ class Home extends React.Component{
         )
     }
 }
-export default Home
+export default LoginPage

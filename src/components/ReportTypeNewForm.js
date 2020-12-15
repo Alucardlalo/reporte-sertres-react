@@ -1,7 +1,6 @@
 import React from 'react';
 import './styles/ReportTypeNewForm.css';
 import axios from 'axios';
-import cors from 'cors'
 
 class reportTypeNewForm extends React.Component{
 

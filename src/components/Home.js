@@ -5,7 +5,7 @@ import './styles/One.css';
 import Navbar from "./Navbar";
 
 
-class One extends React.Component {
+class Home extends React.Component {
   render() {
     return (
       <React.Fragment>
@@ -26,4 +26,4 @@ class One extends React.Component {
   }
 }
 
-export default One;
+export default Home;
