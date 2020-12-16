@@ -1,6 +1,5 @@
 import React from 'react';
 import {Pie} from 'react-chartjs-2';
-import {uniqueId} from "recharts/lib/util/DataUtils";
 
 class Dashboard extends React.Component{
     constructor(props) {
@@ -18,7 +17,7 @@ class Dashboard extends React.Component{
             endDateA: [],
             coloresA:[],
             dataA:[],
-            opcionesA: []
+            opcionesA: {}
         }
     }
 
@@ -79,13 +78,14 @@ class Dashboard extends React.Component{
         let resulter = [...datare2];
         /*datos de grfica 1*/
         let dataRepoA = this.state.reporttypeA;
-        dataRepoA = dataRepoA.filter(Boolean);
+        const dataRepoA2 = new Set(dataRepoA.filter(Boolean));
+        let resulterB =[...dataRepoA2]
 
         /*mapeo de grafica 1*/
-        const data = {
+        const dataGraph = {
             labels :  resulter,
             datasets: [{
-                data: dataRepoA,
+                data: resulterB,
                 backgroundColor : this.state.coloresA
             }]
         };
@@ -93,7 +93,7 @@ class Dashboard extends React.Component{
             responsive : true,
             maintainAspectRatio: false
         }
-        this.setState({dataA: data, opcionesA: opciones});
+        this.setState({dataA: dataGraph, opcionesA: opciones});
     }
 
     render() {
