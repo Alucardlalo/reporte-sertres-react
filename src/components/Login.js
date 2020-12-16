@@ -25,14 +25,20 @@ class Login extends React.Component{
     handleLogin() {
         const arrayUser = this.state.UserStringF;
         const resultUser = arrayUser.filter(user => user === this.state.user)
+        let positionUs = arrayUser.indexOf(this.state.user);
         const arrayPass = this.state.userPotP;
-        const resultPass = arrayPass.filter(pass => pass === this.state.pass);
-        if(this.state.user == resultUser && this.state.pass == resultPass ){
+        const resultPass = arrayPass[positionUs];
+        if(this.state.user == resultUser && this.state.pass == resultPass && this.state.user !== '' && this.state.pass !== ''){
             this.setState({redirect : true, error: false });
-
         }else{
            this.setState({redirect: false , error: true })
-            alert('Contraseña o usuario incorrecto');
+            if(this.state.user != resultUser || this.state.user === ''){
+                alert('El usuario '+ this.state.user + ' no existe');
+            }else if(this.state.pass !== resultPass || this.state.pass === ''){
+                alert('Contraseña incorrecta')
+            }else{
+                alert('Contraseña y usuario incorrecto');
+            }
         }
     }
 

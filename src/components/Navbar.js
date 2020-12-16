@@ -37,7 +37,7 @@ class Navbar extends React.Component{
                        <button className="btnLogout" onClick={this.logout}>salir</button>
                     </form>
                     <nav className="navbar navbar-expand-md bg-dark navbar-dark">
-                        <a className="navbar-brand">Sertres</a>
+                        <h3 className="navbar-brand">Sertres</h3>
                         <button className="navbar-toggler" type="button" data-toggle="collapse"
                                 data-target="#collapsibleNavbar">
                             <span className="navbar-toggler-icon"></span>
