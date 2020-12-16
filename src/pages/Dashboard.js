@@ -1,5 +1,6 @@
 import React from 'react';
 import {Pie} from 'react-chartjs-2';
+import {array} from "prop-types";
 
 class Dashboard extends React.Component{
     constructor(props) {
@@ -78,14 +79,21 @@ class Dashboard extends React.Component{
         let resulter = [...datare2];
         /*datos de grfica 1*/
         let dataRepoA = this.state.reporttypeA;
-        const dataRepoA2 = new Set(dataRepoA.filter(Boolean));
-        let resulterB =[...dataRepoA2]
+        const result = dataRepoA.filter(reportType => reportType === 1);
+        const rellt = result.length;
+        const result2 = dataRepoA.filter(reportType => reportType === 2);
+        const rellt2 = result2.length;
+        const result3 = dataRepoA.filter(reportType => reportType === 3);
+        const rellt3 = result3.length;
+        const prub = [rellt, rellt2, rellt3];
+        console.log('prueba '+ prub);
+
 
         /*mapeo de grafica 1*/
         const dataGraph = {
             labels :  resulter,
             datasets: [{
-                data: resulterB,
+                data: prub,
                 backgroundColor : this.state.coloresA
             }]
         };
