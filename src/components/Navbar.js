@@ -15,8 +15,6 @@ class Navbar extends React.Component{
 
     logout(){
         if(this.state.logoutN === false ){
-           console.log(this.loginN);
-           console.log(this.logoutN)
             this.setState({loginN:false , logoutN:true })
         }
     }

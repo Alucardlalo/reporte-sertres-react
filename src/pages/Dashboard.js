@@ -85,7 +85,6 @@ class Dashboard extends React.Component{
         const result3 = dataRepoA.filter(reportType => reportType === 3);
         const rellt3 = result3.length;
         const prub = [rellt, rellt2, rellt3];
-        console.log('prueba '+ prub);
 
 
         /*mapeo de grafica 1*/

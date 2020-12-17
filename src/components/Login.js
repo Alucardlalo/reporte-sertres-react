@@ -2,7 +2,6 @@ import React from "react";
 import './styles/Login.css';
 import {Redirect} from "react-router-dom";
 
-
 class Login extends React.Component{
     constructor(props) {
         super(props);
@@ -75,7 +74,7 @@ class Login extends React.Component{
 
     render() {
         if(this.state.redirect === true){
-            return(<Redirect to="/home" />);
+            return(<Redirect to="/home"/>);
         }
         return (
             <React.Fragment>
