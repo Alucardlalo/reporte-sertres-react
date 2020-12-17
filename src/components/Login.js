@@ -32,7 +32,7 @@ class Login extends React.Component{
             this.setState({redirect : true, error: false });
         }else{
            this.setState({redirect: false , error: true })
-            if(this.state.user != resultUser || this.state.user === ''){
+            if(this.state.user !== resultUser || this.state.user === ''){
                 alert('El usuario '+ this.state.user + ' no existe');
             }else if(this.state.pass !== resultPass || this.state.pass === ''){
                 alert('Contraseña incorrecta')

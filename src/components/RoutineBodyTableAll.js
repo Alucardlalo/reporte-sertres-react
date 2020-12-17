@@ -12,12 +12,43 @@ class RoutineBodyTableAll extends React.Component{
             reportsBody : [],
             loading: true,
             error: null,
+            reportTypes : [],
+            reportType: '',
+            isSelected: false,
+
         }
+        this.handleClick = this.handleClick.bind(this);
     }
 
     componentDidMount() {
-        this.fetchReportBody()
+        this.fetchReportBody();
+        this.fetchReportType();
 
+    }
+
+    handleClick(e){
+        if(this.state.reportType !== 0 && this.state.reportType !== ''){
+
+        }else{
+            alert('reportType else' + this.state.reportType);
+        }
+
+    }
+
+    fetchReportType = async () =>{
+        this.setState({loading:true, error: null, })
+
+        try{
+            const response = await fetch('http://localhost:8090/sertresreporte/reporttype/all')
+            const reportTypes = await response.json();
+            this.setState({loading:false , reportTypes: reportTypes })
+        }catch(error){
+            this.setState({loading: false , error: error })
+        }
+    }
+
+    changeHadler = (e) =>{
+        this.setState({reportType:e.target.value })
     }
 
     fetchReportBody = async () =>{
@@ -44,9 +75,35 @@ class RoutineBodyTableAll extends React.Component{
         if(this.state.error){
             return `Error: ${this.state.error.message}`;
         }
+
         return(
             <React.Fragment>
                 <div className="container">
+                    <form>
+                        <table className="table table-dark d-table-row">
+                            <tbody>
+                            <tr>
+                                <td>Seleciona tipo de rutina: </td>
+                                <td>
+                                    <select value={this.state.reportType} onChange={this.changeHadler}>
+                                        <option value={0}>Todos</option>
+                                        {this.state.reportTypes.map((item) =>(
+                                            <option key={item.reportTypeId} value={item.reportTypeId}>{item.reportType}</option>
+                                        ))}
+                                    </select>
+                                </td>
+                                <td>
+                                    <input
+                                        type="button"
+                                        value="Seleccionar"
+                                        className="btn btn-outline-info"
+                                        onClick={this.handleClick}
+                                    />
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </form>
                     <h3 className="tableName">Contenido de Reporte</h3>
                     <p className="tableName"></p>
                     <a href="/Routinebody/new" className="buttons"> Nuevo Campo en Rutinas</a>

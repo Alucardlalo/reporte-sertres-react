@@ -1,6 +1,5 @@
 import React from 'react';
 import {Pie} from 'react-chartjs-2';
-import {array} from "prop-types";
 
 class Dashboard extends React.Component{
     constructor(props) {
