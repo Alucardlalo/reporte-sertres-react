@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from "axios";
 
-class ReportNewForm extends React.Component{
+class RoutineNewForm extends React.Component{
 
     constructor(props) {
         super(props)
@@ -14,7 +14,13 @@ class ReportNewForm extends React.Component{
             beginDate : '',
             endDate : '',
             status : '',
+            //objetos
+            reportStatusA : [],
+            loading: true,
+            error: null,
+            reportStatus: '',
         }
+        this.submitHadler = this.submitHadler.bind(this);
     }
 
     changeHadler = (e) =>{
@@ -33,6 +39,26 @@ class ReportNewForm extends React.Component{
             })
     }
 
+    componentDidMount() {
+        this.fetchReportStatus()
+
+    }
+
+    fetchReportStatus = async () =>{
+        this.setState({loading:true, error: null, })
+
+        try{
+            const response = await fetch('http://localhost:8090/sertresreporte/reporte/status/all')
+            const reportStatusPR = await response.json();
+            this.setState({loading:false , reportStatusA: reportStatusPR })
+        }catch(error){
+            this.setState({loading: false , error: error })
+        }
+    }
+
+    changeHadler = (e) =>{
+        this.setState({[e.target.name]: e.target.value })
+    }
 
     render() {
         const { reportTypeId , deviceId, reportTittle , commitmentDate , beginDate , endDate , status } = this.state
@@ -78,7 +104,7 @@ class ReportNewForm extends React.Component{
                                     <td>Fecha Compromiso</td>
                                     <td>
                                         <input
-                                            type="text"
+                                            type="date"
                                             name="commitmentDate"
                                             value={commitmentDate} onChange={this.changeHadler}/>
                                     </td>
@@ -88,7 +114,7 @@ class ReportNewForm extends React.Component{
                                     <td>Fecha Inicio</td>
                                     <td>
                                         <input
-                                            type="text"
+                                            type="date"
                                             name="beginDate"
                                             value={beginDate} onChange={this.changeHadler}/>
                                     </td>
@@ -98,7 +124,7 @@ class ReportNewForm extends React.Component{
                                     <td>Fecha Fin</td>
                                     <td>
                                         <input
-                                            type="text"
+                                            type="date"
                                             name="endDate"
                                             value={endDate} onChange={this.changeHadler}/>
                                     </td>
@@ -107,10 +133,16 @@ class ReportNewForm extends React.Component{
                                 <tr>
                                     <td>Status</td>
                                     <td>
-                                        <input
+                                        <select value={status} onChange={this.changeHadler}>
+                                            {this.state.reportStatusA.map((item) =>(
+                                                <option key={item.reportStatusId} value={item.reportStatusId}>{item.reportStatusDesc}</option>
+                                            ))}
+                                        </select>
+
+                                        {/*<input
                                             type="text"
                                             name="status"
-                                            value={status} onChange={this.changeHadler}/>
+                                            value={status} onChange={this.changeHadler}/>*/}
                                     </td>
                                 </tr>
                                 </tbody>
@@ -128,4 +160,4 @@ class ReportNewForm extends React.Component{
     }
 }
 
-export default ReportNewForm;
+export default RoutineNewForm;

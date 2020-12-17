@@ -1,10 +1,10 @@
 import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
-import Report from '../pages/Report';
-import ReportType from '../pages/ReportType';
-import NewReportType from '../pages/NewReportType';
-import NewReport from '../pages/NewReport';
-import ReportBody from '../pages/ReportBody';
+import Routine from '../pages/Routine';
+import RoutineType from '../pages/RoutineType';
+import NewRoutineType from '../pages/NewRoutineType';
+import NewRoutine from '../pages/NewRoutine';
+import ReportBody from '../pages/RoutineBody';
 import LoginPage from '../pages/LoginPage';
 import Home from './Home';
 import notfound from '../pages/NotFound';
@@ -16,11 +16,11 @@ export default class App extends React.Component {
                 <Switch>
                     <Route exact path="/" component={LoginPage}/>
                     <Route exact path="/home" component={Home}/>
-                    <Route exact path="/ReportType" component={ReportType}/>
-                    <Route exact path="/ReportType/new" component={NewReportType}/>
-                    <Route exact path="/Report" component={Report}/>
-                    <Route exact path="/Report/new" component={NewReport}/>
-                    <Route exact path="/ReportBody" component={ReportBody}/>
+                    <Route exact path="/RoutineType" component={RoutineType}/>
+                    <Route exact path="/RoutineType/new" component={NewRoutineType}/>
+                    <Route exact path="/Routine" component={Routine}/>
+                    <Route exact path="/Routine/new" component={NewRoutine}/>
+                    <Route exact path="/RoutineBody" component={ReportBody}/>
                     <Route component={notfound}/>
                 </Switch>
             </BrowserRouter>

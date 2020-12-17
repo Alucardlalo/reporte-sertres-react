@@ -1,6 +1,6 @@
 import React from 'react';
 
-import ReportBodyTableAll from "../components/ReportBodyTableAll";
+import RoutineBodyTableAll from "../components/RoutineBodyTableAll";
 import Navbar from "../components/Navbar";
 
 
@@ -66,7 +66,7 @@ class Report extends React.Component{
                 </div>
                 <br/>
 
-                <ReportBodyTableAll />
+                <RoutineBodyTableAll />
             </React.Fragment>
         
         );

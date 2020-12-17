@@ -1,25 +1,25 @@
 import React from 'react';
-import ReportTypeNewForm from '../components/ReportTypeNewForm'
+import RoutineNewForm from '../components/RoutineNewForm'
 import Navbar from "../components/Navbar";
 
-class NewReportType extends React.Component{
+class NewRoutine extends React.Component{
 
     render(){
         return (
             <React.Fragment>
                 <div className="One">
-                  <Navbar />
+                   <Navbar />
                 </div>
                 <br/>
                 <div className="container">
-                    <h2 className="titleMain">Nuevo Tipo de Reporte</h2>
+                    <h2 className="titleMain">Nuevo Reporte</h2>
                 </div>
                 <div>
-                 <ReportTypeNewForm />
+                    <RoutineNewForm/>
                 </div>
             </React.Fragment>
         )
     }
 }
 
-export default NewReportType;
+export default NewRoutine;

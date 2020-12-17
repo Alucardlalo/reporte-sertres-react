@@ -6,7 +6,7 @@ class LoginPage extends React.Component{
         return(
             <React.Fragment>
                 <div className="container">
-                    <h2 className="titleMain">Bienvenido a Sertres Reporte</h2>
+                    <h2 className="titleMain">Bienvenido a Rutinas Sertres</h2>
                 </div>
                 <div className="container">
                     <Login/>

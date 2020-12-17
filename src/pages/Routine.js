@@ -1,9 +1,9 @@
 import React from 'react';
-import ReportTableAll from "../components/ReportTableAll";
+import RoutineTableAll from "../components/RoutineTableAll";
 import Navbar from "../components/Navbar";
 
 
-class Report extends React.Component{
+class Routine extends React.Component{
     render(){
         return (
             <React.Fragment>
@@ -11,11 +11,11 @@ class Report extends React.Component{
                     <Navbar />
         </div>
                 <br></br>
-                <ReportTableAll />
+                <RoutineTableAll />
             </React.Fragment>
         
         );
     }
 }
 
-export default Report;
+export default Routine;

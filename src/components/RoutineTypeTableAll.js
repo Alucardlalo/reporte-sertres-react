@@ -3,7 +3,7 @@ import 'bootstrap/dist/js/bootstrap.bundle.min';
 
 import '../components/styles/ReportTypeTableAll.css';
 
-class ReportTypeTableAll extends React.Component{
+class RoutineTypeTableAll extends React.Component{
 
     constructor(props) {
         super(props);
@@ -47,15 +47,15 @@ class ReportTypeTableAll extends React.Component{
             return(
                 <React.Fragment>
                     <div className="container">
-                        <h3 className="tableName">Tipo de Reporte</h3>
-                        <p className="tableName">tipos de reporte existentes</p>
-                        <a href="/reporttype/new" className="buttons"> Nuevo Tipo Reporte</a>
+                        <h3 className="tableName">Tipo de Rutina</h3>
+                        <p className="tableName">tipos de rutinas existentes</p>
+                        <a href="/Routinetype/new" className="buttons"> Nuevo Tipo Rutina</a>
                         <div className="table-responsive-sm">
                             <table className="table table-dark">
                                 <thead>
                                     <tr>
                                         <th>#</th>
-                                        <th>Tipo Reporte</th>
+                                        <th>Tipo Rutina</th>
                                         <th>Descripción</th>
                                     </tr>
                                 </thead>
@@ -78,4 +78,4 @@ class ReportTypeTableAll extends React.Component{
     }
 
 
-export default ReportTypeTableAll;
+export default RoutineTypeTableAll;

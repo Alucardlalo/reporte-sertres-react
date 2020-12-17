@@ -1,11 +1,11 @@
 import React from 'react';
 
-import ReportTypeTableAll from '../components/ReportTypeTableAll';
+import RoutineTypeTableAll from '../components/RoutineTypeTableAll';
 import '../global.css';
 import Navbar from "../components/Navbar";
 
 
-class ReportType extends React.Component{
+class RoutineType extends React.Component{
     render(){
         return (
             <React.Fragment>
@@ -13,11 +13,11 @@ class ReportType extends React.Component{
                 <Navbar/>
         </div>
                 <br></br>
-                <ReportTypeTableAll />
+                <RoutineTypeTableAll />
             </React.Fragment>
         
         );
     }
 }
 
-export default ReportType;
+export default RoutineType;

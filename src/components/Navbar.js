@@ -29,7 +29,7 @@ class Navbar extends React.Component{
             <React.Fragment>
                 <div className="container">
                     <div className="One__header">
-                        <h2>Reporte Quincenal Sertres </h2>
+                        <h2>Rutinas Sertres </h2>
                     </div>
                 </div>
                 <div className="container">
@@ -48,13 +48,13 @@ class Navbar extends React.Component{
                                     <a className="nav-link" href="/home">Dashboard</a>
                                 </li>
                                 <li className="nav-item">
-                                    <a className="nav-link" href="/reporttype">Tipo Reporte</a>
+                                    <a className="nav-link" href="/Routinetype">Tipo Rutina</a>
                                 </li>
                                 <li className="nav-item">
-                                    <a className="nav-link" href="/report">Reporte</a>
+                                    <a className="nav-link" href="/Routine">Rutinas</a>
                                 </li>
                                 <li className="nav-item">
-                                    <a className="nav-link" href="/reportbody">Contenido Reporte</a>
+                                    <a className="nav-link" href="/Routinebody">Contenido Rutinas</a>
                                 </li>
                             </ul>
                         </div>

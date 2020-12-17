@@ -2,7 +2,7 @@ import React from 'react';
 import './styles/ReportTypeNewForm.css';
 import axios from 'axios';
 
-class reportTypeNewForm extends React.Component{
+class routineTypeNewForm extends React.Component{
 
     constructor(props) {
         super(props)
@@ -34,13 +34,13 @@ class reportTypeNewForm extends React.Component{
         return (
             <React.Fragment>
                 <div className = "container">
-                    <p className = "titleMain">creacion de nuevo tipo de reporte</p>
+                    <p className = "titleMain">creacion de nuevo tipo de rutina</p>
                     <form onSubmit={this.submitHadler}>
                         <div>
                             <table className="col-3 tableNewReportType">
                                 <tbody>
                                 <tr>
-                                    <td>Nuevo Tipo Reporte </td>
+                                    <td>Nuevo Tipo Rutina </td>
                                     <td>
                                         <input
                                             type="text"
@@ -73,4 +73,4 @@ class reportTypeNewForm extends React.Component{
     }
 }
 
-export default reportTypeNewForm;
+export default routineTypeNewForm;

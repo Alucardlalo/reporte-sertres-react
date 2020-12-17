@@ -38,7 +38,7 @@ class Dashboard extends React.Component{
             /*creacion de grafica*/
             var status = [], reporttype= [],reporttypeB=[], beginDate = [], endDate = [] ;
             this.state.reports.map((item) =>{
-                status.push(item.status);
+                status.push(item.reportStatusRel.reportStatusDesc);
                 reporttype.push(item.reportType.reportTypeId);
                 reporttypeB.push(item.reportType.descriptionI);
                 beginDate.push(item.beginDate);
@@ -109,7 +109,7 @@ class Dashboard extends React.Component{
             <React.Fragment>
                 <div className="container">
                     <h4 className="titleMain">Reportes</h4>
-                    <div style={{width: '100%', height:'500px'}}>
+                    <div style={{width: '50%', height:'auto'}}>
                         <Pie data={this.state.dataA} options={this.state.opcionesA} />
                     </div>
                 </div>
