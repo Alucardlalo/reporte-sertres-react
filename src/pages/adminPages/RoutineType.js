@@ -1,8 +1,8 @@
 import React from 'react';
 
-import RoutineTypeTableAll from '../components/RoutineTypeTableAll';
-import '../global.css';
-import Navbar from "../components/Navbar";
+import RoutineTypeTableAll from '../../components/adminComponents/RoutineTypeTableAll';
+import '../../global.css';
+import NavbarAdmin from "../../components/adminComponents/NavbarAdmin";
 
 
 class RoutineType extends React.Component{
@@ -10,7 +10,7 @@ class RoutineType extends React.Component{
         return (
             <React.Fragment>
                 <div className="One">
-                <Navbar/>
+                <NavbarAdmin/>
         </div>
                 <br></br>
                 <RoutineTypeTableAll />

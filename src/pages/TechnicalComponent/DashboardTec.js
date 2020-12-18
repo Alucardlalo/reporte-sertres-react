@@ -1,7 +1,7 @@
 import React from 'react';
 import {Pie} from 'react-chartjs-2';
 
-class Dashboard extends React.Component{
+class DashboarTec extends React.Component{
     constructor(props) {
         super(props);
 
@@ -21,7 +21,7 @@ class Dashboard extends React.Component{
         }
     }
 
-   async componentDidMount() {
+    async componentDidMount() {
         await this.fetchReport()
         await this.generarcolores();
         await this.configGrafica();
@@ -56,11 +56,11 @@ class Dashboard extends React.Component{
     }
 
     colorRdn(){
-     var color = "";
-     for(var i=0; i<6;i++){
-         color = color + this.generatedCharaterRdn();
-     }
-     return "#" + color;
+        var color = "";
+        for(var i=0; i<6;i++){
+            color = color + this.generatedCharaterRdn();
+        }
+        return "#" + color;
     }
 
     generarcolores(){
@@ -115,4 +115,4 @@ class Dashboard extends React.Component{
         )
     }
 }
-export default Dashboard;
+export default DashboarTec;

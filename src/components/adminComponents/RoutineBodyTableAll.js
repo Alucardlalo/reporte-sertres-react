@@ -1,7 +1,7 @@
 import React from 'react';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
 
-import '../components/styles/ReportTypeTableAll.css';
+import '../styles/ReportTypeTableAll.css';
 
 class RoutineBodyTableAll extends React.Component{
 

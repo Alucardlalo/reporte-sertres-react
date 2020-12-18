@@ -1,6 +1,6 @@
 import React from 'react';
-import ReportTypeNewForm from '../components/RoutineTypeNewForm'
-import Navbar from "../components/Navbar";
+import ReportTypeNewForm from '../../components/adminComponents/RoutineTypeNewForm'
+import NavbarAdmin from "../../components/adminComponents/NavbarAdmin";
 
 class NewRoutineType extends React.Component{
 
@@ -8,7 +8,7 @@ class NewRoutineType extends React.Component{
         return (
             <React.Fragment>
                 <div className="One">
-                  <Navbar />
+                  <NavbarAdmin />
                 </div>
                 <br/>
                 <div className="container">

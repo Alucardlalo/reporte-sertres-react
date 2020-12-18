@@ -15,6 +15,7 @@ class Login extends React.Component{
             UserStringF : [],
             userPotP: [],
             accessUs: [],
+            accessUsAux: ''
         }
         this.handleLogin = this.handleLogin.bind(this);
         this.onChange = this.onChange.bind(this);
@@ -27,6 +28,9 @@ class Login extends React.Component{
         let positionUs = arrayUser.indexOf(this.state.user);
         const arrayPass = this.state.userPotP;
         const resultPass = arrayPass[positionUs];
+        const arrayAccess = this.state.accessUs;
+        const resultAccess = arrayAccess[positionUs];
+        this.setState({accessUsAux: resultAccess})
         if(this.state.user == resultUser && this.state.pass == resultPass && this.state.user !== '' && this.state.pass !== ''){
             this.setState({redirect : true, error: false });
         }else{
@@ -73,8 +77,11 @@ class Login extends React.Component{
     }
 
     render() {
-        if(this.state.redirect === true){
+        while (this.state.redirect === true && this.state.accessUsAux !== 2){
             return(<Redirect to="/home"/>);
+        }
+        while(this.state.redirect === true && this.state.accessUsAux === 2){
+            return(<Redirect to="/HomeTec" />);
         }
         return (
             <React.Fragment>

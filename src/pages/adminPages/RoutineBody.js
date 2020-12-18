@@ -1,7 +1,7 @@
 import React from 'react';
 
-import RoutineBodyTableAll from "../components/RoutineBodyTableAll";
-import Navbar from "../components/Navbar";
+import RoutineBodyTableAll from "../../components/adminComponents/RoutineBodyTableAll";
+import NavbarAdmin from "../../components/adminComponents/NavbarAdmin";
 
 
 class Report extends React.Component{
@@ -9,7 +9,7 @@ class Report extends React.Component{
         return (
             <React.Fragment>
                 <div className="One">
-            <Navbar/>
+            <NavbarAdmin/>
         </div>
                 <br></br>
 

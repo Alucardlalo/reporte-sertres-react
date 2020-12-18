@@ -1,5 +1,5 @@
 import React from 'react';
-import './styles/ReportTypeNewForm.css';
+import '../styles/ReportTypeNewForm.css';
 import axios from 'axios';
 
 class routineTypeNewForm extends React.Component{

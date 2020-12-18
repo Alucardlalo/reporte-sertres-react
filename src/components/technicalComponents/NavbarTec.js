@@ -3,7 +3,7 @@ import 'bootstrap/dist/js/bootstrap.bundle.min';
 import {Redirect} from "react-router-dom";
 
 
-class Navbar extends React.Component{
+class NavbarTec extends React.Component{
     constructor() {
         super();
         this.state = {
@@ -32,7 +32,7 @@ class Navbar extends React.Component{
                 </div>
                 <div className="container">
                     <form>
-                       <button className="btnLogout" onClick={this.logout}>salir</button>
+                        <button className="btnLogout" onClick={this.logout}>salir</button>
                     </form>
                     <nav className="navbar navbar-expand-md bg-dark navbar-dark">
                         <h3 className="navbar-brand">Sertres</h3>
@@ -43,16 +43,13 @@ class Navbar extends React.Component{
                         <div className="collapse navbar-collapse" id="collapsibleNavbar">
                             <ul className="navbar-nav">
                                 <li className="nav-item">
-                                    <a className="nav-link" href="/home">Dashboard</a>
+                                    <a className="nav-link" href="/HomeTec">Dashboard</a>
                                 </li>
                                 <li className="nav-item">
-                                    <a className="nav-link" href="/Routinetype">Tipo Rutina</a>
+                                    <a className="nav-link" href="/RoutineTec">Rutinas</a>
                                 </li>
                                 <li className="nav-item">
-                                    <a className="nav-link" href="/Routine">Rutinas</a>
-                                </li>
-                                <li className="nav-item">
-                                    <a className="nav-link" href="/Routinebody">Contenido Rutinas</a>
+                                    <a className="nav-link" href="/RoutinebodyTec">Contenido Rutinas</a>
                                 </li>
                             </ul>
                         </div>
@@ -62,4 +59,4 @@ class Navbar extends React.Component{
         )
     }
 }
-export default Navbar;
+export default NavbarTec;

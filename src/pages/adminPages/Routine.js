@@ -1,6 +1,6 @@
 import React from 'react';
-import RoutineTableAll from "../components/RoutineTableAll";
-import Navbar from "../components/Navbar";
+import RoutineTableAll from "../../components/adminComponents/RoutineTableAll";
+import NavbarAdmin from "../../components/adminComponents/NavbarAdmin";
 
 
 class Routine extends React.Component{
@@ -8,7 +8,7 @@ class Routine extends React.Component{
         return (
             <React.Fragment>
                 <div className="One">
-                    <Navbar />
+                    <NavbarAdmin />
         </div>
                 <br></br>
                 <RoutineTableAll />

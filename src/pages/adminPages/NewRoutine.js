@@ -1,6 +1,6 @@
 import React from 'react';
-import RoutineNewForm from '../components/RoutineNewForm'
-import Navbar from "../components/Navbar";
+import RoutineNewForm from '../../components/adminComponents/RoutineNewForm'
+import NavbarAdmin from "../../components/adminComponents/NavbarAdmin";
 
 class NewRoutine extends React.Component{
 
@@ -8,7 +8,7 @@ class NewRoutine extends React.Component{
         return (
             <React.Fragment>
                 <div className="One">
-                   <Navbar />
+                   <NavbarAdmin />
                 </div>
                 <br/>
                 <div className="container">

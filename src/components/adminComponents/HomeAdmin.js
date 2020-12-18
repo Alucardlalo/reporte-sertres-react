@@ -1,17 +1,17 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-import './styles/One.css';
-import Navbar from "./Navbar";
-import Dashboard from "../pages/Dashboard";
+import '../styles/One.css';
+import NavbarAdmin from "./NavbarAdmin";
+import DashboardAdmin from "../../pages/adminPages/DashboardAdmin";
 
 
-class Home extends React.Component {
+class HomeAdmin extends React.Component {
   render() {
     return (
       <React.Fragment>
         <div className="One">
-           <Navbar />
+           <NavbarAdmin />
         </div>
 
         <div className="container-fluid">
@@ -20,11 +20,11 @@ class Home extends React.Component {
                 <h3 className="seccion">Dashboard</h3>
                 </div>
           </div>
-            <Dashboard />
+            <DashboardAdmin />
         </div>
       </React.Fragment>
     );
   }
 }
 
-export default Home;
+export default HomeAdmin;
