@@ -3,7 +3,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 import '../styles/One.css';
 import NavbarTec from "../technicalComponents/NavbarTec";
-import DashboardTec from "../../pages/TechnicalComponent/DashboardTec";
+import DashboardTec from "../../pages/TechnicalPages/DashboardTec";
 
 class HomeTec extends React.Component {
     render() {
