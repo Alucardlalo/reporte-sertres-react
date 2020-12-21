@@ -64,13 +64,13 @@ class RoutineTableAllTec extends React.Component{
                             </thead>
                             <tbody>
                             {this.state.reports.map((item) => (
-                                <tr key={item.reportId}>
+                                <tr key={item.reportId} style={{textAlign:"center"}}>
                                     <td>{item.reportId}</td>
                                     <td>{item.reportType.reportType}</td>
                                     <td>{item.deviceId}</td>
-                                    <td>{item.commitmentDate}</td>
-                                    <td>{item.beginDate}</td>
-                                    <td>{item.endDate}</td>
+                                    <td>{item.commitmentDate.slice(0,-9)}</td>
+                                    <td>{item.beginDate.slice(0,-9)}</td>
+                                    <td>{item.endDate.slice(0,-9)}</td>
                                     <td>{item.reportStatusRel.reportStatusDesc}</td>
                                 </tr>
                             ))}
