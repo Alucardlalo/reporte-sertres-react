@@ -16,15 +16,24 @@ class RoutineNewForm extends React.Component{
             status : '',
             //objetos
             reportStatusA : [],
+            reportTypeA: [],
             loading: true,
             error: null,
-            reportStatus: '',
+
         }
         this.submitHadler = this.submitHadler.bind(this);
     }
 
     changeHadler = (e) =>{
         this.setState({[e.target.name]: e.target.value })
+    }
+
+    changeHadlerStatus = (e) =>{
+        this.setState({status:e.target.value })
+    }
+
+    changeHadlerReportType = (e) =>{
+        this.setState({reportTypeId:e.target.value })
     }
 
     submitHadler = async e => {
@@ -40,7 +49,8 @@ class RoutineNewForm extends React.Component{
     }
 
     componentDidMount() {
-        this.fetchReportStatus()
+        this.fetchReportStatus();
+        this.fetchReportType();
 
     }
 
@@ -56,8 +66,16 @@ class RoutineNewForm extends React.Component{
         }
     }
 
-    changeHadler = (e) =>{
-        this.setState({[e.target.name]: e.target.value })
+    fetchReportType = async () =>{
+        this.setState({loading:true, error: null, })
+
+        try{
+            const response = await fetch('http://localhost:8090/sertresreporte/reporttype/all')
+            const reportTypePR = await response.json();
+            this.setState({loading:false , reportTypeA: reportTypePR })
+        }catch(error){
+            this.setState({loading: false , error: error })
+        }
     }
 
     render() {
@@ -65,18 +83,20 @@ class RoutineNewForm extends React.Component{
         return (
             <React.Fragment>
                 <div className = "container">
-                    <p className = "titleMain">creacion de nuevo reporte</p>
+                    <p className = "titleMain">creacion de nueva rutina</p>
                     <form onSubmit={this.submitHadler}>
                         <div>
                             <table className="col-3 tableNewReportType">
                                 <tbody>
                                 <tr>
-                                    <td>Tipo Reporte </td>
+                                    <td>Tipo Rutina </td>
                                     <td>
-                                        <input
-                                            type="text"
-                                            name="reportTypeId"
-                                            value={reportTypeId} onChange={this.changeHadler} />
+                                        <select value={reportTypeId} onChange={this.changeHadlerReportType}>
+                                            {this.state.reportTypeA.map((item) =>(
+                                                <option key={item.reportTypeId} value={item.reportTypeId}>{item.reportType}</option>
+                                            ))}
+                                        </select>
+
                                     </td>
                                 </tr>
                                 <tr><td><br/><br/></td></tr>
@@ -91,7 +111,7 @@ class RoutineNewForm extends React.Component{
                                 </tr>
                                 <tr><td><br/><br/></td></tr>
                                 <tr>
-                                    <td>Titulo Reporte</td>
+                                    <td>Titulo Rutina</td>
                                     <td>
                                         <input
                                             type="text"
@@ -133,16 +153,12 @@ class RoutineNewForm extends React.Component{
                                 <tr>
                                     <td>Status</td>
                                     <td>
-                                        <select value={status} onChange={this.changeHadler}>
+                                        <select value={status} onChange={this.changeHadlerStatus}>
                                             {this.state.reportStatusA.map((item) =>(
                                                 <option key={item.reportStatusId} value={item.reportStatusId}>{item.reportStatusDesc}</option>
                                             ))}
                                         </select>
 
-                                        {/*<input
-                                            type="text"
-                                            name="status"
-                                            value={status} onChange={this.changeHadler}/>*/}
                                     </td>
                                 </tr>
                                 </tbody>

@@ -12,7 +12,7 @@ class NewRoutine extends React.Component{
                 </div>
                 <br/>
                 <div className="container">
-                    <h2 className="titleMain">Nuevo Reporte</h2>
+                    <h2 className="titleMain">Nueva Rutina</h2>
                 </div>
                 <div>
                     <RoutineNewForm/>
