@@ -16,10 +16,9 @@ class routineTypeNewForm extends React.Component{
     changeHadler = (e) =>{
         this.setState({[e.target.name]: e.target.value })
     }
-
+/*
     submitHadler = async e => {
         e.preventDefault()
-        console.log(this.state)
         axios.post('http://localhost:8090/sertresreporte/reporttype/save', this.state)
             .then(response => {
                 console.log(response)
@@ -27,7 +26,19 @@ class routineTypeNewForm extends React.Component{
             .catch(error => {
                 console.log(error)
             })
-    }
+    }*/
+
+    submitHadler = async e =>{
+        e.preventDefault();
+        const requestOptions = {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ reportType: this.state.reportType , descriptionI:this.state.descriptionI})
+        };
+        console.log(requestOptions)
+        fetch('http://localhost:8090/sertresreporte/reporttype/save', requestOptions)
+            .then(response => response.json());
+}
 
     render(){
         const { reportType , descriptionI } = this.state
