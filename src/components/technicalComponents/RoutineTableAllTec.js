@@ -2,6 +2,7 @@ import React from 'react';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
 
 import '../styles/ReportTypeTableAll.css';
+import * as moment from "moment/moment";
 
 class RoutineTableAllTec extends React.Component{
 
@@ -56,6 +57,7 @@ class RoutineTableAllTec extends React.Component{
                                 <th>#</th>
                                 <th>Tipo Reporte</th>
                                 <th>Dispositivo</th>
+                                <th>Nombre</th>
                                 <th>Fecha Compromiso</th>
                                 <th>Fecha Inicio</th>
                                 <th>Fecha Fin</th>
@@ -66,12 +68,13 @@ class RoutineTableAllTec extends React.Component{
                             {this.state.reports.map((item) => (
                                 <tr key={item.reportId} style={{textAlign:"center"}}>
                                     <td>{item.reportId}</td>
-                                    <td>{item.reportType.reportType}</td>
+                                    <td style={{textAlign:"left"}}>{item.reportType.reportType}</td>
                                     <td>{item.deviceId}</td>
-                                    <td>{item.commitmentDate.slice(0,-9)}</td>
-                                    <td>{item.beginDate.slice(0,-9)}</td>
-                                    <td>{item.endDate.slice(0,-9)}</td>
-                                    <td>{item.reportStatusRel.reportStatusDesc}</td>
+                                    <td style={{textAlign:"left"}}>{item.reportTittle}</td>
+                                    <td>{moment(item.commitmentDate).format('DD - MMM - YYYY')}</td>
+                                    <td>{moment(item.beginDate).format('DD - MMM - YYYY')}</td>
+                                    <td>{moment(item.endDate).format('DD - MMM - YYYY')}</td>
+                                    <td style={{textAlign:"left"}}>{item.reportStatusRel.reportStatusDesc}</td>
                                 </tr>
                             ))}
                             </tbody>
