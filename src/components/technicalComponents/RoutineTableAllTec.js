@@ -65,7 +65,7 @@ class RoutineTableAllTec extends React.Component{
                             </tr>
                             </thead>
                             <tbody>
-                            {this.state.reports.map((item) => (
+                            {this.state.reports.sort(({reportId: previousreportId}, {reportId:currentreportId})=> currentreportId - previousreportId).map((item) => (
                                 <tr key={item.reportId} style={{textAlign:"center"}}>
                                     <td>{item.reportId}</td>
                                     <td style={{textAlign:"left"}}>{item.reportType.reportType}</td>
