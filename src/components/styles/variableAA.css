@@ -1,0 +1,36 @@
+@media screen and (min-width: 1000px) {
+    .prestoAA{
+        font-size: 1.5rem;
+        height: auto;
+        width: 100%;
+    }    
+    .prestoAARes{
+        float: right;
+        position: relative;
+        
+    }
+    .AAData{
+        position: relative;
+        width: 100%;  
+    }
+            
+    }
+
+@media screen and (max-width: 1000px) {
+    .prestoAA{
+        font-size: 1.5rem;
+        height: auto;
+        width: 100%;
+
+    }
+    .prestoAARes{
+        float: right;
+        position: relative;
+
+    }
+    .AAData{
+        position: relative;
+        width: 340%;  
+    }
+        
+    }    

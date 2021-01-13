@@ -1,7 +1,11 @@
 import React, {useState}from 'react';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
+import VariableAA from '../adminComponents/variableAA';
+import VariablePE from '../adminComponents/variablePE';
+import VariableUPS from '../adminComponents/variableUPS';
 
 import '../styles/ReportTypeTableAll.css';
+import '../../global.css';
 import * as moment from "moment/moment";
 
 class RoutineTableAll extends React.Component{
@@ -21,6 +25,11 @@ class RoutineTableAll extends React.Component{
             showMeDispositivo: false,
             showMeEdificio: false,
             showMeDatosRutina: false,
+            //especificacion de variables rutina
+            routineAA: true,
+            routineUPS: false,
+            routinePE:false,
+            routineIdSelect: '',
 
         }
         this.selectroutineA = this.selectroutineA.bind(this);
@@ -42,7 +51,6 @@ class RoutineTableAll extends React.Component{
             const response = await fetch('http://localhost:8090/sertresreporte/reporte/all')
             const reports = await response.json();
             this.setState({loading:false , reports: reports })
-
         }catch(error){
             this.setState({loading: false , error: error })
         }
@@ -50,7 +58,35 @@ class RoutineTableAll extends React.Component{
 
     selectroutineA(e){
         this.setState({selectRoutinebtn: false , routineselectId: 'http://localhost:8090/sertresreporte/reporte/'+ e.target.value})
-    this.fetchRoutineSelect();
+        this.fetchRoutineSelect();
+    }
+
+    pruebarutina(){
+        console.log(this.state.routineSelect);
+        var routineType = [], routineIdSelectA = [];
+        this.state.routineSelect.map((type) => {
+            routineType.push(type.reportTypeId);
+            routineIdSelectA.push(type.reportId)
+        })
+        this.setState({routineIdSelect:routineIdSelectA})
+        if(routineType == 1){
+           this.setState({
+            routineAA: true,
+            routineUPS: false,
+            routinePE:false})
+        }
+        if(routineType == 2){
+            this.setState({
+                routineAA: false,
+                routineUPS: true,
+                routinePE:false})
+        }
+        if(routineType == 3){
+            this.setState({
+                routineAA: false,
+                routineUPS: false,
+                routinePE: true })
+        }
     }
 
     fetchRoutineSelect = async () =>{
@@ -60,7 +96,7 @@ class RoutineTableAll extends React.Component{
             const response = await fetch(this.state.routineselectId)
             const routine = await response.json();
             this.setState({loading:false , routineSelect: routine , selectRoutinebtn: true })
-
+            this.pruebarutina();
         }catch(error){
             this.setState({loading: false , error: null })
         }
@@ -101,7 +137,7 @@ class RoutineTableAll extends React.Component{
   
     render () {
         if(this.state.loading === true){
-            return <div className="container">
+            return <div className="ContenedorP">
                 <button className="btn btn-primary loadingC" disabled>
                     <span className="spinner-border spinner-border-sm"></span>
                     Loading...
@@ -114,7 +150,7 @@ class RoutineTableAll extends React.Component{
         if(this.state.selectRoutinebtn === false){   
         return(
                 <React.Fragment>
-                    <div className="container">
+                    <div className="ContenedorP">
                         <h3 className="tableName">Rutinas</h3>
                         <p className="tableName">Rutinas existentes</p>
                         <a href="/Routine/new" className="buttons"> Nueva Rutina</a>
@@ -141,9 +177,9 @@ class RoutineTableAll extends React.Component{
                                         <td style={{textAlign:"left"}}>{item.reportType.reportType}</td>
                                         <td>{item.deviceId}</td>
                                         <td style={{textAlign:"left"}}>{item.reportTittle}</td>
-                                        <td>{moment(item.commitmentDate).format('DD - MMM - YYYY')}</td>
-                                        <td>{moment(item.beginDate).format('DD - MMM - YYYY')}</td>
-                                        <td>{moment(item.endDate).format('DD - MMM - YYYY')}</td>
+                                        <td>{moment(item.commitmentDate).format('DD/MMM/YYYY hh:mm:ss')}</td>
+                                        <td>{moment(item.beginDate).format('DD/MMM/YYYY hh:mm:ss')}</td>
+                                        <td>{moment(item.endDate).format('DD/MMM/YYYY hh:mm:ss')}</td>
                                         <td style={{textAlign:"left"}}>{item.reportStatusRel.reportStatusDesc}</td>
                                     </tr>
                                 ))}
@@ -155,12 +191,13 @@ class RoutineTableAll extends React.Component{
             );}//fin del if
             {/* seccion de selecion de rutina */}
         if(this.state.selectRoutinebtn === true){
+            const routineId = this.state.routineIdSelect.toString();
             return(
                 <React.Fragment>
-                   <div className="container">
-                    <div className="container-fluid">
+                   <div className="ContenedorP">
+                    <div className="ContenedorS">
                     <div>
-                        <div className="container botonesNombre">
+                        <div className="ContenedorP botonesNombre">
                             <button type="button" className="btn btn-dark" data-target="#Rutina"
                                      onClick={() => this.operation1()}>Rutina
                             </button>--
@@ -177,7 +214,7 @@ class RoutineTableAll extends React.Component{
 
                             {this.state.showMeRutina?
                             <div>
-                                <div className="container-fluid">
+                                <div className="ContenedorS">
                                 <div className="table-responsive-sm">
                             
                                 {this.state.routineSelect.map((item) => (
@@ -185,76 +222,76 @@ class RoutineTableAll extends React.Component{
                                     <div><h2 className="Rutinatitle">{item.reportType.reportType}</h2></div>
                                     <div className="row">
                                         <div className="col-6 col-sm-6">
-                                               <table className="sm-info">
+                                               <table className="sm-info1">
                                                 <tr>
                                                     <td className="presto">Id Rutina: </td>
-                                                    <td>{item.reportId}</td> 
+                                                    <td className="prestoCont">{item.reportId}</td> 
                                                 </tr>
                                                 </table> 
                                         </div>
                                         <div className="w-100 ocultar-div"></div>
                                         <div className="col-6 col-sm-6">
-                                        <table className="sm-info">
+                                        <table className="sm-info1">
                                                 <tr>
                                                     <td className="presto">Tipo de Rutina: </td>
-                                                    <td>{item.reportType.reportType}</td>
+                                                    <td className="prestoCont">{item.reportType.reportType}</td>
                                                 </tr>
                                                 </table>
                                         </div>
                                       
                                         <div class="w-100"></div>{/* segunda linea de cuadro Rutina */}
                                         
-                                        <div className="col-6 col-sm-3">
+                                        <div className="col-4 col-sm-4">
                                         <table className="sm-info"> 
                                                 <tr>
                                                     <td className="presto">Estado de Rutina: </td>
-                                                    <td>{item.reportStatusRel.reportStatusDesc}</td>
+                                                    <td className="prestoCont">{item.reportStatusRel.reportStatusDesc}</td>
                                                 </tr>
                                                 </table> 
                                         </div>
                                         <div className="w-100 ocultar-div"></div>
-                                        <div className="col-6 col-sm-3">
+                                        <div className="col-4 col-sm-4">
                                         <table className="sm-info">
                                                 <tr>
                                                     <td className="presto">Nombre Rutina: </td>
-                                                    <td>{item.reportTittle}</td>
+                                                    <td className="prestoCont">{item.reportTittle}</td>
                                                 </tr>
                                                 </table>
                                         </div>
                                         <div className="w-100 ocultar-div"></div>
-                                        <div className="col-6 col-sm-3 sm-info">
+                                        <div className="col-4 col-sm-4">
                                         <table className="sm-info">
                                                 <tr>
                                                     <td className="presto">Fecha Compromiso: </td>
-                                                    <td>{moment(item.commitmentDate).format('DD/MMM/YYYY hh:mm:ss')}</td>
+                                                    <td className="prestoCont">{moment(item.commitmentDate).format('DD/MMM/YYYY hh:mm:ss')}</td>
                                                 </tr>
                                                 </table>
                                         </div>
                                         <div class="w-100"></div>{/* tercera linea de cuadro Rutina */}
                                         
-                                        <div className="col-6 col-sm-3">
+                                        <div className="col-4 col-sm-4">
                                         <table className="sm-info"> 
                                                 <tr>
                                                     <td className="presto">Fecha Inicio: </td>
-                                                    <td>{moment(item.beginDate).format('DD/MMM/YYYY hh:mm:ss')}</td>
+                                                    <td className="prestoCont">{moment(item.beginDate).format('DD/MMM/YYYY hh:mm:ss')}</td>
                                                 </tr>
                                                 </table> 
                                         </div>
                                         <div className="w-100 ocultar-div"></div>
-                                        <div className="col-6 col-sm-3">
+                                        <div className="col-4 col-sm-4">
                                         <table className="sm-info">
                                                 <tr>
                                                     <td className="presto">Fecha Culminación: </td>
-                                                    <td>{moment(item.endDate).format('DD/MMM/YYYY hh:mm:ss')}</td>
+                                                    <td className="prestoCont">{moment(item.endDate).format('DD/MMM/YYYY hh:mm:ss')}</td>
                                                 </tr>
                                           </table>
                                         </div>
                                         <div className="w-100 ocultar-div"></div>
-                                        <div className="col-6 col-sm-3">
+                                        <div className="col-4 col-sm-4">
                                         <table className="sm-info">
                                                 <tr>
                                                     <td className="presto">Id Dispositivo: </td>
-                                                    <td>{item.deviceId}</td>
+                                                    <td className="prestoCont">{item.deviceId}</td>
                                                 </tr>
                                          </table>
                                         </div>
@@ -269,7 +306,7 @@ class RoutineTableAll extends React.Component{
 
                             {this.state.showMeDispositivo?
                             <div>
-                                <div className="container-fluid">
+                                <div className="ContenedorS">
                                 <div className="table-responsive-sm">
                             
                                 {this.state.routineSelect.map((item) => (
@@ -277,7 +314,7 @@ class RoutineTableAll extends React.Component{
                                   <div><h2 className="Rutinatitle">Dispositivo</h2></div>
                                   <div className="row">
                                       <div className="col-6 col-sm-6">
-                                             <table className="sm-info">
+                                             <table className="sm-info1">
                                               <tr>
                                                   <td className="presto">imagen dispositivo </td> 
                                               </tr>
@@ -285,97 +322,95 @@ class RoutineTableAll extends React.Component{
                                       </div>
                                       <div className="w-100 ocultar-div"></div>
                                       <div className="col-6 col-sm-6">
-                                      <table className="sm-info">
+                                      <table className="sm-info1">
                                               <tr>
                                                   <td className="presto">Id Dispositivo </td>
-                                                  <td>{item.deviceId}</td>
+                                                  <td className="prestoCont">{item.deviceId}</td>
                                               </tr>
                                               </table>
                                       </div>
                                     
                                       <div class="w-100"></div>{/* segunda linea de cuadro Dispositivo */}
                                       
-                                      <div className="col-6 col-sm-3">
+                                      <div className="col-4 col-sm-4">
                                       <table className="sm-info"> 
                                               <tr>
                                                   <td className="presto">Nombre Dispositivo </td>
-                                                  <td>{item.deviceRel.deviceName}</td>
+                                                  <td className="prestoCont">{item.deviceRel.deviceName}</td>
                                               </tr>
                                               </table> 
                                       </div>
                                       <div className="w-100 ocultar-div"></div>
-                                      <div className="col-6 col-sm-3">
+                                      <div className="col-4 col-sm-4">
                                       <table className="sm-info">
                                               <tr>
                                                   <td className="presto">Tipo Dispositivo: </td>
-                                                  <td>{item.deviceRel.deviceType}</td>
+                                                  <td className="prestoCont">{item.deviceRel.deviceType}</td>
                                               </tr>
                                               </table>
                                       </div>
                                       <div className="w-100 ocultar-div"></div>
-                                      <div className="col-6 col-sm-3 sm-info">
+                                      <div className="col-4 col-sm-4">
                                       <table className="sm-info">
                                               <tr>
                                                   <td className="presto">Descripción Dispositivo: </td>
-                                                  <td>{item.deviceRel.deviceDescription}</td>
+                                                  <td className="prestoCont">{item.deviceRel.deviceDescription}</td>
                                               </tr>
                                               </table>
                                       </div>
                                       <div class="w-100"></div>{/* tercera linea de cuadro Dispositivo */}
                                       
-                                      <div className="col-6 col-sm-3">
+                                      <div className="col-4 col-sm-4">
                                       <table className="sm-info"> 
                                               <tr>
                                                   <td className="presto">Marca Dispositivo: </td>
-                                                  <td>{item.deviceRel.deviceBrand}</td>
+                                                  <td className="prestoCont">{item.deviceRel.deviceBrand}</td>
                                               </tr>
                                               </table> 
                                       </div>
                                       <div className="w-100 ocultar-div"></div>
-                                      <div className="col-6 col-sm-3">
+                                      <div className="col-4 col-sm-4">
                                       <table className="sm-info">
                                               <tr>
                                                   <td className="presto">Modelo Dispositivo: </td>
-                                                  <td>{item.deviceRel.deviceModel}</td>
+                                                  <td className="prestoCont">{item.deviceRel.deviceModel}</td>
                                               </tr>
                                         </table>
                                       </div>
                                       <div className="w-100 ocultar-div"></div>
-                                      <div className="col-6 col-sm-3">
+                                      <div className="col-4 col-sm-4">
                                       <table className="sm-info">
                                               <tr>
                                                   <td className="presto">Serie Dispositivo: </td>
-                                                  <td>{item.deviceRel.deviceSeries}</td>
+                                                  <td className="prestoCont">{item.deviceRel.deviceSeries}</td>
                                               </tr>
                                        </table>
                                       </div>
                                       <div class="w-100"></div>{/* cuarta linea de cuadro Dispositivo */}
                                       
-                                      <div className="col-6 col-sm-3">
+                                      <div className="col-4 col-sm-4">
                                       <table className="sm-info"> 
-                                             <table>
                                               <tr>
                                                   <td className="presto">Id Edificio: </td>
-                                                  <td>{item.deviceRel.building}</td>
+                                                  <td className="prestoCont">{item.deviceRel.building}</td>
                                               </tr>
                                               </table> 
-                                          </table>
                                       </div>
                                       <div className="w-100 ocultar-div"></div>
-                                      <div className="col-6 col-sm-3">
+                                      <div className="col-4 col-sm-4">
                                       <table className="sm-info">
                                               <tr>
                                                   <td className="presto">Estado Dispositivo: </td>
-                                                  <td>{item.deviceRel.deviceStatusRel.deviceStatusDescription}</td>
+                                                  <td className="prestoCont">{item.deviceRel.deviceStatusRel.deviceStatusDescription}</td>
                                               </tr>
                                         </table>
                                       </div>
                                       <div className="w-100 ocultar-div"></div>
-                                      <div className="col-6 col-sm-3">
+                                      <div className="col-4 col-sm-4">
                                       <table className="sm-info">
                                               <tr>
                                                   <td className="presto">Ultima fecha de Estado: </td>
-                                                  <td>{item.deviceRel.lastDateStatus}</td>
+                                                  <td className="prestoCont">{item.deviceRel.lastDateStatus}</td>
                                               </tr>
                                        </table>
                                       </div>
@@ -389,95 +424,93 @@ class RoutineTableAll extends React.Component{
 
                             {this.state.showMeEdificio?
                             <div>
-                                <div className="container-fluid">
+                                <div className="ContenedorS">
                                 <div className="table-responsive-sm">
                             
                                 {this.state.routineSelect.map((item) => (
                                     <div className="table table-dark">
                                         <div><h2 className="Rutinatitle">Edificio</h2></div>
                                         <div className="row">
-                                            <div className="col-6 col-sm-3">
+                                            <div className="col-4 col-sm-4">
                                                    <table className="sm-info">
                                                     <tr>
                                                         <td className="presto">Id Edificio: </td>
-                                                        <td>{item.deviceRel.building}</td>
+                                                        <td className="prestoCont">{item.deviceRel.building}</td>
                                                     </tr>
                                                     </table> 
                                             </div>
                                             <div className="w-100 ocultar-div"></div>
-                                            <div className="col-6 col-sm-3">
+                                            <div className="col-4 col-sm-4">
                                             <table className="sm-info">
                                                     <tr>
                                                         <td className="presto">Tipo de Edificio: </td>
-                                                        <td>{item.deviceRel.buildingRel.buildingType}</td>
+                                                        <td className="prestoCont">{item.deviceRel.buildingRel.buildingType}</td>
                                                     </tr>
                                                     </table>
                                             </div>
                                             <div className="w-100 ocultar-div"></div>
-                                            <div className="col-6 col-sm-3">
+                                            <div className="col-4 col-sm-4">
                                             <table className="sm-info">
                                                     <tr>
                                                         <td className="presto">Responsable de Edificio: </td>
-                                                        <td>{item.deviceRel.buildingRel.buildingDataRel.buildingDataResponsable}</td>
+                                                        <td className="prestoCont">{item.deviceRel.buildingRel.buildingDataRel.buildingDataResponsable}</td>
                                                     </tr>
                                                     </table>
                                             </div>
 
                                             <div class="w-100"></div>{/* segunda linea de cuadro edificio */}
                                             
-                                            <div className="col-6 col-sm-3">
+                                            <div className="col-4 col-sm-4">
                                                    <table className="sm-info">
                                                     <tr>
                                                         <td className="presto">Segundo Contacto: </td>
-                                                        <td>{item.deviceRel.buildingRel.buildingDataRel.buildingDataSecondContact}</td>
+                                                        <td className="prestoCont">{item.deviceRel.buildingRel.buildingDataRel.buildingDataSecondContact}</td>
                                                     </tr>
                                                     </table> 
                                             </div>
                                             <div className="w-100 ocultar-div"></div>
-                                            <div className="col-6 col-sm-3">
+                                            <div className="col-4 col-sm-4">
                                             <table className="sm-info">
                                                     <tr>
                                                         <td className="presto">Provedor: </td>
-                                                        <td>{item.deviceRel.buildingRel.buildingDataRel.buildingDataProvider}</td>
+                                                        <td className="prestoCont">{item.deviceRel.buildingRel.buildingDataRel.buildingDataProvider}</td>
                                                     </tr>
                                                     </table>
                                             </div>
                                             <div className="w-100 ocultar-div"></div>
-                                            <div className="col-6 col-sm-3">
+                                            <div className="col-4 col-sm-4">
                                             <table className="sm-info">
                                                     <tr>
                                                         <td className="presto">Ciudad: </td>
-                                                        <td>{item.deviceRel.buildingRel.buildingDataRel.buildingDataCity}</td>
+                                                        <td className="prestoCont">{item.deviceRel.buildingRel.buildingDataRel.buildingDataCity}</td>
                                                     </tr>
                                                     </table>
                                             </div>
                                             <div class="w-100"></div>{/* tercera linea de cuadro edificio */}
                                             
-                                            <div className="col-6 col-sm-3">
+                                            <div className="col-4 col-sm-4">
                                             <table className="sm-info"> 
-                                                   <table>
                                                     <tr>
                                                         <td className="presto">Estado: </td>
-                                                        <td>{item.deviceRel.buildingRel.buildingDataRel.buildingDataState}</td>
+                                                        <td className="prestoCont">{item.deviceRel.buildingRel.buildingDataRel.buildingDataState}</td>
                                                     </tr>
                                                     </table> 
-                                                </table>
                                             </div>
                                             <div className="w-100 ocultar-div"></div>
-                                            <div className="col-6 col-sm-3">
+                                            <div className="col-4 col-sm-4">
                                             <table className="sm-info">
                                                     <tr>
                                                         <td className="presto">Calle: </td>
-                                                        <td>{item.deviceRel.buildingRel.buildingDataRel.buildingDataStreet}</td>
+                                                        <td className="prestoCont">{item.deviceRel.buildingRel.buildingDataRel.buildingDataStreet}</td>
                                                     </tr>
                                                     </table>
                                             </div>
                                             <div className="w-100 ocultar-div"></div>
-                                            <div className="col-6 col-sm-3">
+                                            <div className="col-4 col-sm-4">
                                             <table className="sm-info">
                                                     <tr>
                                                         <td className="presto">CP: </td>
-                                                        <td>{item.deviceRel.buildingRel.buildingDataRel.buildingDataCP}</td>
+                                                        <td className="prestoCont">{item.deviceRel.buildingRel.buildingDataRel.buildingDataCP}</td>
                                                     </tr>
                                                     </table>
                                             </div>
@@ -488,12 +521,24 @@ class RoutineTableAll extends React.Component{
                                 </div>
                             </div>
                              :null}
-
+                            {/* apartado de preguntas correspondientes a reporte */}
                             {this.state.showMeDatosRutina?
                             <div>
-                                <div className="container-fluid">
-                                    <h1 className="titleMain">datos referentes a las respuestas de reporte para ver y editar</h1>
-                                </div>
+                               {this.state.routineAA?
+                               <div className="ContenedorS">
+                                   <VariableAA routine={routineId}/>
+                               </div>
+                               :null}
+                               {this.state.routineUPS?
+                               <div className="ContenedorS">
+                                    <VariableUPS routine={routineId}/>
+                               </div>
+                               :null}
+                               {this.state.routinePE?
+                               <div className="Contenedors">
+                                    <VariablePE routine={routineId}/>
+                               </div>
+                               :null}
                             </div>
                             :null}
                         </div>

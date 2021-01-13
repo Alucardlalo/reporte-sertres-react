@@ -10,20 +10,60 @@
     padding: 1rem;
 }
 
-.presto{
-    font-size: 1.5rem;
-    color: aquamarine;
-}
-
 @media screen and (min-width: 1000px) {
     .ocultar-div{
     display: none;
     }
+    .sm-info{
+        position: relative;
+        width: 100%; 
+    }
+    .presto{
+        font-size: 2rem;
+        color: aquamarine;
+        height: auto;
+        width: 50%;
+    }
+    .prestoCont{
+        font-size: 1.5rem;
+        color: white;
+        vertical-align: center;
+        text-align: center;
+        text-align: end;
+        height: auto;
+    }
+    .sm-info1{
+        position: relative;
+        width: 100%; 
+    }
+    
     }
 
 @media screen and (max-width: 1000px) {
     .sm-info{
         position: relative;
-        width: 26rem; 
+        width: 320%;
     }
+    .ocultar-divMax{
+        display: none;
+    }
+    .presto{
+        font-size: 2rem;
+        color: aquamarine;
+        height: auto;
+        width: 60%;
+    }
+    .prestoCont{
+        font-size: 1.5rem;
+        color: white;
+        vertical-align: center;
+        text-align: center;
+        text-align: end;
+        height: auto;
+    }
+    .sm-info1{
+        position: relative;
+        width: 200%; 
+    }
+
     }    

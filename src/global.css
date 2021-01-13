@@ -16,12 +16,12 @@ html {
 }
 
 body {
-    position: absolute;
+    position: relative;
     margin: 0;
     padding: 0;
     height: 100%;
     width: 100%;
-    overflow: hidden;
+    overflow-y: auto;
     border: 0 none;
     outline: 0;
     background-color: #333333;
@@ -51,3 +51,35 @@ body {
     color: cadetblue;
     font-size: 15px;
 }
+
+@media screen and (min-width: 1000px) {
+    .ContenedorP{
+        margin-left: 3.5rem;
+        margin-right: 3.5rem;
+    }
+    .tablaVariable{
+        columns: 40%;
+        padding-left: 1rem;
+    }
+    
+    .ContenedorS{
+        margin: 0rem;
+        
+    }
+        
+    }
+
+@media screen and (max-width: 1000px) {
+    .ContenedorP{
+        margin: 0.6rem;
+    }
+    
+    .ContenedorS{
+        margin: 0rem;
+    }
+    .tablaVariable{
+        columns: auto;
+        padding-left: 1rem;
+    }
+        
+    }    

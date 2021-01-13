@@ -1,0 +1,52 @@
+@media screen and (min-width: 1000px) {
+    .prestoPE{
+        font-size: 1.5rem;
+        height: 50%;
+        width: auto;
+    }    
+    .prestoPERes{
+        float: right;
+        position: relative;
+        height: 50%;
+        
+    }
+    .prestoPESeparator{
+        color: yellow;
+        height: 100%;
+        width: 100%;
+    }
+    .PEData{
+        position: relative;
+        width: 100%;
+        height: auto;  
+    }
+    
+    .PEDataSeparator{
+        width: 100%;
+        font-size: 2rem;
+    }
+    }
+
+@media screen and (max-width: 1000px) {
+    .prestoPE{
+        font-size: 1.5rem;
+        height: 50%;
+        width: auto;
+
+    }
+    .prestoPERes{
+        float: right;
+        position: relative;
+
+    }
+    .PEData{
+        position: relative;
+        width: 330%;  
+    }
+     
+    .PEDataSeparator{
+        color: yellow;
+        height: 100%;
+        width: 100%;
+    }  
+    }    

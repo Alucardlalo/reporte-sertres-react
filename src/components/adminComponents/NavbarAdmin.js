@@ -25,12 +25,12 @@ class NavbarAdmin extends React.Component{
         }
         return(
             <React.Fragment>
-                <div className="container">
+                <div className="ContenedorP">
                     <div className="One__header">
                         <h2>Rutinas Sertres </h2>
                     </div>
                 </div>
-                <div className="container">
+                <div className="ContenedorP">
                     <form>
                        <button className="btnLogout" onClick={this.logout}>salir</button>
                     </form>

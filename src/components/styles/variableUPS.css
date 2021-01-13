@@ -1,0 +1,42 @@
+@media screen and (min-width: 1000px) {
+    .prestoUPS{
+        font-size: 1.5rem;
+        height: 4rem;
+        width: auto;
+    }    
+    .prestoUPSRes{
+        float: right;
+        position: relative;
+        
+    }
+    .UPSData{
+        position: relative;
+        width: 26rem;  
+    }
+    .UPSData1{
+        position: relative;
+        width: 26rem;  
+    }        
+    }
+
+@media screen and (max-width: 1000px) {
+    .prestoUPS{
+        font-size: 1.5rem;
+        height: 120%;
+        width: auto;
+
+    }
+    .prestoUPSRes{
+        float: right;
+        position: relative;
+
+    }
+    .UPSData{
+        position: relative;
+        width: 340%;  
+    }
+    .UPSData1{
+        position: relative;
+        width: 210%;  
+    }    
+    }    
