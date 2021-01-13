@@ -16,17 +16,6 @@ class routineTypeNewForm extends React.Component{
     changeHadler = (e) =>{
         this.setState({[e.target.name]: e.target.value })
     }
-/*
-    submitHadler = async e => {
-        e.preventDefault()
-        axios.post('http://localhost:8090/sertresreporte/reporttype/save', this.state)
-            .then(response => {
-                console.log(response)
-            })
-            .catch(error => {
-                console.log(error)
-            })
-    }*/
 
     submitHadler = async e =>{
         e.preventDefault();
@@ -48,34 +37,36 @@ class routineTypeNewForm extends React.Component{
                     <p className = "titleMain">creacion de nuevo tipo de rutina</p>
                     <form onSubmit={this.submitHadler}>
                         <div>
-                            <table className="col-3 tableNewReportType">
+                            <table className="col-6 tableNewReportType table-dark">
                                 <tbody>
                                 <tr>
-                                    <td>Nuevo Tipo Rutina </td>
-                                    <td>
+                                    <td className="titleNewRoutine">Nuevo Tipo Rutina </td>
+                                    <td className="inputNewRoutine">
                                         <input
                                             type="text"
                                             name="reportType"
-                                            value={reportType} onChange={this.changeHadler} />
+                                            value={reportType} onChange={this.changeHadler} 
+                                            className="btn btn-outline-info"
+                                            autoComplete="off"/>
                                     </td>
                                 </tr>
-                                <tr><td><br/><br/></td></tr>
                                 <tr>
-                                    <td>Descripción</td>
-                                    <td>
+                                    <td className="titleNewRoutine">Descripción</td>
+                                    <td className="inputNewRoutine">
                                         <textarea
                                             type="text"
                                             name="descriptionI"
-                                            value={descriptionI} onChange={this.changeHadler}/>
+                                            value={descriptionI} onChange={this.changeHadler}
+                                            className="btn btn-outline-info"
+                                            autoComplete="off"/>
                                     </td>
+                                </tr>
+                                <tr>
+                                    <td className="btnNewType"><input type="submit" value="Guardar" className="btn btn-outline-info"/></td>
                                 </tr>
                                 </tbody>
                             </table>
-                            <br/><br/>
-                            <div className="col-4">
-                                <input type="submit" value="Guardar"/>
-                            </div>
-
+                           
                         </div>
                     </form>
                 </div>

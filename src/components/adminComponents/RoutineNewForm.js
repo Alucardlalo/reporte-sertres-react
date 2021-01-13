@@ -1,5 +1,7 @@
 import React from 'react';
 import axios from "axios";
+import '../styles/newRoutine.css';
+import * as moment from "moment/moment";
 
 class RoutineNewForm extends React.Component{
 
@@ -14,6 +16,7 @@ class RoutineNewForm extends React.Component{
             beginDate : '',
             endDate : '',
             status : '',
+            now : moment(new Date()).format("DD/MM/YYYY hh:mm:ss"),
             //objetos
             reportStatusA : [],
             reportTypeA: [],
@@ -86,12 +89,12 @@ class RoutineNewForm extends React.Component{
                     <p className = "titleMain">creacion de nueva rutina</p>
                     <form onSubmit={this.submitHadler}>
                         <div>
-                            <table className="col-3 tableNewReportType">
+                            <table className="tableNewReportType table-dark">
                                 <tbody>
                                 <tr>
-                                    <td>Tipo Rutina </td>
-                                    <td>
-                                        <select value={reportTypeId} onChange={this.changeHadlerReportType}>
+                                    <td className="titleNewRoutine">Tipo Rutina </td>
+                                    <td className="inputNewRoutine">
+                                        <select className="btn btn-outline-info" value={reportTypeId} onChange={this.changeHadlerReportType}>
                                             {this.state.reportTypeA.map((item) =>(
                                                 <option key={item.reportTypeId} value={item.reportTypeId}>{item.reportType}</option>
                                             ))}
@@ -99,61 +102,67 @@ class RoutineNewForm extends React.Component{
 
                                     </td>
                                 </tr>
-                                <tr><td><br/><br/></td></tr>
+                                
                                 <tr>
-                                    <td>Dispositivo</td>
-                                    <td>
+                                    <td className="titleNewRoutine">Dispositivo</td>
+                                    <td className="inputNewRoutine">
                                         <input
                                             type="text"
                                             name="deviceId"
-                                            value={deviceId} onChange={this.changeHadler}/>
+                                            value={deviceId} onChange={this.changeHadler}
+                                            className="btn btn-outline-info"
+                                            autoComplete="off"/>
                                     </td>
                                 </tr>
-                                <tr><td><br/><br/></td></tr>
+                                
                                 <tr>
-                                    <td>Titulo Rutina</td>
-                                    <td>
+                                    <td className="titleNewRoutine">Titulo Rutina</td>
+                                    <td className="inputNewRoutine">
                                         <input
                                             type="text"
                                             name="reportTittle"
-                                            value={reportTittle} onChange={this.changeHadler}/>
+                                            value={reportTittle} onChange={this.changeHadler}
+                                            className="btn btn-outline-info"
+                                            autoComplete="off"/>
                                     </td>
                                 </tr>
-                                <tr><td><br/><br/></td></tr>
+                                
                                 <tr>
-                                    <td>Fecha Compromiso</td>
-                                    <td>
+                                    <td className="titleNewRoutine">Fecha Compromiso</td>
+                                    <td className="inputNewRoutine">
                                         <input
                                             type="date"
                                             name="commitmentDate"
-                                            value={commitmentDate} onChange={this.changeHadler}/>
+                                            value={commitmentDate} onChange={this.changeHadler}
+                                            className="btn btn-outline-info"/>
                                     </td>
                                 </tr>
-                                <tr><td><br/><br/></td></tr>
+                                
                                 <tr>
-                                    <td>Fecha Inicio</td>
-                                    <td>
-                                        <input
-                                            type="date"
-                                            name="beginDate"
-                                            value={beginDate} onChange={this.changeHadler}/>
-                                    </td>
+                                    <td className="titleNewRoutine">Fecha Inicio</td>
+                                    <td className="inputNewRoutine">
+                                    <input 
+                                        type="dateTime" disabled= "true" 
+                                        size="19" value={this.state.now} 
+                                        className="btn btn-outline-info"/>
+                                        </td>
                                 </tr>
-                                <tr><td><br/><br/></td></tr>
+                                
                                 <tr>
-                                    <td>Fecha Fin</td>
-                                    <td>
+                                    <td className="titleNewRoutine">Fecha Fin</td>
+                                    <td className="inputNewRoutine">
                                         <input
                                             type="date"
                                             name="endDate"
-                                            value={endDate} onChange={this.changeHadler}/>
+                                            value={endDate} onChange={this.changeHadler}
+                                            className="btn btn-outline-info"/>
                                     </td>
                                 </tr>
-                                <tr><td><br/><br/></td></tr>
+                                
                                 <tr>
-                                    <td>Status</td>
-                                    <td>
-                                        <select value={status} onChange={this.changeHadlerStatus}>
+                                    <td className="titleNewRoutine">Status</td>
+                                    <td className="inputNewRoutine">
+                                        <select className="btn btn-outline-info" value={status} onChange={this.changeHadlerStatus}>
                                             {this.state.reportStatusA.map((item) =>(
                                                 <option key={item.reportStatusId} value={item.reportStatusId}>{item.reportStatusDesc}</option>
                                             ))}
@@ -165,7 +174,7 @@ class RoutineNewForm extends React.Component{
                             </table>
                             <br/><br/>
                             <div className="col-4">
-                                <input type="submit" value="Guardar"/>
+                                <input type="submit" value="Guardar" className="btn btn-outline-info"/>
                             </div>
 
                         </div>
