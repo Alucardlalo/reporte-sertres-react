@@ -25,6 +25,19 @@
         width: 100%;
         font-size: 2rem;
     }
+    .prestoPEC{
+        font-size: 1.5rem;
+        height: auto;
+        width: 100%;
+        color: aquamarine;
+    }
+    .prestoPEResC{
+        float: right;
+        position: relative;
+        color: white;
+        font-size: 1.5rem;
+        
+    }    
     }
 
 @media screen and (max-width: 1000px) {
@@ -48,5 +61,18 @@
         color: yellow;
         height: 100%;
         width: 100%;
-    }  
+    }
+    .prestoPEC{
+        font-size: 1.5rem;
+        height: auto;
+        width: 100%;
+        color: aquamarine;
+    }
+    .prestoPEResC{
+        float: right;
+        position: relative;
+        color: white;
+        font-size: 1.5rem;
+        
+    }      
     }    

@@ -34,7 +34,7 @@ class VariableUPS extends React.Component{
 
     seleccionarData(){
         var routineData = []
-        this.state.inheritedRoutineData.map((data) =>{
+        this.state.inheritedRoutineData.sort(({order: previousOrder}, {order:currentOrder})=> previousOrder - currentOrder).map((data) =>{
             routineData.push(data.data);
         })
         this.setState({inheritedRoutineData1: routineData})

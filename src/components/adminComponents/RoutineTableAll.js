@@ -547,17 +547,17 @@ class RoutineTableAll extends React.Component{
                             {this.state.showMeDatosRutina?
                             <div>
                                {this.state.routineAA?
-                               <div className="ContenedorS">
+                               <div>
                                    <VariableAA routine={routineId} status={statusRoutine} data={routineData}/>
                                </div>
                                :null}
                                {this.state.routineUPS?
-                               <div className="ContenedorS">
+                               <div>
                                     <VariableUPS routine={routineId} status={statusRoutine} data={routineData}/>
                                </div>
                                :null}
                                {this.state.routinePE?
-                               <div className="Contenedors">
+                               <div>
                                     <VariablePE routine={routineId} status={statusRoutine} data={routineData}/>
                                </div>
                                :null}
