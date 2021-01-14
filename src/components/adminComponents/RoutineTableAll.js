@@ -19,7 +19,9 @@ class RoutineTableAll extends React.Component{
             error: null,
             selectRoutinebtn: false,
             routineSelect: [],
+            routineDataSelect: [],
             routineselectId: '',
+            statusRoutine: '',
             //state de seleccion de rutina
             showMeRutina: true,
             showMeDispositivo: false,
@@ -30,6 +32,7 @@ class RoutineTableAll extends React.Component{
             routineUPS: false,
             routinePE:false,
             routineIdSelect: '',
+            routineDataselectByReportId: '',
 
         }
         this.selectroutineA = this.selectroutineA.bind(this);
@@ -58,17 +61,20 @@ class RoutineTableAll extends React.Component{
 
     selectroutineA(e){
         this.setState({selectRoutinebtn: false , routineselectId: 'http://localhost:8090/sertresreporte/reporte/'+ e.target.value})
+        this.setState({routineDataselectByReportId: 'http://localhost:8090/sertresreporte/variabledata/report/'+ e.target.value})
         this.fetchRoutineSelect();
+        this.fetchRoutineDataSelect();
     }
 
     pruebarutina(){
         console.log(this.state.routineSelect);
-        var routineType = [], routineIdSelectA = [];
+        var routineType = [], routineIdSelectA = [], statusRoutineA =[];
         this.state.routineSelect.map((type) => {
             routineType.push(type.reportTypeId);
-            routineIdSelectA.push(type.reportId)
+            routineIdSelectA.push(type.reportId);
+            statusRoutineA.push(type.status);
         })
-        this.setState({routineIdSelect:routineIdSelectA})
+        this.setState({routineIdSelect:routineIdSelectA , statusRoutine: statusRoutineA})
         if(routineType == 1){
            this.setState({
             routineAA: true,
@@ -97,6 +103,18 @@ class RoutineTableAll extends React.Component{
             const routine = await response.json();
             this.setState({loading:false , routineSelect: routine , selectRoutinebtn: true })
             this.pruebarutina();
+        }catch(error){
+            this.setState({loading: false , error: null })
+        }
+    }
+
+    fetchRoutineDataSelect = async () =>{
+        this.setState({loading:true, error: null })
+       
+        try{
+            const response = await fetch(this.state.routineDataselectByReportId)
+            const routineData = await response.json();
+            this.setState({loading:false , routineDataSelect: routineData})
         }catch(error){
             this.setState({loading: false , error: null })
         }
@@ -175,11 +193,13 @@ class RoutineTableAll extends React.Component{
                                         <td style={{textAlign:"center"}}><button className="btn btn-outline-info" onClick={this.selectroutineA} value={item.reportId}>Ver</button></td>
                                         <td>{item.reportId}</td>
                                         <td style={{textAlign:"left"}}>{item.reportType.reportType}</td>
-                                        <td>{item.deviceId}</td>
+                                        <td>{item.deviceRel.deviceName}</td>
                                         <td style={{textAlign:"left"}}>{item.reportTittle}</td>
                                         <td>{moment(item.commitmentDate).format('DD/MMM/YYYY hh:mm:ss')}</td>
                                         <td>{moment(item.beginDate).format('DD/MMM/YYYY hh:mm:ss')}</td>
-                                        <td>{moment(item.endDate).format('DD/MMM/YYYY hh:mm:ss')}</td>
+                                        {item.endDate?                                         
+                                         <td>{moment(item.endDate).format('DD/MMM/YYYY hh:mm:ss')}</td>   
+                                        :<td></td>}
                                         <td style={{textAlign:"left"}}>{item.reportStatusRel.reportStatusDesc}</td>
                                     </tr>
                                 ))}
@@ -192,6 +212,8 @@ class RoutineTableAll extends React.Component{
             {/* seccion de selecion de rutina */}
         if(this.state.selectRoutinebtn === true){
             const routineId = this.state.routineIdSelect.toString();
+            const statusRoutine = this.state.statusRoutine.toString();
+            const routineData = this.state.routineDataSelect;
             return(
                 <React.Fragment>
                    <div className="ContenedorP">
@@ -526,17 +548,17 @@ class RoutineTableAll extends React.Component{
                             <div>
                                {this.state.routineAA?
                                <div className="ContenedorS">
-                                   <VariableAA routine={routineId}/>
+                                   <VariableAA routine={routineId} status={statusRoutine} data={routineData}/>
                                </div>
                                :null}
                                {this.state.routineUPS?
                                <div className="ContenedorS">
-                                    <VariableUPS routine={routineId}/>
+                                    <VariableUPS routine={routineId} status={statusRoutine} data={routineData}/>
                                </div>
                                :null}
                                {this.state.routinePE?
                                <div className="Contenedors">
-                                    <VariablePE routine={routineId}/>
+                                    <VariablePE routine={routineId} status={statusRoutine} data={routineData}/>
                                </div>
                                :null}
                             </div>

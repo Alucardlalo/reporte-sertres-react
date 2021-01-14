@@ -13,7 +13,25 @@
         position: relative;
         width: 100%;  
     }
-            
+    .completeMessage{
+         font-size: 2rem;
+         color: yellow;
+         
+    } 
+    .prestoAAResC{
+        float: right;
+        position: relative;
+        color: white;
+        font-size: 1.5rem;
+        
+    }  
+    .prestoAAC{
+        font-size: 1.5rem;
+        height: auto;
+        width: 100%;
+        color: aquamarine;
+
+    }      
     }
 
 @media screen and (max-width: 1000px) {
@@ -32,5 +50,22 @@
         position: relative;
         width: 340%;  
     }
-        
+     .completeMessage{
+        color: yellow;
+        font-size: 1rem;
+     }
+     .prestoAAResC{
+        float: right;
+        position: relative;
+        color: white;
+        font-size: 1.5rem;
+        width: auto;
+    }
+    .prestoAAC{
+        font-size: 1.5rem;
+        height: auto;
+        width: 70%;
+        color: aquamarine;
+
+    }   
     }    

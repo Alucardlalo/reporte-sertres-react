@@ -12,11 +12,17 @@ class variableAA extends React.Component{
 
         this.state = {
             variable : [],
+            variableData:[],
             loading:true, 
             error: null,
-            variableAUX: [],    
+            variableAUX: [],
+            variableDataAUX: [],    
             now : moment(new Date()).format("DD/MM/YYYY hh:mm:ss"),
             inheritedRoutine: this.props.routine,
+            inheritedStatus: this.props.status,
+            inheritedRoutineData: this.props.data,
+            inheritedRoutineData1: [],
+            statusActual: false,
             Q1: '',Q2: '',Q3: '',Q4: '',Q5: '',Q6: '',Q7: '',Q8: '',Q9: '',Q10: '',
             Q11: '',Q12: '',Q13: '',Q14: '',Q15: '',Q16: '',Q17: '',Q18: '',Q19: '',
             
@@ -25,7 +31,26 @@ class variableAA extends React.Component{
     }
 
     componentDidMount() {
-        this.fetchVariable()
+        this.fetchVariable();
+        this.statusComprovation();
+        this.seleccionarData();
+    }
+
+    seleccionarData(){
+        var routineData = []
+        this.state.inheritedRoutineData.map((data) =>{
+            routineData.push(data.data);
+        })
+        this.setState({inheritedRoutineData1: routineData})
+        alert('El reporte de rutina esta completo, no se puede editar')
+    }
+
+    statusComprovation(){
+        if(this.state.inheritedStatus == 1){
+            this.setState({statusActual: true})
+        }else{
+            this.setState({statusActual: false})
+        }
     }
 
     changeHadlerQ1 = () =>{this.setState({Q1: this.state.now })}
@@ -64,7 +89,7 @@ class variableAA extends React.Component{
             this.setState({loading: false , error: error })
         }
     }
-
+   
     submitHadler = async e =>{
         e.preventDefault();
         this.setState({Q1:this.state.now});
@@ -278,7 +303,7 @@ class variableAA extends React.Component{
         }
         if(this.state.error){
             return `Error: ${this.state.error.message}`;
-        } 
+        }
         const {Q2,Q3,Q4,Q5,Q6,Q7,Q8,Q9,Q10,Q11,Q12,Q13,Q14,Q15,Q16,Q17,Q18,Q19} = this.state  
         return(
         <React.Fragment>
@@ -287,11 +312,18 @@ class variableAA extends React.Component{
                 {/* {this.state.variableAUX.map((item) => ( */}
                         <div className="table table-dark overflow-hidden">
                         <div className="row">
+                        
+                        {/* solo si esta con status completo */}
+                        
                             <div className="col-4 col-sm-4">
                                     <table className="AAData">
                                     <tr>
-                                        <td className="prestoAA">{this.state.variableAUX[0]} </td>
-                                        <td className="prestoAARes"><input type="dateTime" disabled= "true" size="15" value={this.state.now} className="btn btn-outline-info"/></td>
+                                    {this.state.statusActual?
+                                        <td className="prestoAAC">{this.state.variableAUX[0]}</td>
+                                        :<td className="prestoAA">{this.state.variableAUX[0]}</td>}
+                                        {this.state.statusActual?
+                                        <td className="prestoAAResC">{this.state.inheritedRoutineData1[0]}</td>
+                                        :<td className="prestoAARes"><input type="dateTime" disabled= "true" size="15" value={this.state.now} className="btn btn-outline-info"/></td>}
                                     </tr>
                                     </table> 
                                    
@@ -300,13 +332,17 @@ class variableAA extends React.Component{
                             <div className="col-4 col-sm-4">
                             <table className="AAData">
                                     <tr>
-                                        <td className="prestoAA">{this.state.variableAUX[1]} </td>
-                                        <td className="prestoAARes"><select onChange={this.changeHadlerQ2} value={Q2} className="btn btn-outline-info">
-                                            <option value={''}> </option>
-                                            <option value={'si'}>Si</option>
-                                            <option value={'no'}>No</option>
-                                            <option value={'No aplica'}>No Aplica</option>
-                                            </select></td>
+                                    {this.state.statusActual?
+                                        <td className="prestoAAC">{this.state.variableAUX[1]}</td>
+                                        :<td className="prestoAA">{this.state.variableAUX[1]}</td>}
+                                        {this.state.statusActual?
+                                        <td className="prestoAAResC">{this.state.inheritedRoutineData1[1]}</td>
+                                        : <td className="prestoAARes"><select  onChange={this.changeHadlerQ2} value={Q2} className="btn btn-outline-info">
+                                        <option value={''}> </option>
+                                        <option value={'si'}>Si</option>
+                                        <option value={'no'}>No</option>
+                                        <option value={'No aplica'}>No Aplica</option>
+                                        </select></td>}    
                                     </tr>
                                     </table>
                             </div>
@@ -316,13 +352,17 @@ class variableAA extends React.Component{
                             <div className="col-4 col-sm-4">
                             <table className="AAData"> 
                                     <tr>
-                                        <td className="prestoAA">{this.state.variableAUX[2]} </td>
-                                        <td className="prestoAARes"><select  onChange={this.changeHadlerQ3} value={Q3} className="btn btn-outline-info">
+                                    {this.state.statusActual?
+                                        <td className="prestoAAC">{this.state.variableAUX[2]}</td>
+                                        :<td className="prestoAA">{this.state.variableAUX[2]}</td>}
+                                        {this.state.statusActual?
+                                        <td className="prestoAAResC">{this.state.inheritedRoutineData1[2]}</td>
+                                        :<td className="prestoAARes"><select  onChange={this.changeHadlerQ3} value={Q3} className="btn btn-outline-info">
                                         <option value={''}> </option>
                                             <option value={'si'}>Si</option>
                                             <option value={'no'}>No</option>
                                             <option value={'No aplica'}>No Aplica</option>
-                                            </select></td>
+                                            </select></td>}
                                     </tr>
                                     </table> 
                             </div>
@@ -330,13 +370,17 @@ class variableAA extends React.Component{
                             <div className="col-4 col-sm-4">
                             <table className="AAData">
                                     <tr>
-                                        <td className="prestoAA">{this.state.variableAUX[3]} </td>
-                                        <td className="prestoAARes"><select  onChange={this.changeHadlerQ4} value={Q4} className="btn btn-outline-info">
+                                    {this.state.statusActual?
+                                        <td className="prestoAAC">{this.state.variableAUX[3]}</td>
+                                        :<td className="prestoAA">{this.state.variableAUX[3]}</td>}
+                                        {this.state.statusActual?
+                                        <td className="prestoAAResC">{this.state.inheritedRoutineData1[3]}</td>
+                                        :<td className="prestoAARes"><select  onChange={this.changeHadlerQ4} value={Q4} className="btn btn-outline-info">
                                         <option value={''}> </option>
                                             <option value={'si'}>Si</option>
                                             <option value={'no'}>No</option>
                                             <option value={'No aplica'}>No Aplica</option>
-                                            </select></td>
+                                            </select></td>}
                                     </tr>
                                     </table>
                             </div>
@@ -344,13 +388,17 @@ class variableAA extends React.Component{
                             <div className="col-4 col-sm-4 AAData">
                             <table className="AAData">
                                     <tr>
-                                        <td className="prestoAA">{this.state.variableAUX[4]} </td>
-                                        <td className="prestoAARes"><select  onChange={this.changeHadlerQ5} value={Q5} className="btn btn-outline-info">
+                                    {this.state.statusActual?
+                                        <td className="prestoAAC">{this.state.variableAUX[4]}</td>
+                                        :<td className="prestoAA">{this.state.variableAUX[4]}</td>}
+                                        {this.state.statusActual?
+                                        <td className="prestoAAResC">{this.state.inheritedRoutineData1[4]}</td>
+                                        :<td className="prestoAARes"><select  onChange={this.changeHadlerQ5} value={Q5} className="btn btn-outline-info">
                                         <option value={''}> </option>
                                             <option value={'si'}>Si</option>
                                             <option value={'no'}>No</option>
                                             <option value={'No aplica'}>No Aplica</option>
-                                            </select></td>
+                                            </select></td>}
                                     </tr>
                                     </table>
                             </div>
@@ -359,13 +407,17 @@ class variableAA extends React.Component{
                             <div className="col-4 col-sm-4">
                             <table className="AAData"> 
                                     <tr>
-                                        <td className="prestoAA">{this.state.variableAUX[5]} </td>
-                                        <td className="prestoAARes"><select  onChange={this.changeHadlerQ6} value={Q6} className="btn btn-outline-info">
+                                    {this.state.statusActual?
+                                        <td className="prestoAAC">{this.state.variableAUX[5]}</td>
+                                        :<td className="prestoAA">{this.state.variableAUX[5]}</td>}
+                                        {this.state.statusActual?
+                                        <td className="prestoAAResC">{this.state.inheritedRoutineData1[5]}</td>
+                                        :<td className="prestoAARes"><select  onChange={this.changeHadlerQ6} value={Q6} className="btn btn-outline-info">
                                         <option value={''}> </option>
                                             <option value={'si'}>Si</option>
                                             <option value={'no'}>No</option>
                                             <option value={'No aplica'}>No Aplica</option>
-                                            </select></td>
+                                            </select></td>}
                                     </tr>
                                     </table> 
                             </div>
@@ -373,13 +425,17 @@ class variableAA extends React.Component{
                             <div className="col-4 col-sm-4">
                             <table className="AAData">
                                     <tr>
-                                        <td className="prestoAA">{this.state.variableAUX[6]} </td>
-                                        <td className="prestoAARes"><select  onChange={this.changeHadlerQ7} value={Q7} className="btn btn-outline-info">
+                                    {this.state.statusActual?
+                                        <td className="prestoAAC">{this.state.variableAUX[6]}</td>
+                                        :<td className="prestoAA">{this.state.variableAUX[6]}</td>}
+                                        {this.state.statusActual?
+                                        <td className="prestoAAResC">{this.state.inheritedRoutineData1[6]}</td>
+                                        :<td className="prestoAARes"><select  onChange={this.changeHadlerQ7} value={Q7} className="btn btn-outline-info">
                                         <option value={''}> </option>
                                             <option value={'si'}>Si</option>
                                             <option value={'no'}>No</option>
                                             <option value={'No aplica'}>No Aplica</option>
-                                            </select></td>
+                                            </select></td>}
                                     </tr>
                                 </table>
                             </div>
@@ -387,13 +443,17 @@ class variableAA extends React.Component{
                             <div className="col-4 col-sm-4">
                             <table className="AAData">
                                     <tr>
-                                        <td className="prestoAA">{this.state.variableAUX[7]} </td>
-                                        <td className="prestoAARes"><select  onChange={this.changeHadlerQ8} value={Q8} className="btn btn-outline-info">
+                                    {this.state.statusActual?
+                                        <td className="prestoAAC">{this.state.variableAUX[7]}</td>
+                                        :<td className="prestoAA">{this.state.variableAUX[7]}</td>}
+                                        {this.state.statusActual?
+                                        <td className="prestoAAResC">{this.state.inheritedRoutineData1[7]}</td>
+                                        :<td className="prestoAARes"><select  onChange={this.changeHadlerQ8} value={Q8} className="btn btn-outline-info">
                                         <option value={''}> </option>
                                             <option value={'si'}>Si</option>
                                             <option value={'no'}>No</option>
                                             <option value={'No aplica'}>No Aplica</option>
-                                            </select></td>
+                                            </select></td>}
                                     </tr>
                                 </table>
                             </div>
@@ -402,26 +462,39 @@ class variableAA extends React.Component{
                             <div className="col-4 col-sm-4">
                             <table className="AAData"> 
                                     <tr>
-                                        <td className="prestoAA">{this.state.variableAUX[8]} </td>
-                                        <td className="prestoAARes"><input type="text" size="7" onChange={this.changeHadlerQ9} value={Q9} autoComplete="off" className="btn btn-outline-info"></input></td>
-                                    </tr>
+                                    {this.state.statusActual?
+                                        <td className="prestoAAC">{this.state.variableAUX[8]}</td>
+                                        :<td className="prestoAA">{this.state.variableAUX[8]}</td>}
+                                        {this.state.statusActual?
+                                        <td className="prestoAAResC">{this.state.inheritedRoutineData1[8]}</td>
+                                        :<td className="prestoAARes"><input type="text" size="7" onChange={this.changeHadlerQ9} value={Q9} autoComplete="off" className="btn btn-outline-info"></input></td>
+                                        }</tr>
                                     </table> 
                             </div>
                             <div className="w-100 ocultar-div"></div>
                             <div className="col-4 col-sm-4">
                             <table className="AAData">
                                     <tr>
-                                        <td className="prestoAA">{this.state.variableAUX[9]} </td>
-                                        <td className="prestoAARes"><input type="text" size="7" onChange={this.changeHadlerQ10} autoComplete="off" value={Q10} className="btn btn-outline-info"></input></td>
-                                    </tr>
+                                    {this.state.statusActual?
+                                        <td className="prestoAAC">{this.state.variableAUX[9]}</td>
+                                        :<td className="prestoAA">{this.state.variableAUX[9]}</td>}
+                                        {this.state.statusActual?
+                                        <td className="prestoAAResC">{this.state.inheritedRoutineData1[9]}</td>
+                                        :<td className="prestoAARes"><input type="text" size="7" onChange={this.changeHadlerQ10} autoComplete="off" value={Q10} className="btn btn-outline-info"></input></td>
+                                        }</tr>
                                 </table>
                             </div>
                             <div className="w-100 ocultar-div"></div>
                             <div className="col-4 col-sm-4">
                             <table className="AAData">
                                     <tr>
-                                        <td className="prestoAA">{this.state.variableAUX[10]} </td>
-                                        <td className="prestoAARes"><input type="text" size="7" onChange={this.changeHadlerQ11} autoComplete="off" value={Q11} className="btn btn-outline-info"></input></td>
+                                    {this.state.statusActual?
+                                        <td className="prestoAAC">{this.state.variableAUX[10]}</td>
+                                        :<td className="prestoAA">{this.state.variableAUX[10]}</td>}
+                                        {this.state.statusActual?
+                                        <td className="prestoAAResC">{this.state.inheritedRoutineData1[10]}</td>
+                                        :<td className="prestoAARes"><input type="text" size="7" onChange={this.changeHadlerQ11} autoComplete="off" value={Q11} className="btn btn-outline-info"></input></td>
+                                    }
                                     </tr>
                                 </table>
                             </div>
@@ -431,17 +504,27 @@ class variableAA extends React.Component{
                             <div className="col-4 col-sm-4">
                             <table className="AAData"> 
                                     <tr>
-                                        <td className="prestoAA">{this.state.variableAUX[11]} </td>
-                                        <td className="prestoAARes"><input type="text" size="7" onChange={this.changeHadlerQ12} autoComplete="off" value={Q12} className="btn btn-outline-info"></input></td>
-                                    </tr>
+                                    {this.state.statusActual?
+                                        <td className="prestoAAC">{this.state.variableAUX[11]}</td>
+                                        :<td className="prestoAA">{this.state.variableAUX[11]}</td>}
+                                        {this.state.statusActual?
+                                        <td className="prestoAAResC">{this.state.inheritedRoutineData1[11]}</td>
+                                        :<td className="prestoAARes"><input type="text" size="7" onChange={this.changeHadlerQ12} autoComplete="off" value={Q12} className="btn btn-outline-info"></input></td>
+                                        }
+                                        </tr>
                                     </table> 
                             </div>
                             <div className="w-100 ocultar-div"></div>
                             <div className="col-4 col-sm-4">
                             <table className="AAData">
                                     <tr>
-                                        <td className="prestoAA">{this.state.variableAUX[12]} </td>
-                                        <td className="prestoAARes"><input type="text" size="7" onChange={this.changeHadlerQ13} autoComplete="off" value={Q13} className="btn btn-outline-info"></input></td>
+                                    {this.state.statusActual?
+                                        <td className="prestoAAC">{this.state.variableAUX[12]}</td>
+                                        :<td className="prestoAA">{this.state.variableAUX[12]}</td>}
+                                        {this.state.statusActual?
+                                        <td className="prestoAAResC">{this.state.inheritedRoutineData1[12]}</td>
+                                        :<td className="prestoAARes"><input type="text" size="7" onChange={this.changeHadlerQ13} autoComplete="off" value={Q13} className="btn btn-outline-info"></input></td>
+                                    }
                                     </tr>
                                 </table>
                             </div>
@@ -449,8 +532,13 @@ class variableAA extends React.Component{
                             <div className="col-4 col-sm-4">
                             <table className="AAData">
                                     <tr>
-                                        <td className="prestoAA">{this.state.variableAUX[13]} </td>
-                                        <td className="prestoAARes"><input type="text" size="7"  onChange={this.changeHadlerQ14} autoComplete="off" value={Q14} className="btn btn-outline-info"></input></td>
+                                    {this.state.statusActual?
+                                        <td className="prestoAAC">{this.state.variableAUX[13]}</td>
+                                        :<td className="prestoAA">{this.state.variableAUX[13]}</td>}
+                                        {this.state.statusActual?
+                                        <td className="prestoAAResC">{this.state.inheritedRoutineData1[13]}</td>
+                                        :<td className="prestoAARes"><input type="text" size="7"  onChange={this.changeHadlerQ14} autoComplete="off" value={Q14} className="btn btn-outline-info"></input></td>
+                                    }
                                     </tr>
                                 </table>
                             </div>
@@ -460,8 +548,13 @@ class variableAA extends React.Component{
                             <div className="col-4 col-sm-4">
                             <table className="AAData"> 
                                     <tr>
-                                        <td className="prestoAA">{this.state.variableAUX[14]} </td>
-                                        <td className="prestoAARes"><input type="text" size="7"  onChange={this.changeHadlerQ15} autoComplete="off" value={Q15} className="btn btn-outline-info"></input></td>
+                                    {this.state.statusActual?
+                                        <td className="prestoAAC">{this.state.variableAUX[14]}</td>
+                                        :<td className="prestoAA">{this.state.variableAUX[14]}</td>}
+                                        {this.state.statusActual?
+                                        <td className="prestoAAResC">{this.state.inheritedRoutineData1[14]}</td>
+                                        :<td className="prestoAARes"><input type="text" size="7"  onChange={this.changeHadlerQ15} autoComplete="off" value={Q15} className="btn btn-outline-info"></input></td>
+                                    }
                                     </tr>
                                     </table> 
                             </div>
@@ -469,8 +562,13 @@ class variableAA extends React.Component{
                             <div className="col-4 col-sm-4">
                             <table className="AAData">
                                     <tr>
-                                        <td className="prestoAA">{this.state.variableAUX[15]} </td>
-                                        <td><input type="text" size="7"  onChange={this.changeHadlerQ16} autoComplete="off" value={Q16} className="btn btn-outline-info"></input></td>
+                                    {this.state.statusActual?
+                                        <td className="prestoAAC">{this.state.variableAUX[15]}</td>
+                                        :<td className="prestoAA">{this.state.variableAUX[15]}</td>}
+                                        {this.state.statusActual?
+                                        <td className="prestoAAResC">{this.state.inheritedRoutineData1[15]}</td>
+                                        :<td><input type="text" size="7"  onChange={this.changeHadlerQ16} autoComplete="off" value={Q16} className="btn btn-outline-info"></input></td>
+                                    }
                                     </tr>
                                 </table>
                             </div>
@@ -478,12 +576,16 @@ class variableAA extends React.Component{
                             <div className="col-4 col-sm-4">
                             <table className="AAData">
                                     <tr>
-                                        <td className="prestoAA">{this.state.variableAUX[16]} </td>
-                                        <td className="prestoAARes"><select  onChange={this.changeHadlerQ17} value={Q17} className="btn btn-outline-info">
+                                    {this.state.statusActual?
+                                        <td className="prestoAAC">{this.state.variableAUX[16]}</td>
+                                        :<td className="prestoAA">{this.state.variableAUX[16]}</td>}
+                                        {this.state.statusActual?
+                                        <td className="prestoAAResC">{this.state.inheritedRoutineData1[16]}</td>
+                                        :<td className="prestoAARes"><select  onChange={this.changeHadlerQ17} value={Q17} className="btn btn-outline-info">
                                             <option value={''}> </option>
                                             <option value={'Si'}>Si</option>
                                             <option value={'No'}>No</option>
-                                            </select></td>
+                                            </select></td>}
                                     </tr>
                                 </table>
                             </div>
@@ -493,12 +595,16 @@ class variableAA extends React.Component{
                             <div className="col-4 col-sm-4">
                             <table className="AAData"> 
                                     <tr>
-                                        <td className="prestoAA">{this.state.variableAUX[17]} </td>
-                                        <td className="prestoAARes"><select onChange={this.changeHadlerQ18} value={Q18} className="btn btn-outline-info">
+                                    {this.state.statusActual?
+                                        <td className="prestoAAC">{this.state.variableAUX[17]}</td>
+                                        :<td className="prestoAA">{this.state.variableAUX[17]}</td>}
+                                        {this.state.statusActual?
+                                        <td className="prestoAAResC ">{this.state.inheritedRoutineData1[17]}</td>
+                                        :<td className="prestoAARes"><select onChange={this.changeHadlerQ18} value={Q18} className="btn btn-outline-info">
                                         <option value={''}> </option>
                                             <option value={'Si'}>Si</option>
                                             <option value={'No'}>No</option>
-                                            </select></td>
+                                            </select></td>}
                                     </tr>
                                     </table> 
                             </div>
@@ -506,8 +612,13 @@ class variableAA extends React.Component{
                             <div className="col-4 col-sm-4">
                             <table className="AAData">
                                     <tr>
-                                    <td className="prestoAA">{this.state.variableAUX[18]} </td>
-                                    <td className="prestoAARes"><input type="text" onChange={this.changeHadlerQ19} autoComplete="off" value={Q19} className="btn btn-outline-info"></input></td>
+                                    {this.state.statusActual?
+                                        <td className="prestoAAC">{this.state.variableAUX[18]}</td>
+                                        :<td className="prestoAA">{this.state.variableAUX[18]}</td>}
+                                    {this.state.statusActual?
+                                        <td className="prestoAAResC">{this.state.inheritedRoutineData1[18]}</td>
+                                        :<td className="prestoAARes"><input type="text" onChange={this.changeHadlerQ19} autoComplete="off" value={Q19} className="btn btn-outline-info"></input></td>
+                                    }
                                     </tr>
                                 </table>
                             </div>
@@ -518,7 +629,10 @@ class variableAA extends React.Component{
                             <div className="col-4 col-sm-4">
                             <table className="AAData">
                                     <tr>
-                                        <td><button className="btn btn-outline-info">Guardar</button></td>
+                                    {this.state.statusActual?
+                                        <td><button className="btn btn-outline-success" disabled="true">Completo</button></td>
+                                        :<td><button className="btn btn-outline-info">Guardar</button></td>
+                                    }
                                     </tr>
                                 </table>
                             </div>
