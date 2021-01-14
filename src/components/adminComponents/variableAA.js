@@ -42,12 +42,12 @@ class variableAA extends React.Component{
             routineData.push(data.data);
         })
         this.setState({inheritedRoutineData1: routineData})
-        alert('El reporte de rutina esta completo, no se puede editar')
     }
 
     statusComprovation(){
         if(this.state.inheritedStatus == 1){
             this.setState({statusActual: true})
+            alert('El reporte de rutina esta completo, no se puede editar')
         }else{
             this.setState({statusActual: false})
         }
