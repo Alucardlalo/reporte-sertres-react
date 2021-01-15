@@ -17,8 +17,10 @@ class VariablePE extends React.Component{
             inheritedRoutine: this.props.routine,
             inheritedStatus: this.props.status,
             inheritedRoutineData: this.props.data,
+            inheritedRoutineSelectS: this.props.routineS,
             inheritedRoutineData1: [],
             statusActual: false,
+            inheritedRoutineS: this.props.routineS,
             Q1: '',Q2: '',Q3: '',Q4: '',Q5: '',Q6: '',Q7: '',Q8: '',Q9: '',Q10: '',
             Q11: '',Q12: '',Q13: '',Q14: '',Q15: '',Q16: '',Q17: '',Q18: '',Q19: '',
             Q20: '',Q21: '',Q22: '',Q23: '',Q24: '',Q25: '',Q26: '',Q27: '',Q28: '',
@@ -110,7 +112,33 @@ class VariablePE extends React.Component{
         this.SaveQ13();this.SaveQ14();this.SaveQ15();this.SaveQ16();this.SaveQ17();this.SaveQ18();
         this.SaveQ19();this.SaveQ20();this.SaveQ21();this.SaveQ22();this.SaveQ23();this.SaveQ24();
         this.SaveQ25();this.SaveQ26();this.SaveQ27();this.SaveQ28();this.SaveQ29();this.SaveQ30();
-        this.SaveQ31();this.SaveQ32();this.SaveQ33();
+        this.SaveQ31();this.SaveQ32();this.SaveQ33();this.SaveRoutine();
+    }
+
+    SaveRoutine = async e =>{
+        var rotine =[], routineType =[], device = [], title = [], date1 = [], date2 = [], dateEnd = [], status =[], ATM =[];
+        this.state.inheritedRoutineS.map((routine) =>{
+            rotine.push(routine.reportId);
+            routineType.push(routine.reportTypeId);
+            device.push(routine.deviceId);
+            title.push(routine.reportTittle);
+            date1.push(routine.commitmentDate);
+            date2.push(routine.beginDate);
+            dateEnd.push(routine.endDate);
+            status.push(routine.status);
+            ATM.push(routine.reviewATM);
+        })
+        const requestOptions1 = {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ 
+                reportId: rotine  , reportTypeId: routineType , deviceId: device , 
+                reportTittle: title, commitmentDate: date1, beginDate:date2,
+                endDate: this.state.now , status:status , reviewATM: ATM })
+        };
+        console.log(requestOptions1)
+        fetch('http://localhost:8090/sertresreporte/reporte/save', requestOptions1)
+            .then(response => response.json());
     }
 
      SaveQ1 = async e =>{
@@ -465,9 +493,10 @@ class VariablePE extends React.Component{
             <div className="ContenedorP">
                 {/* {this.state.variableAUX.map((item) => ( */}
                         <div className="table table-dark">
+                           <table> 
                         <div className="row">
                             <div className="col-4 col-sm-4">
-                                    <table className="PEData">
+                                    
                                     <tr>
                                     {this.state.statusActual?
                                         <td className="prestoPEC">{this.state.variableAUX[0]}</td>
@@ -476,12 +505,12 @@ class VariablePE extends React.Component{
                                         <td className="prestoPEResC">{this.state.inheritedRoutineData1[0]}</td>
                                         :<td className="prestoPERes"><input type="dateTime" disabled= "true" size="15" value={this.state.now} className="btn btn-outline-info"/></td>
                                     }</tr>
-                                    </table> 
+                                    
                                    
                             </div>
                             <div className="w-100 ocultar-div"></div>
                             <div className="col-4 col-sm-4">
-                            <table className="PEData">
+                            
                                     <tr>
                                     {this.state.statusActual?
                                         <td className="prestoPEC">{this.state.variableAUX[1]}</td>
@@ -495,13 +524,13 @@ class VariablePE extends React.Component{
                                             <option value={'No aplica'}>No Aplica</option>
                                             </select></td>}
                                     </tr>
-                                    </table>
+                                    
                             </div>
                             
                             <div class="w-100"></div>{/* segunda linea de cuadro Rutina */}
                             
                             <div className="col-4 col-sm-4">
-                            <table className="PEData"> 
+                             
                                     <tr>
                                     {this.state.statusActual?
                                         <td className="prestoPEC">{this.state.variableAUX[2]}</td>
@@ -515,11 +544,11 @@ class VariablePE extends React.Component{
                                             <option value={'No aplica'}>No Aplica</option>
                                             </select></td>}
                                     </tr>
-                                    </table> 
+                                     
                             </div>
                             <div className="w-100 ocultar-div"></div>
                             <div className="col-4 col-sm-4">
-                            <table className="PEData">
+                            
                                     <tr>
                                     {this.state.statusActual?
                                         <td className="prestoPEC">{this.state.variableAUX[3]}</td>
@@ -533,11 +562,11 @@ class VariablePE extends React.Component{
                                             <option value={'No aplica'}>No Aplica</option>
                                             </select></td>}
                                     </tr>
-                                    </table>
+                                    
                             </div>
                             <div className="w-100 ocultar-div"></div>
                             <div className="col-4 col-sm-4">
-                            <table className="PEData">
+                            
                                     <tr>
                                     {this.state.statusActual?
                                         <td className="prestoPEC">{this.state.variableAUX[4]}</td>
@@ -551,12 +580,12 @@ class VariablePE extends React.Component{
                                             <option value={'No aplica'}>No Aplica</option>
                                             </select></td>}
                                     </tr>
-                                    </table>
+                                    
                             </div>
                             <div class="w-100"></div>{/* tercera linea de cuadro Rutina */}
                             
                             <div className="col-4 col-sm-4">
-                            <table className="PEData"> 
+                             
                                     <tr>
                                     {this.state.statusActual?
                                         <td className="prestoPEC">{this.state.variableAUX[5]}</td>
@@ -570,11 +599,11 @@ class VariablePE extends React.Component{
                                             <option value={'No aplica'}>No Aplica</option>
                                             </select></td>}
                                     </tr>
-                                    </table> 
+                                     
                             </div>
                             <div className="w-100 ocultar-div"></div>
                             <div className="col-4 col-sm-4">
-                            <table className="PEData">
+                            
                                     <tr>
                                     {this.state.statusActual?
                                         <td className="prestoPEC">{this.state.variableAUX[6]}</td>
@@ -588,11 +617,11 @@ class VariablePE extends React.Component{
                                             <option value={'No aplica'}>No Aplica</option>
                                             </select></td>}
                                     </tr>
-                                </table>
+                                
                             </div>
                             <div className="w-100 ocultar-div"></div>
                             <div className="col-4 col-sm-4">
-                            <table className="PEData">
+                            
                                     <tr>
                                     {this.state.statusActual?
                                         <td className="prestoPEC">{this.state.variableAUX[7]}</td>
@@ -606,12 +635,12 @@ class VariablePE extends React.Component{
                                             <option value={'No aplica'}>No Aplica</option>
                                             </select></td>}
                                     </tr>
-                                </table>
+                                
                             </div>
                             <div class="w-100"></div>{/* cuarta linea de cuadro Rutina */}
                             
                             <div className="col-4 col-sm-4">
-                            <table className="PEData"> 
+                             
                                     <tr>
                                     {this.state.statusActual?
                                         <td className="prestoPEC">{this.state.variableAUX[8]}</td>
@@ -625,11 +654,11 @@ class VariablePE extends React.Component{
                                             <option value={'No aplica'}>No Aplica</option>
                                             </select></td>}
                                     </tr>
-                                    </table> 
+                                     
                             </div>
                             <div className="w-100 ocultar-div"></div>
                             <div className="col-4 col-sm-4">
-                            <table className="PEData">
+                            
                                     <tr>
                                     {this.state.statusActual?
                                         <td className="prestoPEC">{this.state.variableAUX[9]}</td>
@@ -643,11 +672,11 @@ class VariablePE extends React.Component{
                                             <option value={'No aplica'}>No Aplica</option>
                                             </select></td>}
                                     </tr>
-                                </table>
+                                
                             </div>
                             <div className="w-100 ocultar-div"></div>
                             <div className="col-4 col-sm-4">
-                            <table className="PEData">
+                            
                                     <tr>
                                     {this.state.statusActual?
                                         <td className="prestoPEC">{this.state.variableAUX[10]}</td>
@@ -657,13 +686,13 @@ class VariablePE extends React.Component{
                                         :<td className="prestoPERes"><input type="text" size="7" onChange={this.changeHadlerQ11} autoComplete="off" value={Q11} className="btn btn-outline-info"></input></td>
                                     }
                                     </tr>
-                                </table>
+                                
                             </div>
 
                             <div class="w-100"></div>{/* quinta linea de cuadro Rutina */}
                             
                             <div className="col-4 col-sm-4">
-                            <table className="PEData"> 
+                             
                                     <tr>
                                     {this.state.statusActual?
                                         <td className="prestoPEC">{this.state.variableAUX[11]}</td>
@@ -673,11 +702,11 @@ class VariablePE extends React.Component{
                                         :<td className="prestoPERes"><input type="text" size="7" onChange={this.changeHadlerQ12} autoComplete="off" value={Q12} className="btn btn-outline-info"></input></td>
                                     }
                                     </tr>
-                                    </table> 
+                                     
                             </div>
                             <div className="w-100 ocultar-div"></div>
                             <div className="col-4 col-sm-4">
-                            <table className="PEData">
+                            
                                     <tr>
                                     {this.state.statusActual?
                                         <td className="prestoPEC">{this.state.variableAUX[12]}</td>
@@ -686,11 +715,11 @@ class VariablePE extends React.Component{
                                         <td className="prestoPEResC">{this.state.inheritedRoutineData1[12]}</td>
                                         :<td className="prestoPERes"><input type="text" size="7" onChange={this.changeHadlerQ13} autoComplete="off" value={Q13} className="btn btn-outline-info"></input></td>
                                     }</tr>
-                                </table>
+                                
                             </div>
                             <div className="w-100 ocultar-div"></div>
                             <div className="col-4 col-sm-4">
-                            <table className="PEData">
+                            
                                     <tr>
                                     {this.state.statusActual?
                                         <td className="prestoPEC">{this.state.variableAUX[13]}</td>
@@ -699,13 +728,13 @@ class VariablePE extends React.Component{
                                         <td className="prestoPEResC">{this.state.inheritedRoutineData1[13]}</td>
                                         :<td className="prestoPERes"><input type="text" size="7"  onChange={this.changeHadlerQ14} autoComplete="off" value={Q14} className="btn btn-outline-info"></input></td>
                                     }</tr>
-                                </table>
+                                
                             </div>
 
                             <div class="w-100"></div>{/* sexta linea de cuadro Rutina */}
                             
                             <div className="col-4 col-sm-4">
-                            <table className="PEData"> 
+                             
                                     <tr>
                                     {this.state.statusActual?
                                         <td className="prestoPEC">{this.state.variableAUX[14]}</td>
@@ -714,20 +743,20 @@ class VariablePE extends React.Component{
                                         <td className="prestoPEResC">{this.state.inheritedRoutineData1[14]}</td>
                                         :<td className="prestoPERes"><input type="text" size="7"  onChange={this.changeHadlerQ15} autoComplete="off" value={Q15} className="btn btn-outline-info"></input></td>
                                     }</tr>
-                                    </table> 
+                                     
                             </div>
                             <div class="w-100"></div>
                             <div className="col-12">
-                            <table className="PEDataSeparator"> 
+                            
                                     <tr>
                                         <td className="prestoPESeparator">Valide, respaldo normal de UPS antes de simular corte de suministro de CFE por 30 minutos.</td>
                                         </tr>
-                                    </table> 
+                                     
                             </div>
                             <div class="w-100"></div>
                             <div className="w-100 ocultar-div"></div>
                             <div className="col-4 col-sm-4">
-                            <table className="PEData">
+                            
                                     <tr>
                                     {this.state.statusActual?
                                         <td className="prestoPEC">{this.state.variableAUX[15]}</td>
@@ -736,11 +765,11 @@ class VariablePE extends React.Component{
                                         <td className="prestoPEResC">{this.state.inheritedRoutineData1[15]}</td>
                                         :<td className="prestoPERes"><input type="dateTime" disabled= "true" size="15" value={this.state.now} className="btn btn-outline-info"/></td>
                                     }</tr>
-                                </table>
+                                
                             </div>
                             <div className="w-100 ocultar-div"></div>
                             <div className="col-4 col-sm-4">
-                            <table className="PEData">
+                            
                                     <tr>
                                     {this.state.statusActual?
                                         <td className="prestoPEC">{this.state.variableAUX[16]}</td>
@@ -749,13 +778,13 @@ class VariablePE extends React.Component{
                                         <td className="prestoPEResC">{this.state.inheritedRoutineData1[16]}</td>
                                         :<td className="prestoPERes"><input type="text" size="7" onChange={this.changeHadlerQ17} autoComplete="off" value={Q17} className="btn btn-outline-info"></input></td>
                                     }</tr>
-                                </table>
+                                
                             </div>
 
                            < div class="w-100"></div>{/* septima linea de cuadro Rutina */}
                             
                             <div className="col-4 col-sm-4">
-                            <table className="PEData"> 
+                             
                                     <tr>
                                     {this.state.statusActual?
                                         <td className="prestoPEC">{this.state.variableAUX[17]}</td>
@@ -764,11 +793,11 @@ class VariablePE extends React.Component{
                                         <td className="prestoPEResC">{this.state.inheritedRoutineData1[17]}</td>
                                         :<td className="prestoPERes"><input type="text" size="7" onChange={this.changeHadlerQ18} autoComplete="off" value={Q18} className="btn btn-outline-info"></input></td>
                                     }</tr>
-                                    </table> 
+                                     
                             </div>
                             <div className="w-100 ocultar-div"></div>
                             <div className="col-4 col-sm-4">
-                            <table className="PEData">
+                            
                                     <tr>
                                     {this.state.statusActual?
                                         <td className="prestoPEC">{this.state.variableAUX[18]}</td>
@@ -777,12 +806,12 @@ class VariablePE extends React.Component{
                                         <td className="prestoPEResC">{this.state.inheritedRoutineData1[18]}</td>
                                         :<td className="prestoPERes"><input type="text" size="7"onChange={this.changeHadlerQ19} autoComplete="off" value={Q19} className="btn btn-outline-info"></input></td>
                                     }</tr>
-                                </table>
+                                
                             </div>
 
                             <div className="w-100 ocultar-div"></div>
                             <div className="col-4 col-sm-4">
-                            <table className="PEData">
+                            
                                     <tr>
                                     {this.state.statusActual?
                                         <td className="prestoPEC">{this.state.variableAUX[19]}</td>
@@ -791,13 +820,13 @@ class VariablePE extends React.Component{
                                         <td className="prestoPEResC">{this.state.inheritedRoutineData1[19]}</td>
                                         :<td className="prestoPERes"><input type="text" size="7"onChange={this.changeHadlerQ20} autoComplete="off" value={Q20} className="btn btn-outline-info"></input></td>
                                     }</tr>
-                                </table>
+                                
                             </div>
 
                             <div class="w-100"></div>{/* octava linea de cuadro Rutina */}
                             
                             <div className="col-4 col-sm-4">
-                            <table className="PEData"> 
+                             
                                     <tr>
                                     {this.state.statusActual?
                                         <td className="prestoPEC">{this.state.variableAUX[20]}</td>
@@ -806,11 +835,11 @@ class VariablePE extends React.Component{
                                         <td className="prestoPEResC">{this.state.inheritedRoutineData1[20]}</td>
                                         :<td className="prestoPERes"><input type="text" size="7"  onChange={this.changeHadlerQ21} autoComplete="off" value={Q21} className="btn btn-outline-info"></input></td>
                                     }</tr>
-                                    </table> 
+                                     
                             </div>
                             <div className="w-100 ocultar-div"></div>
                             <div className="col-4 col-sm-4">
-                            <table className="PEData">
+                            
                                     <tr>
                                     {this.state.statusActual?
                                         <td className="prestoPEC">{this.state.variableAUX[21]}</td>
@@ -819,11 +848,11 @@ class VariablePE extends React.Component{
                                         <td className="prestoPEResC">{this.state.inheritedRoutineData1[21]}</td>
                                         :<td className="prestoPERes"><input type="text" size="7"  onChange={this.changeHadlerQ22} autoComplete="off" value={Q22} className="btn btn-outline-info"></input></td>
                                     }</tr>
-                                </table>
+                                
                             </div>
                             <div className="w-100 ocultar-div"></div>
                             <div className="col-4 col-sm-4">
-                            <table className="PEData">
+                            
                                     <tr>
                                     {this.state.statusActual?
                                         <td className="prestoPEC">{this.state.variableAUX[22]}</td>
@@ -832,13 +861,13 @@ class VariablePE extends React.Component{
                                         <td className="prestoPEResC">{this.state.inheritedRoutineData1[22]}</td>
                                         :<td className="prestoPERes"><input type="text" size="7" onChange={this.changeHadlerQ23} autoComplete="off" value={Q23} className="btn btn-outline-info"></input></td>
                                     }</tr>
-                                </table>
+                                
                             </div>
 
                             <div class="w-100"></div>{/* novena linea de cuadro Rutina */}
                             
                             <div className="col-4 col-sm-4">
-                            <table className="PEData"> 
+                             
                                     <tr>
                                     {this.state.statusActual?
                                         <td className="prestoPEC">{this.state.variableAUX[23]}</td>
@@ -847,11 +876,11 @@ class VariablePE extends React.Component{
                                         <td className="prestoPEResC">{this.state.inheritedRoutineData1[23]}</td>
                                         :<td className="prestoPERes"><input type="text" size="7"  onChange={this.changeHadlerQ24} autoComplete="off" value={Q24} className="btn btn-outline-info"></input></td>
                                     }</tr>
-                                    </table> 
+                                     
                             </div>
                             <div className="w-100 ocultar-div"></div>
                             <div className="col-4 col-sm-4">
-                            <table className="PEData">
+                            
                                     <tr>
                                     {this.state.statusActual?
                                         <td className="prestoPEC">{this.state.variableAUX[24]}</td>
@@ -860,11 +889,11 @@ class VariablePE extends React.Component{
                                         <td className="prestoPEResC">{this.state.inheritedRoutineData1[24]}</td>
                                         :<td className="prestoPERes"><input type="text" size="7"  onChange={this.changeHadlerQ25} autoComplete="off" value={Q25} className="btn btn-outline-info"></input></td>
                                     }</tr>
-                                </table>
+                                
                             </div>
                             <div className="w-100 ocultar-div"></div>
                             <div className="col-4 col-sm-4">
-                            <table className="PEData">
+                            
                                     <tr>
                                     {this.state.statusActual?
                                         <td className="prestoPEC">{this.state.variableAUX[25]}</td>
@@ -873,22 +902,22 @@ class VariablePE extends React.Component{
                                         <td className="prestoPEResC">{this.state.inheritedRoutineData1[25]}</td>
                                         :<td className="prestoPERes"><input type="text" size="7"  onChange={this.changeHadlerQ26} autoComplete="off" value={Q26} className="btn btn-outline-info"></input></td>
                                     }</tr>
-                                </table>
+                                
                             </div>
 
                             <div class="w-100"></div>
                             <div className="col-12">
-                            <table className="PEDataSeparator"> 
+                            
                                     <tr>
                                         <td className="prestoPESeparator">Restablesca el suministro de CFE y tome los siguientes tiempos</td>
                                         </tr>
-                                    </table> 
+                                     
                             </div>
 
                             <div class="w-100"></div>{/* decima linea de cuadro Rutina */}
                             
                             <div className="col-4 col-sm-4">
-                            <table className="PEData"> 
+                             
                                     <tr>
                                     {this.state.statusActual?
                                         <td className="prestoPEC">{this.state.variableAUX[26]}</td>
@@ -897,11 +926,11 @@ class VariablePE extends React.Component{
                                         <td className="prestoPEResC">{this.state.inheritedRoutineData1[26]}</td>
                                         :<td className="prestoPERes"><input type="text" size="7"  onChange={this.changeHadlerQ27} autoComplete="off" value={Q27} className="btn btn-outline-info"></input></td>
                                     }</tr>
-                                    </table> 
+                                     
                             </div>
                             <div className="w-100 ocultar-div"></div>
                             <div className="col-4 col-sm-4">
-                            <table className="PEData">
+                            
                                     <tr>
                                     {this.state.statusActual?
                                         <td className="prestoPEC">{this.state.variableAUX[27]}</td>
@@ -914,11 +943,11 @@ class VariablePE extends React.Component{
                                             <option value={'Cerrada'}>Cerrada</option>
                                           </select></td>}
                                     </tr>
-                                </table>
+                                
                             </div>
                             <div className="w-100 ocultar-div"></div>
                             <div className="col-4 col-sm-4">
-                            <table className="PEData">
+                            
                                     <tr>
                                     {this.state.statusActual?
                                         <td className="prestoPEC">{this.state.variableAUX[28]}</td>
@@ -931,13 +960,13 @@ class VariablePE extends React.Component{
                                             <option value={'No'}>No</option>
                                             </select></td>}
                                     </tr>
-                                </table>
+                                
                             </div>
 
                             <div class="w-100"></div>{/* 11 linea de cuadro Rutina */}
                             
                             <div className="col-4 col-sm-4">
-                            <table className="PEData"> 
+                             
                                     <tr>
                                     {this.state.statusActual?
                                         <td className="prestoPEC">{this.state.variableAUX[29]}</td>
@@ -946,11 +975,11 @@ class VariablePE extends React.Component{
                                         <td className="prestoPEResC">{this.state.inheritedRoutineData1[29]}</td>
                                         :<td className="prestoPERes"><input type="text" size="7"  onChange={this.changeHadlerQ30} autoComplete="off" value={Q30} className="btn btn-outline-info"></input></td>
                                     }</tr>
-                                    </table> 
+                                     
                             </div>
                             <div className="w-100 ocultar-div"></div>
                             <div className="col-4 col-sm-4">
-                            <table className="PEData">
+                            
                                     <tr>
                                     {this.state.statusActual?
                                         <td className="prestoPEC">{this.state.variableAUX[30]}</td>
@@ -959,11 +988,11 @@ class VariablePE extends React.Component{
                                         <td className="prestoPEResC">{this.state.inheritedRoutineData1[30]}</td>
                                         :<td className="prestoPERes"><input type="text" size="7"  onChange={this.changeHadlerQ31} autoComplete="off" value={Q31} className="btn btn-outline-info"></input></td>
                                     }</tr>
-                                </table>
+                                
                             </div>
                             <div className="w-100 ocultar-div"></div>
                             <div className="col-4 col-sm-4">
-                            <table className="PEData">
+                            
                                     <tr>
                                     {this.state.statusActual?
                                         <td className="prestoPEC">{this.state.variableAUX[31]}</td>
@@ -976,13 +1005,13 @@ class VariablePE extends React.Component{
                                             <option value={'No'}>No</option>
                                             </select></td>}
                                     </tr>
-                                </table>
+                                
                             </div>
 
                             <div class="w-100"></div>{/* 12 linea de cuadro Rutina */}
                             
                             <div className="col-4 col-sm-4">
-                            <table className="PEData"> 
+                             
                                     <tr>
                                     {this.state.statusActual?
                                         <td className="prestoPEC">{this.state.variableAUX[32]}</td>
@@ -991,25 +1020,26 @@ class VariablePE extends React.Component{
                                         <td className="prestoPEResC">{this.state.inheritedRoutineData1[32]}</td>
                                         :<td className="prestoPERes"><input type="text" size="17"  onChange={this.changeHadlerQ33} autoComplete="off" value={Q33} className="btn btn-outline-info"></input></td>
                                     }</tr>
-                                    </table> 
+                                     
                             </div>
                             
                             < div class="w-100"></div>{/* btn save linea de cuadro Rutina */}
 
                             <div className="w-100 ocultar-div"></div>
                             <div className="col-4 col-sm-4">
-                            <table className="PEData">
+                            
                                     <tr>
                                     {this.state.statusActual?
                                         <td><button className="btn btn-outline-success" disabled="true">Completo</button></td>
                                         :<td><button className="btn btn-outline-info">Guardar</button></td>
                                     }   
                                     </tr>
-                                </table>
+                                
                             </div>
                             
 
-                        </div>     
+                        </div>
+                        </table>     
                     </div>
                 {/* ))} */}
             </div>

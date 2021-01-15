@@ -4,7 +4,6 @@ import '../../global.css';
 import '../styles/variableAA.css';
 import * as moment from "moment/moment";
 
-
 class variableAA extends React.Component{
 
     constructor(props) {
@@ -23,6 +22,8 @@ class variableAA extends React.Component{
             inheritedRoutineData: this.props.data,
             inheritedRoutineData1: [],
             statusActual: false,
+            inheritedRoutineS: this.props.routineS,
+            PDF:false,
             Q1: '',Q2: '',Q3: '',Q4: '',Q5: '',Q6: '',Q7: '',Q8: '',Q9: '',Q10: '',
             Q11: '',Q12: '',Q13: '',Q14: '',Q15: '',Q16: '',Q17: '',Q18: '',Q19: '',
             
@@ -96,7 +97,33 @@ class variableAA extends React.Component{
         this.SaveQ1();this.SaveQ2();this.SaveQ3();this.SaveQ4();this.SaveQ5();this.SaveQ6();
         this.SaveQ7();this.SaveQ8();this.SaveQ9();this.SaveQ10();this.SaveQ11();this.SaveQ12();
         this.SaveQ13();this.SaveQ14();this.SaveQ15();this.SaveQ16();this.SaveQ17();this.SaveQ18();
-        this.SaveQ19();
+        this.SaveQ19();this.SaveRoutine();
+    }
+
+    SaveRoutine = async e =>{
+        var rotine =[], routineType =[], device = [], title = [], date1 = [], date2 = [], dateEnd = [], status =[], ATM =[];
+        this.state.inheritedRoutineS.map((routine) =>{
+            rotine.push(routine.reportId);
+            routineType.push(routine.reportTypeId);
+            device.push(routine.deviceId);
+            title.push(routine.reportTittle);
+            date1.push(routine.commitmentDate);
+            date2.push(routine.beginDate);
+            dateEnd.push(routine.endDate);
+            status.push(routine.status);
+            ATM.push(routine.reviewATM);
+        })
+        const requestOptions1 = {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ 
+                reportId: rotine  , reportTypeId: routineType , deviceId: device , 
+                reportTittle: title, commitmentDate: date1, beginDate:date2,
+                endDate: this.state.now , status:status , reviewATM: ATM })
+        };
+        console.log(requestOptions1)
+        fetch('http://localhost:8090/sertresreporte/reporte/save', requestOptions1)
+            .then(response => response.json());
     }
 
      SaveQ1 = async e =>{
@@ -305,8 +332,11 @@ class variableAA extends React.Component{
             return `Error: ${this.state.error.message}`;
         }
         const {Q2,Q3,Q4,Q5,Q6,Q7,Q8,Q9,Q10,Q11,Q12,Q13,Q14,Q15,Q16,Q17,Q18,Q19} = this.state  
-        return(
+        return(  
         <React.Fragment>
+             {this.state.statusActual?
+                <td className="PDF"><button className="btn btn-outline-danger">PDF</button></td>
+                :null}
              <form onSubmit={this.submitHadler}>
             <div className="ContenedorP">
                 {/* {this.state.variableAUX.map((item) => ( */}
@@ -626,7 +656,7 @@ class variableAA extends React.Component{
                             < div class="w-100"></div>{/* octava linea de cuadro Rutina */}
 
                             <div className="w-100 ocultar-div"></div>
-                            <div className="col-4 col-sm-4">
+                            <div className="col-12 col-sm-12">
                             <table className="AAData">
                                     <tr>
                                     {this.state.statusActual?

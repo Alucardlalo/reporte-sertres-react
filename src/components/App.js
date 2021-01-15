@@ -11,6 +11,7 @@ import HomeAdmin from './adminComponents/HomeAdmin';
 import HomeTec from "./technicalComponents/HomeTec";
 import notfound from '../pages/NotFound';
 import RoutineBodyTec from "../pages/TechnicalPages/RoutineBodyTec";
+import AAPDF from './common/AAPDF';
 
 export default class App extends React.Component {
     render() {
@@ -27,6 +28,7 @@ export default class App extends React.Component {
                     <Route exact path="/Routine/new" component={NewRoutine}/>
                     <Route exact path="/RoutineBody" component={ReportBody}/>
                     <Route exact path="/RoutineBodyTec" component={RoutineBodyTec}/>
+                    <Route exact path="/Routine/PDF" component={AAPDF}/>
                     <Route component={notfound}/>
                 </Switch>
             </BrowserRouter>

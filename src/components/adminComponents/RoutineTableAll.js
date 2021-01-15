@@ -214,6 +214,7 @@ class RoutineTableAll extends React.Component{
             const routineId = this.state.routineIdSelect.toString();
             const statusRoutine = this.state.statusRoutine.toString();
             const routineData = this.state.routineDataSelect;
+            const routineselectS = this.state.routineSelect;
             return(
                 <React.Fragment>
                    <div className="ContenedorP">
@@ -548,17 +549,17 @@ class RoutineTableAll extends React.Component{
                             <div>
                                {this.state.routineAA?
                                <div>
-                                   <VariableAA routine={routineId} status={statusRoutine} data={routineData}/>
+                                   <VariableAA routine={routineId} status={statusRoutine} data={routineData} routineS={routineselectS}/>
                                </div>
                                :null}
                                {this.state.routineUPS?
                                <div>
-                                    <VariableUPS routine={routineId} status={statusRoutine} data={routineData}/>
+                                    <VariableUPS routine={routineId} status={statusRoutine} data={routineData} routineS={routineselectS}/>
                                </div>
                                :null}
                                {this.state.routinePE?
                                <div>
-                                    <VariablePE routine={routineId} status={statusRoutine} data={routineData}/>
+                                    <VariablePE routine={routineId} status={statusRoutine} data={routineData} routineS={routineselectS}/>
                                </div>
                                :null}
                             </div>

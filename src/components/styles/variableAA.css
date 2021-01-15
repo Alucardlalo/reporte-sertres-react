@@ -31,6 +31,12 @@
         width: 100%;
         color: aquamarine;
 
+    }
+    .PDF{
+      position: absolute;
+      top: 14rem;
+      left: 35rem;
+
     }      
     }
 
@@ -67,5 +73,5 @@
         width: 70%;
         color: aquamarine;
 
-    }   
+    } 
     }    
