@@ -1,8 +1,13 @@
 import React ,{useLayoutEffect}from 'react';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
+import $ from 'jquery';
+import Popper from 'popper.js';
+import 'bootstrap/dist/js/bootstrap.bundle.min';
 import '../../global.css';
 import '../styles/variableAA.css';
 import * as moment from "moment/moment";
+import PDF from '../common/PDF';
+import { Redirect, Route } from 'react-router-dom';
 
 class variableAA extends React.Component{
 
@@ -331,11 +336,38 @@ class variableAA extends React.Component{
         if(this.state.error){
             return `Error: ${this.state.error.message}`;
         }
-        const {Q2,Q3,Q4,Q5,Q6,Q7,Q8,Q9,Q10,Q11,Q12,Q13,Q14,Q15,Q16,Q17,Q18,Q19} = this.state  
+        const {Q2,Q3,Q4,Q5,Q6,Q7,Q8,Q9,Q10,Q11,Q12,Q13,Q14,Q15,Q16,Q17,Q18,Q19} = this.state 
+        const data = this.state.inheritedRoutineData;
+        const routine = this.state.inheritedRoutineS;
         return(  
         <React.Fragment>
              {this.state.statusActual?
-                <td className="PDF"><button className="btn btn-outline-danger">PDF</button></td>
+                <div>
+                <td className="PDF"><button className="btn btn-outline-danger"  data-toggle="modal" data-target="#myModal">PDF</button></td>
+                <div class="modal fade" id="myModal">
+                    <div class="modal-dialog modal-xl">
+                    <div class="modal-content">
+                    
+                    
+                        <div class="modal-header">
+                        <h4 class="modal-title">PDF Rutina</h4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+                        
+                    
+                        <div class="modal-body">
+                        <PDF data={data} routine={routine}/>
+                        </div>
+                        
+                    
+                        <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        </div>
+                        
+                    </div>
+                    </div>
+                </div>
+                </div>
                 :null}
              <form onSubmit={this.submitHadler}>
             <div className="ContenedorP">

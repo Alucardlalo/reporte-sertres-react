@@ -1,0 +1,129 @@
+.PDFBack{
+    background-color:floralwhite;
+    
+}
+.trBodyAA{
+    background-color: #1f1f9a;
+}
+.tdBodyAA{
+    color: white;
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.trBodyUPS{
+    background-color: orangered;
+}
+.tdBodyUPS{
+    color: white;
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.trBodyPE{
+    background-color: yellow;
+}
+.tdBodyPE{
+    color: black;
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+}
+/*Header*/
+.PDFHeader{
+
+}
+.tableHeader{
+   width: 90%;
+   margin-left: 1rem;
+   margin-right: 1rem;
+   margin-top: 1rem;
+}
+
+.trHeader{
+    background-color: #1f1f9a;
+}
+.tdHeader1{
+    color: blue;
+    text-align: center;
+    font-size: 4rem;
+    padding-right: 10rem;
+}
+.Logo{
+    vertical-align: center;
+}
+
+/*Body*/
+.PDFBody{
+
+}
+.tableBody{
+    width: 100%;
+    border: 1px solid gray;
+ }
+ 
+ .trBody1{
+     background-color: #1f1f9a;
+     
+ }
+ .trBody2{
+    align-items: center;
+    border-top: 1px solid gray;
+    width: 100%;
+    left: 1.3rem;
+    position: relative;
+ }
+ .tdheader2{
+     align-items: center;
+     text-align: center;
+ }
+.labelRespuesta{
+
+}
+ .tdBody1{
+     color: white;
+     text-align: center;
+ }
+ .labelBody{
+     font-size: 1.5rem;
+     padding-left: 10px;
+     padding-top: 3px;
+ }
+.tableBodyA{
+    border-right: 1px solid gray;
+    position: relative;
+    right: -5.5rem;
+    
+
+    
+}
+ .trAnswer{
+    border-top: 1px solid gray;
+    
+    
+    
+ }
+
+ .tdAnswer{
+    padding-left: 1rem;
+    font-size: 1.5rem;
+    right: 3rem;
+    position: relative;
+    
+ }
+
+.tableBodyQ{
+    border-left: 1px solid gray;
+  
+}
+
+.trQuestion{
+    border-top: 1px solid gray;
+}
+
+.tdQuestion{
+    border-right: 1px solid gray;
+    padding-left: 1rem;
+    font-size: 1.5rem;
+}
+/*Footer*/
+.PDFFoot{
+
+}

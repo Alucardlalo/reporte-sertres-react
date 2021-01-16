@@ -3,6 +3,7 @@ import 'bootstrap/dist/js/bootstrap.bundle.min';
 import '../../global.css';
 import '../styles/variableUPS.css';
 import * as moment from "moment/moment";
+import PDF from '../common/PDF';
 
 class VariableUPS extends React.Component{
     constructor(props) {
@@ -20,6 +21,8 @@ class VariableUPS extends React.Component{
             inheritedRoutineData1: [],
             statusActual: false,
             inheritedRoutineS: this.props.routineS,
+            PDF:false,
+            routineTypeS: '',
             Q1: '',Q2: '',Q3: '',Q4: '',Q5: '',Q6: '',Q7: '',Q8: '',Q9: '',Q10: '',
             Q11: '',Q12: '',Q13: '',Q14: '',Q15: '',Q16: '',Q17: '',Q18: '',Q19: '',
             Q20: '',Q21: '',Q22: '',Q23: '',Q24: '',Q25: '',Q26: '',
@@ -406,8 +409,38 @@ class VariableUPS extends React.Component{
             return `Error: ${this.state.error.message}`;
         } 
         const {Q2,Q3,Q4,Q5,Q6,Q7,Q8,Q9,Q10,Q11,Q12,Q13,Q14,Q15,Q16,Q17,Q18,Q19,Q20,Q21,Q22,Q23,Q24,Q25,Q26} = this.state  
-        return(
+        const data = this.state.inheritedRoutineData1;
+        const routine = this.state.inheritedRoutineS;
+        return(  
         <React.Fragment>
+             {this.state.statusActual?
+                <div>
+                <td className="PDF"><button className="btn btn-outline-danger"  data-toggle="modal" data-target="#myModal">PDF</button></td>
+                <div class="modal fade" id="myModal">
+                    <div class="modal-dialog modal-xl">
+                    <div class="modal-content">
+                    
+                    
+                        <div class="modal-header">
+                        <h4 class="modal-title">PDF Rutina</h4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+                        
+                    
+                        <div class="modal-body">
+                        <PDF data={data} routine={routine}/>
+                        </div>
+                        
+                    
+                        <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        </div>
+                        
+                    </div>
+                    </div>
+                </div>
+                </div>
+                :null}
              <form onSubmit={this.submitHadler}>
             <div className="">
                 {/* {this.state.variableAUX.map((item) => ( */}
