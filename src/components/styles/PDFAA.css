@@ -26,10 +26,11 @@
     font-family: Arial, Helvetica, sans-serif;
     text-align: center;
 }
-/*Header*/
-.PDFHeader{
-
+.btnClose{
+    color: red;
 }
+/*Header*/
+
 .tableHeader{
    width: 90%;
    margin-left: 1rem;
@@ -51,9 +52,7 @@
 }
 
 /*Body*/
-.PDFBody{
 
-}
 .tableBody{
     width: 100%;
     border: 1px solid gray;
@@ -74,9 +73,7 @@
      align-items: center;
      text-align: center;
  }
-.labelRespuesta{
 
-}
  .tdBody1{
      color: white;
      text-align: center;
@@ -124,6 +121,3 @@
     font-size: 1.5rem;
 }
 /*Footer*/
-.PDFFoot{
-
-}
