@@ -10,6 +10,7 @@ class RoutineBodyTableAllTec extends React.Component{
 
         this.state = {
             reportsBody : [],
+            reportsBodyAux: [],
             loading: true,
             error: null,
             reportTypes : [],
@@ -27,13 +28,29 @@ class RoutineBodyTableAllTec extends React.Component{
     }
 
     handleClick(e){
-        if(this.state.reportType !== 0 && this.state.reportType !== ''){
-
-        }else{
-            alert('reportType else' + this.state.reportType);
+        if(this.state.reportType == 0){
+            this.setState({reportsBodyAux:this.state.reportsBody})
         }
-
-    }
+        if(this.state.reportType !== 0 && this.state.reportType == 1){
+            this.setState({reportsBodyAux:this.state.reportsBody})
+            const filtered = this.state.reportsBody.filter(function(hero){
+            return hero.reportTypeId == 1;
+        })
+           this.setState({reportsBodyAux:filtered})
+        }if(this.state.reportType !== 0 && this.state.reportType == 2){
+            this.setState({reportsBodyAux:this.state.reportsBody})
+            const filtered = this.state.reportsBody.filter(function(hero){
+             return hero.reportTypeId == 2;
+         })
+            this.setState({reportsBodyAux:filtered})
+        }if(this.state.reportType !== 0 && this.state.reportType == 3){
+            this.setState({reportsBodyAux:this.state.reportsBody})
+            const filtered = this.state.reportsBody.filter(function(hero){
+             return hero.reportTypeId == 3;
+         })
+            this.setState({reportsBodyAux:filtered})
+        }
+}
 
     fetchReportType = async () =>{
         this.setState({loading:true, error: null, })
@@ -57,7 +74,7 @@ class RoutineBodyTableAllTec extends React.Component{
         try{
             const response = await fetch('http://localhost:8090/sertresreporte/variable/all')
             const reportsBody = await response.json();
-            this.setState({loading:false , reportsBody: reportsBody })
+            this.setState({loading:false , reportsBody: reportsBody , reportsBodyAux:reportsBody})
         }catch(error){
             this.setState({loading: false , error: error })
         }
@@ -106,7 +123,11 @@ class RoutineBodyTableAllTec extends React.Component{
                     </form>
                     <h3 className="tableName">Contenido de Reporte</h3>
                     <p className="tableName"></p>
-                    <div className="table-responsive-sm">
+                    <div className="row">
+                         <h6 className="col-9"></h6>   
+                         <a href="/Routinebody/new" className="buttons col-3"> Nuevo Campo en Rutinas</a>
+                        </div>
+                        <div className="table-responsive-sm">
                         <table className="table table-dark">
                             <thead>
                             <tr>
@@ -118,7 +139,7 @@ class RoutineBodyTableAllTec extends React.Component{
                             </tr>
                             </thead>
                             <tbody>
-                            {this.state.reportsBody.map((item) => (
+                            {this.state.reportsBodyAux.map((item) => (
                                 <tr key={item.variableId}>
                                     <td>{item.variableId}</td>
                                     <td>{item.reportType.reportType}</td>
