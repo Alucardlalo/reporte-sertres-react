@@ -106,8 +106,11 @@ class RoutineBodyTableAll extends React.Component{
                     </form>
                     <h3 className="tableName">Contenido de Reporte</h3>
                     <p className="tableName"></p>
-                    <a href="/Routinebody/new" className="buttons"> Nuevo Campo en Rutinas</a>
-                    <div className="table-responsive-sm">
+                    <div className="row">
+                         <h6 className="col-9"></h6>   
+                         <a href="/Routinebody/new" className="buttons col-3"> Nuevo Campo en Rutinas</a>
+                        </div>
+                        <div className="table-responsive-sm">
                         <table className="table table-dark">
                             <thead>
                             <tr>

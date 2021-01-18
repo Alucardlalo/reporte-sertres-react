@@ -172,7 +172,10 @@ class RoutineTableAll extends React.Component{
                     <div className="ContenedorP">
                         <h3 className="tableName">Rutinas</h3>
                         <p className="tableName">Rutinas existentes</p>
-                        <a href="/Routine/new" className="buttons"> Nueva Rutina</a>
+                        <div className="row">
+                         <h6 className="col-10"></h6>   
+                         <a href="/Routine/new" className="buttons col-2"> Nueva Rutina</a>
+                        </div>
                         <div className="table-responsive">
                             <table className="table table-dark">
                                 <thead>

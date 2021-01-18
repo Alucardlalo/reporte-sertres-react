@@ -2,6 +2,7 @@ import React, {Component, PropTypes} from 'react';
 import '../styles/PDFAA.css'
 import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
+import * as moment from "moment/moment";
 
 class AAPDF extends React.Component{
     constructor(props) {
@@ -91,6 +92,12 @@ class AAPDF extends React.Component{
     }
 
     jsPDFGenerator = ()=>{
+        var device =[] , date=[], string='';
+        {this.state.routineS.map((item)=>{
+            device.push(item.deviceRel.deviceName);
+            date.push(moment(item.endDate).format('DD/MMM/YYYY'));
+        })}
+        string = device.toString()+'_Date_' + date.toString() + '.pdf';
         const input = document.getElementById('pdfDown');
         html2canvas(input)
           .then((canvas) => {
@@ -98,7 +105,7 @@ class AAPDF extends React.Component{
             const pdf = new jsPDF();
             pdf.addImage(imgData, 'JPEG', 0, 0);
             // pdf.output('dataurlnewwindow');
-            pdf.save("rutina.pdf");
+            pdf.save(string);
           })
         ;
       }

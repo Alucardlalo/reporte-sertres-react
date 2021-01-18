@@ -49,7 +49,10 @@ class RoutineTypeTableAll extends React.Component{
                     <div className="container">
                         <h3 className="tableName">Tipo de Rutina</h3>
                         <p className="tableName">tipos de rutinas existentes</p>
-                        <a href="/Routinetype/new" className="buttons"> Nuevo Tipo Rutina</a>
+                        <div className="row">
+                         <h6 className="col-10"></h6>   
+                         <a href="/Routinetype/new" className="buttons col-2"> Nuevo Tipo Rutina</a>
+                        </div>
                         <div className="table-responsive-sm">
                             <table className="table table-dark">
                                 <thead>
