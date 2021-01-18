@@ -7,7 +7,6 @@ import '../../global.css';
 import '../styles/variableAA.css';
 import * as moment from "moment/moment";
 import PDF from '../common/PDF';
-import { Redirect, Route } from 'react-router-dom';
 
 class variableAA extends React.Component{
 
@@ -322,7 +321,6 @@ class variableAA extends React.Component{
         fetch('http://localhost:8090/sertresreporte/variabledata/save', requestOptions1)
             .then(response => response.json());
     }
-   
 
     render(){
         if(this.state.loading === true){
@@ -351,7 +349,7 @@ class variableAA extends React.Component{
                     
                         <div class="modal-header">
                         <h4 class="modal-title">PDF Rutina</h4>
-                        <button type="button" class="close btnClose" data-dismiss="modal">&times;</button>
+                        <button type="button" class="close btn-outline-danger" data-dismiss="modal">X</button>
                         </div>
                         
                     
@@ -361,7 +359,7 @@ class variableAA extends React.Component{
                         
                     
                         <div class="modal-footer">
-                        <button type="button" class="btn btn-outline-primary">Descargar</button>
+                        <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Close</button>
                         
                         </div>
                         

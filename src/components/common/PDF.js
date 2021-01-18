@@ -1,6 +1,7 @@
-import { type } from 'jquery';
-import React from 'react'
+import React, {Component, PropTypes} from 'react';
 import '../styles/PDFAA.css'
+import jsPDF from 'jspdf';
+import html2canvas from 'html2canvas';
 
 class AAPDF extends React.Component{
     constructor(props) {
@@ -88,10 +89,24 @@ class AAPDF extends React.Component{
            }
               
     }
+
+    jsPDFGenerator = ()=>{
+        const input = document.getElementById('pdfDown');
+        html2canvas(input)
+          .then((canvas) => {
+            const imgData = canvas.toDataURL('image/png');
+            const pdf = new jsPDF();
+            pdf.addImage(imgData, 'JPEG', 0, 0);
+            // pdf.output('dataurlnewwindow');
+            pdf.save("rutina.pdf");
+          })
+        ;
+      }
+
     render(){
         return(
             <React.Fragment>
-              <div className="PDFBack">
+              <div className="PDFBack" id="pdfDown">
                 <div className="container">
                 <div className="PDFHeader">
                    <table className="tableHeader">
@@ -100,6 +115,9 @@ class AAPDF extends React.Component{
                             <td className="tdHeader1">SERTRES</td>
                         </tr>
                    </table>
+                   <button className="btn btn-outline-primary btnDownload" type="button" onClick={this.jsPDFGenerator}>
+                       Descargar
+                   </button>
             </div>
                 <div className="PDFBody">
                 {this.state.routineS.map((item)=> (
@@ -166,22 +184,17 @@ class AAPDF extends React.Component{
                 </table>
 
                                         
-                <div className="row container">
-                    <table className="col-8 tableBodyQ">
-                    {this.state.Question.sort(({order: previousOrder}, {order:currentOrder})=> previousOrder - currentOrder).map((item) => (
+                <div className="">
+                    <table className="tableBodyQ">
+                    {this.state.data.sort(({order: previousOrder}, {order:currentOrder})=> previousOrder - currentOrder).map((item) => (
                         <tr key={item.order} className="trQuestion">
-                            <td className="tdQuestion">{item.order}</td>
-                            <td className="tdQuestion">{item.variableName}</td>
+                            <td className="tdQuestion1">{item.variableI.order}</td>
+                            <td className="tdQuestion">{item.variableI.variableName}</td>
+                            <td className="tdAnswer">{item.data}</td>
                            </tr>
                     ))}
                     </table>
-                    <table className="col-4 tableBodyA">
-                    {this.state.data.sort(({order: previousOrder}, {order:currentOrder})=> previousOrder - currentOrder).map((dato) => (
-                        <tr key={dato.order} className="trAnswer">   
-                            <td className="tdAnswer">{dato.data}</td>
-                        </tr>
-                    ))}   
-                    </table>
+                   
 
                 </div>
               

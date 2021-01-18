@@ -26,8 +26,10 @@
     font-family: Arial, Helvetica, sans-serif;
     text-align: center;
 }
-.btnClose{
-    color: red;
+.btnDownload{
+    position: absolute;
+    top: -3.5rem;
+    left: 10rem;
 }
 /*Header*/
 
@@ -77,33 +79,21 @@
  .tdBody1{
      color: white;
      text-align: center;
+     position: relative;
  }
  .labelBody{
      font-size: 1.5rem;
      padding-left: 10px;
      padding-top: 3px;
- }
-.tableBodyA{
-    border-right: 1px solid gray;
-    position: relative;
-    right: -5.5rem;
-    
-
-    
-}
- .trAnswer{
-    border-top: 1px solid gray;
-    
-    
-    
+     position: relative;
  }
 
  .tdAnswer{
     padding-left: 1rem;
+    border-left: 1px solid gray;
+    border-right: 1px solid gray;
     font-size: 1.5rem;
-    right: 3rem;
-    position: relative;
-    
+    width: 30%; 
  }
 
 .tableBodyQ{
@@ -112,10 +102,17 @@
 }
 
 .trQuestion{
-    border-top: 1px solid gray;
+    border-bottom: 1px solid gray;
+    
 }
 
 .tdQuestion{
+    position: relative;
+    padding-left: 1rem;
+    font-size: 1.5rem;
+}
+.tdQuestion1{
+    position: relative;
     border-right: 1px solid gray;
     padding-left: 1rem;
     font-size: 1.5rem;

@@ -3,6 +3,7 @@ import 'bootstrap/dist/js/bootstrap.bundle.min';
 import VariableAA from '../adminComponents/variableAA';
 import VariablePE from '../adminComponents/variablePE';
 import VariableUPS from '../adminComponents/variableUPS';
+
 import '../styles/ReportTypeTableAll.css';
 import '../../global.css';
 import * as moment from "moment/moment";
@@ -21,6 +22,7 @@ class RoutineTableAllTec extends React.Component{
             routineDataSelect: [],
             routineselectId: '',
             statusRoutine: '',
+            routineTypeS:'',
             //state de seleccion de rutina
             showMeRutina: true,
             showMeDispositivo: false,
@@ -32,6 +34,7 @@ class RoutineTableAllTec extends React.Component{
             routinePE:false,
             routineIdSelect: '',
             routineDataselectByReportId: '',
+            question: [],
 
         }
         this.selectroutineA = this.selectroutineA.bind(this);
@@ -66,14 +69,13 @@ class RoutineTableAllTec extends React.Component{
     }
 
     pruebarutina(){
-        console.log(this.state.routineSelect);
         var routineType = [], routineIdSelectA = [], statusRoutineA =[];
         this.state.routineSelect.map((type) => {
             routineType.push(type.reportTypeId);
             routineIdSelectA.push(type.reportId);
             statusRoutineA.push(type.status);
         })
-        this.setState({routineIdSelect:routineIdSelectA , statusRoutine: statusRoutineA})
+        this.setState({routineIdSelect:routineIdSelectA , statusRoutine: statusRoutineA, routineTypeS:routineType})
         if(routineType == 1){
            this.setState({
             routineAA: true,
@@ -170,6 +172,7 @@ class RoutineTableAllTec extends React.Component{
                     <div className="ContenedorP">
                         <h3 className="tableName">Rutinas</h3>
                         <p className="tableName">Rutinas existentes</p>
+                        <a href="/Routine/new" className="buttons"> Nueva Rutina</a>
                         <div className="table-responsive">
                             <table className="table table-dark">
                                 <thead>
@@ -212,6 +215,8 @@ class RoutineTableAllTec extends React.Component{
             const routineId = this.state.routineIdSelect.toString();
             const statusRoutine = this.state.statusRoutine.toString();
             const routineData = this.state.routineDataSelect;
+            const routineselectS = this.state.routineSelect;
+            const type = this.state.routineTypeS;
             return(
                 <React.Fragment>
                    <div className="ContenedorP">
@@ -546,17 +551,17 @@ class RoutineTableAllTec extends React.Component{
                             <div>
                                {this.state.routineAA?
                                <div>
-                                   <VariableAA routine={routineId} status={statusRoutine} data={routineData}/>
+                                   <VariableAA routine={routineId} status={statusRoutine} data={routineData} routineS={routineselectS} type={type}/>
                                </div>
                                :null}
                                {this.state.routineUPS?
                                <div>
-                                    <VariableUPS routine={routineId} status={statusRoutine} data={routineData}/>
+                                    <VariableUPS routine={routineId} status={statusRoutine} data={routineData} routineS={routineselectS} type={type}/>
                                </div>
                                :null}
                                {this.state.routinePE?
                                <div>
-                                    <VariablePE routine={routineId} status={statusRoutine} data={routineData}/>
+                                    <VariablePE routine={routineId} status={statusRoutine} data={routineData} routineS={routineselectS} type={type}/>
                                </div>
                                :null}
                             </div>
