@@ -103,7 +103,7 @@ class AAPDF extends React.Component{
           .then((canvas) => {
             const imgData = canvas.toDataURL('image/png');
             const pdf = new jsPDF();
-            pdf.addImage(imgData, 'JPEG', 0, 0);
+            pdf.addImage(imgData, 'JPEG', 3, 0,205,286);
             // pdf.output('dataurlnewwindow');
             pdf.save(string);
           })
