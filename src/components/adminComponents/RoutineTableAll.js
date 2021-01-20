@@ -7,6 +7,7 @@ import VariableUPS from '../adminComponents/variableUPS';
 import '../styles/ReportTypeTableAll.css';
 import '../../global.css';
 import * as moment from "moment/moment";
+import Geolocation from '@react-native-community/geolocation';
 
 class RoutineTableAll extends React.Component{
 
@@ -35,16 +36,54 @@ class RoutineTableAll extends React.Component{
             routineIdSelect: '',
             routineDataselectByReportId: '',
             question: [],
+           //geolocalizacion
+            corden:[],
+            inSite: false,
+            distancia: '',
 
         }
         this.selectroutineA = this.selectroutineA.bind(this);
     }
 
     componentDidMount() {
-        this.fetchReport()
+        this.fetchReport();
+            
+        Geolocation.getCurrentPosition(
+            (success) => {
+              this.setState({corden:success.coords})
+            },
+            (err) => console.log('err:', err))
     }
     
+    distancia() {
+        var latUser = this.state.corden.latitude, longUser = this.state.corden.longitude, latEdi=[], longEdi=[];
+       
+        this.state.routineSelect.map((cordEdi)=>{
+            latEdi.push(cordEdi.deviceRel.buildingRel.buildingDataRel.buildingLatitude);
+            longEdi.push(cordEdi.deviceRel.buildingRel.buildingDataRel.buildingLongitude);
+        })
+        
+        const x = (latEdi - latUser);
+        const y = (longEdi - longUser);
+       
+        var R = 6378.137; //Radio de la tierra en km
+        var dLat = (latUser - latEdi)*Math.PI/180;
+        var dLong = (longUser - longEdi)*Math.PI/180;
+        var a = Math.sin(dLat/2) * Math.sin(dLat/2) + Math.cos(latUser*Math.PI/180) * Math.cos(latEdi*Math.PI/180) * Math.sin(dLong/2) * Math.sin(dLong/2);
+        var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+        var d = R * c;
+        var distanciaMetros = d.toFixed(3)* 1000;
+        this.setState({distancia:distanciaMetros})
 
+        if(distanciaMetros < 500){
+            this.setState({inSite: true});
+        }if(distanciaMetros > 500){
+            this.setState({inSite:false})
+        }
+      
+    }
+        
+      
     selectRoutine(){
             this.setState({selectRoutine: true });
     }
@@ -107,6 +146,7 @@ class RoutineTableAll extends React.Component{
         }catch(error){
             this.setState({loading: false , error: null })
         }
+        this.distancia();
     }
 
     fetchRoutineDataSelect = async () =>{
@@ -220,6 +260,8 @@ class RoutineTableAll extends React.Component{
             const routineData = this.state.routineDataSelect;
             const routineselectS = this.state.routineSelect;
             const type = this.state.routineTypeS;
+            const inSite = this.state.inSite;
+            const distancia = this.state.distancia;
             return(
                 <React.Fragment>
                    <div className="ContenedorP">
@@ -554,17 +596,17 @@ class RoutineTableAll extends React.Component{
                             <div>
                                {this.state.routineAA?
                                <div>
-                                   <VariableAA routine={routineId} status={statusRoutine} data={routineData} routineS={routineselectS} type={type}/>
+                                   <VariableAA routine={routineId} status={statusRoutine} data={routineData} routineS={routineselectS} type={type} inSite={inSite} distancia={distancia}/>
                                </div>
                                :null}
                                {this.state.routineUPS?
                                <div>
-                                    <VariableUPS routine={routineId} status={statusRoutine} data={routineData} routineS={routineselectS} type={type}/>
+                                    <VariableUPS routine={routineId} status={statusRoutine} data={routineData} routineS={routineselectS} type={type} inSite={inSite} distancia={distancia}/>
                                </div>
                                :null}
                                {this.state.routinePE?
                                <div>
-                                    <VariablePE routine={routineId} status={statusRoutine} data={routineData} routineS={routineselectS} type={type}/>
+                                    <VariablePE routine={routineId} status={statusRoutine} data={routineData} routineS={routineselectS} type={type} inSite={inSite} distancia={distancia}/>
                                </div>
                                :null}
                             </div>

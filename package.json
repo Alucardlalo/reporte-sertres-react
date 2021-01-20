@@ -12,6 +12,7 @@
     "eject": "react-scripts eject"
   },
   "dependencies": {
+    "@react-native-community/geolocation": "^2.0.2",
     "@react-pdf/renderer": "^1.6.12",
     "axios": "^0.21.0",
     "bootstrap": "^4.5.3",

@@ -27,6 +27,8 @@ class variableAA extends React.Component{
             inheritedRoutineData1: [],
             statusActual: false,
             inheritedRoutineS: this.props.routineS,
+            inheritedInSite: this.props.inSite,
+            inheritedDistancia: this.props.distancia,
             PDF:false,
             Q1: '',Q2: '',Q3: '',Q4: '',Q5: '',Q6: '',Q7: '',Q8: '',Q9: '',Q10: '',
             Q11: '',Q12: '',Q13: '',Q14: '',Q15: '',Q16: '',Q17: '',Q18: '',Q19: '',
@@ -54,7 +56,14 @@ class variableAA extends React.Component{
             this.setState({statusActual: true})
             alert('El reporte de rutina esta completo, no se puede editar')
         }else{
-            this.setState({statusActual: false})
+            if(this.state.inheritedInSite == true){
+
+                this.setState({statusActual: false})
+            }if(this.state.inheritedInSite == false){
+                alert('debe estar en el sitio para poder realizar la rutina. \n se encuentra a ' + this.state.inheritedDistancia + 'm del dispositivo')
+                this.setState({statusActual: false})
+            }
+           
         }
     }
 
@@ -692,7 +701,9 @@ class variableAA extends React.Component{
                                     <tr>
                                     {this.state.statusActual?
                                         <td><button className="btn btn-outline-success" disabled="true">Completo</button></td>
-                                        :<td><button className="btn btn-outline-info">Guardar</button></td>
+                                        :this.state.inheritedDistancia?
+                                          <td><button className="btn btn-outline-info" disabled="true">Deshabilitado</button></td>
+                                        : <td><button className="btn btn-outline-info">Guardar</button></td>
                                     }
                                     </tr>
                                 </table>
