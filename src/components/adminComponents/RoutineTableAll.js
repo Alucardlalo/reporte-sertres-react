@@ -216,7 +216,7 @@ class RoutineTableAll extends React.Component{
                          <h6 className="col-10"></h6>   
                          <a href="/Routine/new" className="buttons col-2"> Nueva Rutina</a>
                         </div>
-                        <div className="table-responsive">
+                        <div className="tableAllRoutine">
                             <table className="table table-dark">
                                 <thead>
                                 <tr>
@@ -283,7 +283,7 @@ class RoutineTableAll extends React.Component{
                             
 
                             {this.state.showMeRutina?
-                            <div>
+                            <div className="tableSelectDiv">
                                 <div className="ContenedorS">
                                 <div className="table-responsive-sm">
                             
@@ -352,7 +352,10 @@ class RoutineTableAll extends React.Component{
                                         <table className="sm-info">
                                                 <tr>
                                                     <td className="presto">Fecha Culminación: </td>
+                                                    {item.endDate?
                                                     <td className="prestoCont">{moment(item.endDate).format('DD/MMM/YYYY hh:mm:ss')}</td>
+                                                    :<td className="prestoCont"></td>
+                                                    }
                                                 </tr>
                                           </table>
                                         </div>
@@ -375,7 +378,7 @@ class RoutineTableAll extends React.Component{
                              :null}
 
                             {this.state.showMeDispositivo?
-                            <div>
+                            <div className="tableSelectDiv">
                                 <div className="ContenedorS">
                                 <div className="table-responsive-sm">
                             
@@ -493,7 +496,7 @@ class RoutineTableAll extends React.Component{
                              :null}
 
                             {this.state.showMeEdificio?
-                            <div>
+                            <div className="tableSelectDiv">
                                 <div className="ContenedorS">
                                 <div className="table-responsive-sm">
                             

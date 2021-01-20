@@ -1,6 +1,6 @@
 import React from 'react';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
-
+import '../styles/routineBody.css';
 import '../styles/ReportTypeTableAll.css';
 
 class RoutineBodyTableAll extends React.Component{
@@ -96,6 +96,7 @@ class RoutineBodyTableAll extends React.Component{
         return(
             <React.Fragment>
                 <div className="container">
+                    <div className="divRoutineType">
                     <form>
                         <table className="table table-dark d-table-row">
                             <tbody>
@@ -121,12 +122,15 @@ class RoutineBodyTableAll extends React.Component{
                             </tbody>
                         </table>
                     </form>
+                    </div> 
                     <h3 className="tableName">Contenido de Reporte</h3>
                     <p className="tableName"></p>
+                    
                     <div className="row">
                          <h6 className="col-9"></h6>   
-                         <a href="/Routinebody/new" className="buttons col-3"> Nuevo Campo en Rutinas</a>
+                         <a href="/Routinebody/new" className="buttons col-3"> Nuevo Campo</a>
                         </div>
+                        <div className="routineContentDiv">
                         <div className="table-responsive-sm">
                         <table className="table table-dark">
                             <thead>
@@ -151,6 +155,7 @@ class RoutineBodyTableAll extends React.Component{
                             </tbody>
                         </table>
                     </div>
+                    </div> 
                 </div>
             </React.Fragment>
         );
