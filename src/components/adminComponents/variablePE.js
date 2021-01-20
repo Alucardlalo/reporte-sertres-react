@@ -531,13 +531,14 @@ class VariablePE extends React.Component{
                 </div>
                 </div>
                 :null}
+              <div className="tablePEDiv">  
              <form onSubmit={this.submitHadler}>
             <div className="ContenedorP">
                 {/* {this.state.variableAUX.map((item) => ( */}
                         <div className="table table-dark">
-                           <table> 
+                           <table className="tablePE"> 
                         <div className="row">
-                            <div className="col-4 col-sm-4">
+                            <div className="col-4">
                                     
                                     <tr>
                                     {this.state.statusActual?
@@ -551,7 +552,7 @@ class VariablePE extends React.Component{
                                    
                             </div>
                             <div className="w-100 ocultar-div"></div>
-                            <div className="col-4 col-sm-4">
+                            <div className="col-4">
                             
                                     <tr>
                                     {this.state.statusActual?
@@ -1088,6 +1089,7 @@ class VariablePE extends React.Component{
                 {/* ))} */}
             </div>
             </form>
+            </div>    
         </React.Fragment>
     );
 

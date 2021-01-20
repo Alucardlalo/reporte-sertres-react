@@ -377,10 +377,11 @@ class variableAA extends React.Component{
                 </div>
                 </div>
                 :null}
+           <div className="tableAADiv">     
              <form onSubmit={this.submitHadler}>
             <div className="ContenedorP">
                 {/* {this.state.variableAUX.map((item) => ( */}
-                        <div className="table table-dark overflow-hidden">
+                        <div className="table table-dark">
                         <div className="row">
                         
                         {/* solo si esta con status completo */}
@@ -715,6 +716,7 @@ class variableAA extends React.Component{
                 {/* ))} */}
             </div>
             </form>
+        </div>    
         </React.Fragment>
     );
 }

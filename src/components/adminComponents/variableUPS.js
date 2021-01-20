@@ -450,10 +450,11 @@ class VariableUPS extends React.Component{
                 </div>
                 </div>
                 :null}
+             <div className="tableUPSDiv">
              <form onSubmit={this.submitHadler}>
             <div className="">
                 {/* {this.state.variableAUX.map((item) => ( */}
-                        <div className="table table-dark overflow-hidden">
+                        <div className="table table-dark">
                         <div className="row">
                             <div className="col-6 col-sm-6">
                                     <table className="UPSData1">
@@ -895,6 +896,7 @@ class VariableUPS extends React.Component{
                 {/* ))} */}
             </div>
             </form>
+        </div>    
         </React.Fragment>
     );
 }
