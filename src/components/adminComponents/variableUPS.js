@@ -55,7 +55,7 @@ class VariableUPS extends React.Component{
 
                 this.setState({statusActual: false})
             }if(this.state.inheritedInSite == false){
-                alert('debe estar en el sitio para poder realizar la rutina. \n se encuentra a ' + this.state.inheritedDistancia + 'm del dispositivo')
+                alert('debe estar en el sitio para poder realizar la rutina. \n se encuentra a ' + this.state.inheritedDistancia + ' m del dispositivo')
                 this.setState({statusActual: false})
             }
            
@@ -883,7 +883,7 @@ class VariableUPS extends React.Component{
                                     {this.state.statusActual?
                                         <td><button className="btn btn-outline-success" disabled="true">Completo</button></td>
                                         :this.state.inheritedDistancia?
-                                          <td><button className="btn btn-outline-info" disabled="true">Deshabilitado</button></td>
+                                          <td><button className="btn btn-outline-warning" disabled="true">Deshabilitado</button></td>
                                         : <td><button className="btn btn-outline-info">Guardar</button></td>
                                     }
                                     </tr>

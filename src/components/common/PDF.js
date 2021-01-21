@@ -147,27 +147,27 @@ class AAPDF extends React.Component{
                             :null}
                             <tr className="row trBody2">
                                 <td className="col-sm-2 tdheader2"><label className="labelBody"> Id Dispositivo:</label></td>
-                                <td className="col-sm-4 tdheader2"><label className="labelBody">{item.deviceId}</label></td>
+                                <td className="col-sm-4 tdheader"><label className="labelBody">{item.deviceId}</label></td>
                                 <td className="col-sm-2 tdheader2"><label className="labelBody"> Nombre Dispositivo:</label></td>
-                                <td className="col-sm-4 tdheader2"><label className="labelBody">{item.deviceRel.deviceName}</label></td>
+                                <td className="col-sm-4 tdheader"><label className="labelBody">{item.deviceRel.deviceName}</label></td>
                             </tr>
                             <tr className="row trBody2">
                                 <td className="col-sm-2 tdheader2"><label className="labelBody"> Localidad:</label></td>
-                                <td className="col-sm-4 tdheader2"><label className="labelBody"> {item.deviceRel.buildingRel.buildingDataRel.buildingDataStreet}</label></td>
+                                <td className="col-sm-4 tdheader"><label className="labelBody"> {item.deviceRel.buildingRel.buildingDataRel.buildingDataStreet}</label></td>
                                 <td className="col-sm-2 tdheader2"><label className="labelBody"> No serie:</label></td>
-                                <td className="col-sm-4 tdheader2"><label className="labelBody"> {item.deviceRel.deviceSeries}</label></td>
+                                <td className="col-sm-4 tdheader"><label className="labelBody"> {item.deviceRel.deviceSeries}</label></td>
                             </tr>
                             <tr className="row trBody2">
                                 <td className="col-sm-2 tdheader2"><label className="labelBody"> Inmueble:</label></td>
-                                <td className="col-sm-4 tdheader2"><label className="labelBody"> {item.deviceRel.buildingRel.buildingDataRel.buildingType}</label></td>
+                                <td className="col-sm-4 tdheader"><label className="labelBody"> {item.deviceRel.buildingRel.buildingDataRel.buildingType}</label></td>
                                 <td className="col-sm-2 tdheader2"><label className="labelBody"> Marca:</label></td>
-                                <td className="col-sm-4 tdheader2"><label className="labelBody"> {item.deviceRel.deviceBrand}</label></td>
+                                <td className="col-sm-4 tdheader"><label className="labelBody"> {item.deviceRel.deviceBrand}</label></td>
                             </tr>
                             <tr className="row trBody2">
                                 <td className="col-sm-2 tdheader2"><label className="labelBody"> Responsable:</label></td>
-                                <td className="col-sm-4 tdheader2"><label className="labelBody"> {item.deviceRel.buildingRel.buildingDataRel.buildingDataResponsable}</label></td>
+                                <td className="col-sm-4 tdheader"><label className="labelBody"> {item.deviceRel.buildingRel.buildingDataRel.buildingDataResponsable}</label></td>
                                 <td className="col-sm-2 tdheader2"><label className="labelBody"> Capacidad:</label></td>
-                                <td className="col-sm-4 tdheader2"><label className="labelBody"> </label></td>
+                                <td className="col-sm-4 tdheader"><label className="labelBody"> </label></td>
                             </tr>
                         </tbody>
                     </table>
@@ -201,15 +201,19 @@ class AAPDF extends React.Component{
                            </tr>
                     ))}
                     </table>
-                   
-
+                </div>                
                 </div>
-              
-                    
-                                
-                </div>
+                <br/>
                 <div className="PDFFoot">
-
+                    <table className="tableElaborado">
+                        <tr>
+                            <td className="elaborado">Elaborado por:</td>
+                        </tr>
+                        <tr>
+                            <td className="nameElaborado"></td>
+                            <td className="FirmaElaborado"></td>
+                        </tr>
+                    </table>
                 </div>
               </div>
               </div> 
