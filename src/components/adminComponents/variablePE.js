@@ -1089,16 +1089,23 @@ class VariablePE extends React.Component{
 
                             <div className="w-100 ocultar-div"></div>
                             <div className="col-4 col-sm-4">
-                            
+                            <table className="PEData">
+                            {this.state.statusActual?
                                     <tr>
-                                    {this.state.statusActual?
-                                        <td><button className="btn btn-outline-success" disabled="true">Completo</button></td>
-                                        :this.state.inheritedDistancia?
-                                        <td><button className="btn btn-outline-info">Guardar</button></td>  
-                                        :<td><button className="btn btn-outline-warning" disabled="true">Deshabilitado</button></td>
-                                         
-                                    }
+                                        <td><button className="btn btn-outline-success" disabled="true">Completo</button></td>  
                                     </tr>
+                                 :null}
+                                  {this.state.inheritedInSite?
+                                    <tr>
+                                    <td><button className="btn btn-outline-info">Guardar</button></td>  
+                                </tr>
+                                    :<tr> 
+                                        <td><button className="btn btn-outline-warning" disabled="true">Deshabilitado</button></td>
+                                        <td className="text-warning">{' Estas a: ' + this.props.distancia + ' m del dispositivo. '}</td>    
+
+                                    </tr>
+                                  }                                  
+                                </table>
                                 
                             </div>
                             

@@ -75,9 +75,9 @@ class RoutineTableAll extends React.Component{
         var distanciaMetros = d.toFixed(3)* 1000;
         this.setState({distancia:distanciaMetros})
 
-        if(distanciaMetros < 15000){
+        if(distanciaMetros < 500){
             this.setState({inSite: true});
-        }if(distanciaMetros > 15000){
+        }if(distanciaMetros > 500){
             this.setState({inSite:false})
         }
       
@@ -260,7 +260,7 @@ class RoutineTableAll extends React.Component{
             const routineData = this.state.routineDataSelect;
             const routineselectS = this.state.routineSelect;
             const type = this.state.routineTypeS;
-            const inSite = this.state.inSite;
+            const inSite = true;
             const distancia = this.state.distancia;
             const cordena = this.state.corden;
             return(
