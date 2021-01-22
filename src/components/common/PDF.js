@@ -15,6 +15,8 @@ class AAPDF extends React.Component{
           data: this.props.data,
           type: this.props.Type,
           Question: [],
+          nameCre:'',mailCre:'',
+          idcreated: this.props.createdById,
           AA:false,UPS:false,PE:false,
         }
         
@@ -22,6 +24,16 @@ class AAPDF extends React.Component{
 
     componentDidMount() {
         this.typeRoutine();  
+        this.seleccionarCreated();
+    }
+
+    seleccionarCreated(){
+        var name1 = [] ,mail1 = []; 
+        this.props.routine.map((data) =>{
+            name1.push(data.userRel.userName);
+            mail1.push(data.userRel.userMail);
+        })
+        this.setState({nameCre: name1, mailCre:mail1})
     }
 
     fetchReportBodyAA = async () =>{
@@ -59,11 +71,13 @@ class AAPDF extends React.Component{
 
 
     typeRoutine(){
-        var Type =[];
+        var Type =[], createdBy = [], idcreated = [];
         this.state.routineS.map((item)=>{
             Type.push(item.reportTypeId);
+            createdBy.push(item.createdBy);
+            idcreated.push(item.idCreated);
         })
-            this.setState({type:Type});
+            this.setState({type:Type, createdBy:createdBy, idcreated:idcreated });
         if(Type == 1){
          this.setState({
              AA:true,
@@ -192,26 +206,46 @@ class AAPDF extends React.Component{
 
                                         
                 <div className="">
+                {this.state.data.sort(({order: previousOrder}, {order:currentOrder})=> previousOrder - currentOrder).map((item) => (
                     <table className="tableBodyQ">
-                    {this.state.data.sort(({order: previousOrder}, {order:currentOrder})=> previousOrder - currentOrder).map((item) => (
                         <tr key={item.order} className="trQuestion">
                             <td className="tdQuestion1">{item.variableI.order}</td>
                             <td className="tdQuestion">{item.variableI.variableName}</td>
                             <td className="tdAnswer">{item.data}</td>
                            </tr>
-                    ))}
                     </table>
+                     ))}
                 </div>                
                 </div>
                 <br/>
                 <div className="PDFFoot">
+                <table className="tableElaborado">
+                {this.state.AA?
+                            <tr className="trBodyAA">
+                                <td className="tdBodyAA">Firma de Rutina</td>
+                            </tr>
+                            :null}
+                            {this.state.UPS?
+                            <tr className="trBodyUPS">
+                                <td className="tdBodyUPS">Firma de Rutina</td>
+                            </tr>
+                            :null}
+                            {this.state.PE?
+                            <tr className="trBodyPE">
+                                <td className="tdBodyPE">Firma de Rutina</td>
+                            </tr>
+                            :null} 
+                    </table>
                     <table className="tableElaborado">
-                        <tr>
+                        <tr className="trElaboradoA">
                             <td className="elaborado">Elaborado por:</td>
+                            <td className="nameElaborado">{this.state.nameCre}</td>
                         </tr>
-                        <tr>
-                            <td className="nameElaborado"></td>
-                            <td className="FirmaElaborado"></td>
+                    </table>
+                    <table className="tableElaborado">    
+                        <tr className="trElaboradoB">
+                        <td className="elaboradoFirma">Id elaboración:</td>
+                            <td className="FirmaElaborado">{this.state.nameCre.toString().replace(' ', '_') +'_' + this.state.mailCre +'_'+ this.state.idcreated}</td>
                         </tr>
                     </table>
                 </div>

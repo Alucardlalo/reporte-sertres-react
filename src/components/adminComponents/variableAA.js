@@ -29,7 +29,12 @@ class variableAA extends React.Component{
             inheritedRoutineS: this.props.routineS,
             inheritedInSite: this.props.inSite,
             inheritedDistancia: this.props.distancia,
+            inheritedCord: this.props.corden,
             PDF:false,
+            usersF:[],
+            createdBy:'',
+            createdById:'',
+            routineAA:[],
             Q1: '',Q2: '',Q3: '',Q4: '',Q5: '',Q6: '',Q7: '',Q8: '',Q9: '',Q10: '',
             Q11: '',Q12: '',Q13: '',Q14: '',Q15: '',Q16: '',Q17: '',Q18: '',Q19: '',
             
@@ -41,6 +46,22 @@ class variableAA extends React.Component{
         this.fetchVariable();
         this.statusComprovation();
         this.seleccionarData();
+        this.fetchUser();
+    }
+
+    fetchUser = async () =>{
+        this.setState({loadingF:true, errorF: null })
+        try{
+            const response = await fetch('http://localhost:8090/sertresreporte/users/all')
+            const Users = await response.json();
+            this.setState({loadingF:false , usersF: Users })
+            }catch(error){
+            this.setState({loadingF: false , errorF: error })
+        }
+    }
+
+    changeHadler = (e) =>{
+        this.setState({createdBy:e.target.value })
     }
 
     seleccionarData(){
@@ -126,17 +147,25 @@ class variableAA extends React.Component{
             status.push(routine.status);
             ATM.push(routine.reviewATM);
         })
+        this.setState({routineAA:rotine});
+        this.namecreated();
         const requestOptions1 = {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ 
                 reportId: rotine  , reportTypeId: routineType , deviceId: device , 
                 reportTittle: title, commitmentDate: date1, beginDate:date2,
-                endDate: this.state.now , status:status , reviewATM: ATM })
+                endDate: this.state.now , status:status , reviewATM: ATM,
+                createdBy:this.state.createdBy , idCreated: this.state.createdById})
         };
-        console.log(requestOptions1)
         fetch('http://localhost:8090/sertresreporte/reporte/save', requestOptions1)
             .then(response => response.json());
+    }
+
+    namecreated(){
+        var lat=this.props.corden.latitude, lon=this.props.corden.longitude;
+        var name = this.state.inheritedRoutine +'_' + this.state.now.toString().replace(' ', '_') +'_'+ lat + '_' + lon;
+        this.setState({createdById:name});
     }
 
      SaveQ1 = async e =>{
@@ -145,7 +174,7 @@ class variableAA extends React.Component{
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ variableId: '1' , data: this.state.Q1 , reportId: this.state.inheritedRoutine})
         };
-        console.log(requestOptions1)
+        
         fetch('http://localhost:8090/sertresreporte/variabledata/save', requestOptions1)
             .then(response => response.json());
     }
@@ -156,7 +185,7 @@ class variableAA extends React.Component{
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ variableId: '2' , data: this.state.Q2 , reportId: this.state.inheritedRoutine})
         };
-        console.log(requestOptions2)
+        
         fetch('http://localhost:8090/sertresreporte/variabledata/save', requestOptions2)
             .then(response => response.json());
     }
@@ -166,7 +195,7 @@ class variableAA extends React.Component{
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ variableId: '3' , data: this.state.Q3 , reportId: this.state.inheritedRoutine})
         };
-        console.log(requestOptions1)
+        
         fetch('http://localhost:8090/sertresreporte/variabledata/save', requestOptions1)
             .then(response => response.json());
     }
@@ -176,7 +205,7 @@ class variableAA extends React.Component{
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ variableId: '4' , data: this.state.Q4 , reportId: this.state.inheritedRoutine})
         };
-        console.log(requestOptions1)
+        
         fetch('http://localhost:8090/sertresreporte/variabledata/save', requestOptions1)
             .then(response => response.json());
     }
@@ -186,7 +215,7 @@ class variableAA extends React.Component{
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ variableId: '5' , data: this.state.Q5 , reportId: this.state.inheritedRoutine})
         };
-        console.log(requestOptions1)
+        
         fetch('http://localhost:8090/sertresreporte/variabledata/save', requestOptions1)
             .then(response => response.json());
     }
@@ -196,7 +225,7 @@ class variableAA extends React.Component{
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ variableId: '6' , data: this.state.Q6 , reportId: this.state.inheritedRoutine})
         };
-        console.log(requestOptions1)
+        
         fetch('http://localhost:8090/sertresreporte/variabledata/save', requestOptions1)
             .then(response => response.json());
     }
@@ -206,7 +235,7 @@ class variableAA extends React.Component{
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ variableId: '7' , data: this.state.Q7 , reportId: this.state.inheritedRoutine})
         };
-        console.log(requestOptions1)
+        
         fetch('http://localhost:8090/sertresreporte/variabledata/save', requestOptions1)
             .then(response => response.json());
     }
@@ -216,7 +245,7 @@ class variableAA extends React.Component{
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ variableId: '8' , data: this.state.Q8 , reportId: this.state.inheritedRoutine})
         };
-        console.log(requestOptions1)
+        
         fetch('http://localhost:8090/sertresreporte/variabledata/save', requestOptions1)
             .then(response => response.json());
     }
@@ -226,7 +255,7 @@ class variableAA extends React.Component{
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ variableId: '9' , data: this.state.Q9 , reportId: this.state.inheritedRoutine})
         };
-        console.log(requestOptions1)
+        
         fetch('http://localhost:8090/sertresreporte/variabledata/save', requestOptions1)
             .then(response => response.json());
     }
@@ -236,7 +265,7 @@ class variableAA extends React.Component{
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ variableId: '10' , data: this.state.Q10 , reportId: this.state.inheritedRoutine})
         };
-        console.log(requestOptions1)
+        
         fetch('http://localhost:8090/sertresreporte/variabledata/save', requestOptions1)
             .then(response => response.json());
     }
@@ -246,7 +275,7 @@ class variableAA extends React.Component{
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ variableId: '11' , data: this.state.Q11 , reportId: this.state.inheritedRoutine})
         };
-        console.log(requestOptions1)
+        
         fetch('http://localhost:8090/sertresreporte/variabledata/save', requestOptions1)
             .then(response => response.json());
     }
@@ -256,7 +285,7 @@ class variableAA extends React.Component{
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ variableId: '12' , data: this.state.Q12 , reportId: this.state.inheritedRoutine})
         };
-        console.log(requestOptions1)
+        
         fetch('http://localhost:8090/sertresreporte/variabledata/save', requestOptions1)
             .then(response => response.json());
     }
@@ -266,7 +295,7 @@ class variableAA extends React.Component{
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ variableId: '13' , data: this.state.Q13 , reportId: this.state.inheritedRoutine})
         };
-        console.log(requestOptions1)
+        
         fetch('http://localhost:8090/sertresreporte/variabledata/save', requestOptions1)
             .then(response => response.json());
     }
@@ -276,7 +305,7 @@ class variableAA extends React.Component{
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ variableId: '14' , data: this.state.Q14 , reportId: this.state.inheritedRoutine})
         };
-        console.log(requestOptions1)
+        
         fetch('http://localhost:8090/sertresreporte/variabledata/save', requestOptions1)
             .then(response => response.json());
     }
@@ -286,7 +315,7 @@ class variableAA extends React.Component{
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ variableId: '15' , data: this.state.Q15 , reportId: this.state.inheritedRoutine})
         };
-        console.log(requestOptions1)
+        
         fetch('http://localhost:8090/sertresreporte/variabledata/save', requestOptions1)
             .then(response => response.json());
     }
@@ -296,7 +325,7 @@ class variableAA extends React.Component{
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ variableId: '16' , data: this.state.Q16 , reportId: this.state.inheritedRoutine})
         };
-        console.log(requestOptions1)
+        
         fetch('http://localhost:8090/sertresreporte/variabledata/save', requestOptions1)
             .then(response => response.json());
     }
@@ -306,7 +335,7 @@ class variableAA extends React.Component{
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ variableId: '17' , data: this.state.Q17 , reportId: this.state.inheritedRoutine})
         };
-        console.log(requestOptions1)
+        
         fetch('http://localhost:8090/sertresreporte/variabledata/save', requestOptions1)
             .then(response => response.json());
     }
@@ -316,7 +345,7 @@ class variableAA extends React.Component{
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ variableId: '18' , data: this.state.Q18 , reportId: this.state.inheritedRoutine})
         };
-        console.log(requestOptions1)
+        
         fetch('http://localhost:8090/sertresreporte/variabledata/save', requestOptions1)
             .then(response => response.json());
     }
@@ -326,7 +355,7 @@ class variableAA extends React.Component{
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ variableId: '19' , data: this.state.Q19 , reportId: this.state.inheritedRoutine})
         };
-        console.log(requestOptions1)
+        
         fetch('http://localhost:8090/sertresreporte/variabledata/save', requestOptions1)
             .then(response => response.json());
     }
@@ -346,6 +375,7 @@ class variableAA extends React.Component{
         const {Q2,Q3,Q4,Q5,Q6,Q7,Q8,Q9,Q10,Q11,Q12,Q13,Q14,Q15,Q16,Q17,Q18,Q19} = this.state 
         const data = this.state.inheritedRoutineData;
         const routine = this.state.inheritedRoutineS;
+        const createdById = this.state.createdById;
         return(  
         <React.Fragment>
              {this.state.statusActual?
@@ -363,7 +393,7 @@ class variableAA extends React.Component{
                         
                     
                         <div class="modal-body">
-                        <PDF data={data} routine={routine}/>
+                        <PDF data={data} routine={routine} createdById={createdById}/>
                         </div>
                         
                     
@@ -695,6 +725,28 @@ class variableAA extends React.Component{
                             </div>
 
                             < div class="w-100"></div>{/* octava linea de cuadro Rutina */}
+                            
+                            <div className="col-4 col-sm-4">
+                            <table className="AAData"> 
+                                    <tr>
+                                    {this.state.statusActual?
+                                        <td className="prestoAAC">Realizado por:</td>
+                                        :<td className="prestoAA">Realizado por:</td>}
+                                        {this.state.statusActual?
+                                        <td className="prestoAAResC ">{this.props.routineS.map((item)=>(item.userRel.userName))}</td>
+                                        :<td className="prestoAARes">
+                                         <select value={this.state.createdBy} onChange={this.changeHadler} className="btn btn-outline-info">
+                                        <option value={0}> </option>
+                                        {this.state.usersF.sort(({userId: previoususerId}, {userId:currentuserId})=> previoususerId - currentuserId).map((item) =>(
+                                            <option key={item.userId} value={item.userId}>{item.userName}</option>
+                                        ))}
+                                    </select>   
+                                       </td>}
+                                    </tr>
+                                    </table> 
+                            </div>
+
+                            < div class="w-100"></div>{/* novena linea de cuadro Rutina */}
 
                             <div className="w-100 ocultar-div"></div>
                             <div className="col-12 col-sm-12">
@@ -703,14 +755,13 @@ class variableAA extends React.Component{
                                     {this.state.statusActual?
                                         <td><button className="btn btn-outline-success" disabled="true">Completo</button></td>
                                         :this.state.inheritedDistancia?
-                                          <td><button className="btn btn-outline-warning" disabled="true">Deshabilitado</button></td>
-                                        : <td><button className="btn btn-outline-info">Guardar</button></td>
+                                        <td><button className="btn btn-outline-info">Guardar</button></td>  
+                                        :<td><button className="btn btn-outline-warning" disabled="true">Deshabilitado</button></td>
+                                         
                                     }
                                     </tr>
                                 </table>
                             </div>
-                            
-
                         </div>     
                     </div>
                 {/* ))} */}

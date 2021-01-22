@@ -104,6 +104,7 @@
     font-size: 1.5rem;
     width: 100%; 
     position: relative;
+    text-align: center;
  }
 
 .tableBodyQ{
@@ -116,24 +117,22 @@
     width: 100%;
     position: relative;
     width: 20%;
-    
 }
 
 .tdQuestion{
     position: relative;
-    padding-left: 1rem;
+    padding-left: 3.5rem;
     font-size: 1.5rem;
-    width: 75%;
-    font-weight: 800;
+    width: 70%;
+    font-weight: 700;
 }
 
 .tdQuestion1{
-    position: relative;
+    position: absolute;
     border-right: 1px solid gray;
-    padding-left: 1rem;
-    padding-right: 1rem;
+    width: 2.5rem;
     font-size: 1.5rem;
-    width: auto;
+    text-align: center;
 }
 /*Footer*/
 
@@ -222,7 +221,6 @@
      }
     
      .tdAnswer{
-        padding-left: 1rem;
         border-left: 1px solid gray;
         border-right: 1px solid gray;
         font-size: 1.5rem;
@@ -241,27 +239,54 @@
     
     .tdQuestion{
         position: relative;
-        padding-left: 1rem;
+       
         font-size: 1.5rem;
-        font-weight: 800;
+        font-weight: 700;
     }
     .tdQuestion1{
         position: relative;
         border-right: 1px solid gray;
-        padding-left: 1rem;
+       
         font-size: 1.5rem;
     }
 }
 
 .tableElaborado{
-    
+    border:0px solid gray;
+    width: 100%;
+    position: relative; 
+}
+
+.trElaboradoA{
+   border: 1px solid gray;
+   width: 100%;
+}
+
+.trElaboradoB{
+   border-right: 1px solid gray;
+   border-bottom: 1px solid gray;
+   border-left: 1px solid gray;
+   width: 100%;
 }
 .elaborado{
-
+    position: relative;
+    font-size: 1.3rem;
+    font-weight: 700;
+    width: 20%;
 }
+
+.elaboradoFirma{
+    position: relative;
+    font-size: 1.3rem;
+    font-weight: 700;
+}
+
 .nameElaborado{
-
+    font-size: 1.5rem;
+    width: 100%;
+    position: relative;
 }
-.FirmaElaborado{
 
+.FirmaElaborado{
+    font-size: 1rem;
 }

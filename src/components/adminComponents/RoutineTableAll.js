@@ -75,9 +75,9 @@ class RoutineTableAll extends React.Component{
         var distanciaMetros = d.toFixed(3)* 1000;
         this.setState({distancia:distanciaMetros})
 
-        if(distanciaMetros < 500){
+        if(distanciaMetros < 15000){
             this.setState({inSite: true});
-        }if(distanciaMetros > 500){
+        }if(distanciaMetros > 15000){
             this.setState({inSite:false})
         }
       
@@ -262,6 +262,7 @@ class RoutineTableAll extends React.Component{
             const type = this.state.routineTypeS;
             const inSite = this.state.inSite;
             const distancia = this.state.distancia;
+            const cordena = this.state.corden;
             return(
                 <React.Fragment>
                    <div className="ContenedorP">
@@ -599,17 +600,17 @@ class RoutineTableAll extends React.Component{
                             <div>
                                {this.state.routineAA?
                                <div>
-                                   <VariableAA routine={routineId} status={statusRoutine} data={routineData} routineS={routineselectS} type={type} inSite={inSite} distancia={distancia}/>
+                                   <VariableAA routine={routineId} status={statusRoutine} data={routineData} routineS={routineselectS} type={type} inSite={inSite} distancia={distancia} corden={cordena}/>
                                </div>
                                :null}
                                {this.state.routineUPS?
                                <div>
-                                    <VariableUPS routine={routineId} status={statusRoutine} data={routineData} routineS={routineselectS} type={type} inSite={inSite} distancia={distancia}/>
+                                    <VariableUPS routine={routineId} status={statusRoutine} data={routineData} routineS={routineselectS} type={type} inSite={inSite} distancia={distancia} corden={cordena}/>
                                </div>
                                :null}
                                {this.state.routinePE?
                                <div>
-                                    <VariablePE routine={routineId} status={statusRoutine} data={routineData} routineS={routineselectS} type={type} inSite={inSite} distancia={distancia}/>
+                                    <VariablePE routine={routineId} status={statusRoutine} data={routineData} routineS={routineselectS} type={type} inSite={inSite} distancia={distancia} corden={cordena}/>
                                </div>
                                :null}
                             </div>
