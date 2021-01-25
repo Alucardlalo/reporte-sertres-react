@@ -1101,17 +1101,12 @@ class VariablePE extends React.Component{
                                  :<tr> 
                                      <td><button className="btn btn-outline-warning" disabled="true">Deshabilitado</button></td>
                                      <td className="text-warning">{' Estas a: ' + this.props.distancia + ' m del dispositivo. '}</td>    
-
                                  </tr>}                                 
                                 </table>
-                                
                             </div>
-                            
-
                         </div>
                         </table>     
                     </div>
-                {/* ))} */}
             </div>
             </form>
             </div>    

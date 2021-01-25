@@ -768,7 +768,6 @@ class variableAA extends React.Component{
                             </div>
                         </div>     
                     </div>
-                {/* ))} */}
             </div>
             </form>
         </div>    

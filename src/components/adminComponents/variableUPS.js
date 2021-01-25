@@ -911,7 +911,7 @@ class VariableUPS extends React.Component{
                                     </tr>
                                  :this.state.inheritedInSite?
                                  <tr>
-                                 <td><button className="btn btn-outline-info">Guardar</button></td>  
+                                 <td><button className="btn btn-outline-info">Guardar</button></td>
                              </tr>
                                  :<tr> 
                                      <td><button className="btn btn-outline-warning" disabled="true">Deshabilitado</button></td>
@@ -920,11 +920,8 @@ class VariableUPS extends React.Component{
                                  </tr>}                                  
                                 </table>
                             </div>
-                            
-
                         </div>     
                     </div>
-                {/* ))} */}
             </div>
             </form>
         </div>    
