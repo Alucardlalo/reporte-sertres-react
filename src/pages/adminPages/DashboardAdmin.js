@@ -106,7 +106,7 @@ class DashboardAdmin extends React.Component{
         return(
             <React.Fragment>
                 <div className="container">
-                    <h4 className="titleMain">Reportes</h4>
+                    <h4 className="titleMain">Rutinas</h4>
                     <div style={{width: '50%', height:'auto'}}>
                         <Pie data={this.state.dataA} options={this.state.opcionesA} />
                     </div>
