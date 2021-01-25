@@ -905,21 +905,19 @@ class VariableUPS extends React.Component{
                             <div className="w-100 ocultar-div"></div>
                             <div className="col-4 col-sm-4">
                             <table className="UPSData">
-                            {this.state.statusActual?
+                            {this.state.statusActual? 
                                     <tr>
                                         <td><button className="btn btn-outline-success" disabled="true">Completo</button></td>  
                                     </tr>
-                                 :null}
-                                  {this.state.inheritedInSite?
-                                    <tr>
-                                    <td><button className="btn btn-outline-info">Guardar</button></td>  
-                                </tr>
-                                    :<tr> 
-                                        <td><button className="btn btn-outline-warning" disabled="true">Deshabilitado</button></td>
-                                        <td className="text-warning">{' Estas a: ' + this.props.distancia + ' m del dispositivo. '}</td>    
+                                 :this.state.inheritedInSite?
+                                 <tr>
+                                 <td><button className="btn btn-outline-info">Guardar</button></td>  
+                             </tr>
+                                 :<tr> 
+                                     <td><button className="btn btn-outline-warning" disabled="true">Deshabilitado</button></td>
+                                     <td className="text-warning">{' Estas a: ' + this.props.distancia + ' m del dispositivo. '}</td>    
 
-                                    </tr>
-                                  }                                   
+                                 </tr>}                                  
                                 </table>
                             </div>
                             
