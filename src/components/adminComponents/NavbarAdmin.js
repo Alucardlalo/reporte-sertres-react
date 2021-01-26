@@ -27,7 +27,7 @@ class NavbarAdmin extends React.Component{
             <React.Fragment>
                 <div className="ContenedorP">
                     <div className="One__header">
-                        <h2>Rutinas Sertres </h2>
+                        <h2>Sertres Rutinas</h2>
                     </div>
                 </div>
                 <div className="ContenedorP">
