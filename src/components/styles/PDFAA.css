@@ -54,6 +54,14 @@
 }
 .Logo{
     vertical-align: center;
+    align-items: center;
+    position: relative;
+    padding-bottom: .5rem;
+    padding-top: .5rem;
+}
+.LogoImg{
+    width: 25rem;
+    height: 4rem;
 }
 
 /*Body*/

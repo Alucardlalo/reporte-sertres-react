@@ -3,6 +3,7 @@ import '../styles/PDFAA.css'
 import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
 import * as moment from "moment/moment";
+import Logo from './LogoSertres.jpg';
 
 class AAPDF extends React.Component{
     constructor(props) {
@@ -132,8 +133,7 @@ class AAPDF extends React.Component{
                 <div className="PDFHeader">
                    <table className="tableHeader">
                         <tr>
-                            <td className="Logo">LOGO</td>
-                            <td className="tdHeader1">SERTRES</td>
+                            <td className="Logo"><img src={Logo} className="LogoImg"/></td>
                         </tr>
                    </table>
                    <button className="btn btn-outline-primary btnDownload" type="button" onClick={this.jsPDFGenerator}>
