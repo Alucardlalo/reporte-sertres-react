@@ -133,7 +133,7 @@ class AAPDF extends React.Component{
                 <div className="PDFHeader">
                    <table className="tableHeader">
                         <tr>
-                            <td className="Logo"><img src={Logo} className="LogoImg"/></td>
+                            <td className="LogoPDF"><img src={Logo} className="LogoImgPDF"/></td>
                         </tr>
                    </table>
                    <button className="btn btn-outline-primary btnDownload" type="button" onClick={this.jsPDFGenerator}>

@@ -1,6 +1,10 @@
 import React from 'react';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
 import {Redirect} from "react-router-dom";
+import Logo from '../common/LogoSertres.jpg';
+import LogoSm from '../common/LogoSertresSm.jpg';
+import '../styles/Navbar.css';
+
 
 
 class NavbarTec extends React.Component{
@@ -35,7 +39,7 @@ class NavbarTec extends React.Component{
                         <button className="btnLogout" onClick={this.logout}>salir</button>
                     </form>
                     <nav className="navbar navbar-expand-md bg-dark navbar-dark">
-                        <h3 className="navbar-brand">Sertres</h3>
+                        <h3 className="navbar-brand">Sertres <img src={LogoSm} className="LogoImgSm"/></h3>
                         <button className="navbar-toggler" type="button" data-toggle="collapse"
                                 data-target="#collapsibleNavbar">
                             <span className="navbar-toggler-icon"></span>
@@ -52,6 +56,7 @@ class NavbarTec extends React.Component{
                                     <a className="nav-link" href="/RoutinebodyTec">Contenido Rutinas</a>
                                 </li>
                             </ul>
+                            <img src={Logo} className="LogoImg"/> 
                         </div>
                     </nav>
                 </div>

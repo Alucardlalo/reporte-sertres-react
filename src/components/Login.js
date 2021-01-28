@@ -77,10 +77,10 @@ class Login extends React.Component{
     }
 
     render() {
-        while (this.state.redirect === true && this.state.accessUsAux !== 2){
+        while (this.state.redirect === true && this.state.accessUsAux !== 3){
             return(<Redirect to="/home"/>);
         }
-        while(this.state.redirect === true && this.state.accessUsAux === 2){
+        while(this.state.redirect === true && this.state.accessUsAux === 3){
             return(<Redirect to="/HomeTec" />);
         }
         return (
