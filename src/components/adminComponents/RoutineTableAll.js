@@ -292,7 +292,7 @@ class RoutineTableAll extends React.Component{
                                     <div className="table table-dark">
                                     <div><h2 className="Rutinatitle">{item.reportType.reportType}</h2></div>
                                     <div className="row">
-                                        <div className="col-6 col-sm-6">
+                                        <div className="col-4 col-sm-4">
                                                <table className="sm-info1">
                                                 <tr>
                                                     <td className="presto">Id Rutina: </td>
@@ -301,7 +301,7 @@ class RoutineTableAll extends React.Component{
                                                 </table> 
                                         </div>
                                         <div className="w-100 ocultar-div"></div>
-                                        <div className="col-6 col-sm-6">
+                                        <div className="col-4 col-sm-4">
                                         <table className="sm-info1">
                                                 <tr>
                                                     <td className="presto">Tipo de Rutina: </td>
@@ -387,7 +387,7 @@ class RoutineTableAll extends React.Component{
                                   <div className="table table-dark">
                                   <div><h2 className="Rutinatitle">Dispositivo</h2></div>
                                   <div className="row">
-                                      <div className="col-6 col-sm-6">
+                                      <div className="col-4 col-sm-4">
                                              <table className="sm-info1">
                                               <tr>
                                                   <td className="presto">imagen dispositivo </td> 
@@ -395,7 +395,7 @@ class RoutineTableAll extends React.Component{
                                               </table> 
                                       </div>
                                       <div className="w-100 ocultar-div"></div>
-                                      <div className="col-6 col-sm-6">
+                                      <div className="col-4 col-sm-4">
                                       <table className="sm-info1">
                                               <tr>
                                                   <td className="presto">Id Dispositivo </td>
