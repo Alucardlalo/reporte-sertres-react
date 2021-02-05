@@ -1,6 +1,7 @@
 import React from 'react';
 import '../styles/ReportTypeNewForm.css';
 import axios from 'axios';
+import { Redirect } from 'react-router-dom';
 
 class routineTypeNewForm extends React.Component{
 
@@ -10,6 +11,7 @@ class routineTypeNewForm extends React.Component{
         this.state = {
             reportType: '',
             descriptionI : '',
+            createdNew: false,
         }
     }
 
@@ -22,15 +24,18 @@ class routineTypeNewForm extends React.Component{
         const requestOptions = {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ reportType: this.state.reportType , descriptionI:this.state.descriptionI})
+            body: JSON.stringify({ reportTypeId: '', reportType: this.state.reportType , descriptionI:this.state.descriptionI})
         };
         console.log(requestOptions)
         fetch('http://localhost:8090/sertresreporte/reporttype/save', requestOptions)
             .then(response => response.json());
+            alert('Tipo Rutina creada');
+            this.setState({createdNew:true});
 }
 
     render(){
         const { reportType , descriptionI } = this.state
+        if(this.state.createdNew === false){
         return (
             <React.Fragment>
                 <div className = "container">
@@ -72,7 +77,10 @@ class routineTypeNewForm extends React.Component{
                 </div>
             </React.Fragment>
         );
+    }if(this.state.createdNew === true){
+        return (<Redirect to="/Routinetype"/>);
     }
+}
 }
 
 export default routineTypeNewForm;

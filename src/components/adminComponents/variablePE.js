@@ -31,8 +31,8 @@ class VariablePE extends React.Component{
             createdById:'',
             routineAA:[],
             routineTypeS: '',
-            Q1: '',Q2: '',Q3: '',Q4: '',Q5: '',Q6: '',Q7: '',Q8: '',Q9: '',Q10: '',
-            Q11: '',Q12: '',Q13: '',Q14: '',Q15: '',Q16: '',Q17: '',Q18: '',Q19: '',
+            Q1: moment(new Date()).format("DD/MM/YYYY hh:mm:ss"),Q2: '',Q3: '',Q4: '',Q5: '',Q6: '',Q7: '',Q8: '',Q9: '',Q10: '',
+            Q11: '',Q12: '',Q13: '',Q14: '',Q15: '',Q16: moment(new Date()).format("DD/MM/YYYY hh:mm:ss"),Q17: '',Q18: '',Q19: '',
             Q20: '',Q21: '',Q22: '',Q23: '',Q24: '',Q25: '',Q26: '',Q27: '',Q28: '',
             Q29: '',Q30: '',Q31: '',Q32: '',Q33: '',
         }
@@ -166,7 +166,7 @@ class VariablePE extends React.Component{
         const requestOptions1 = {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ 
+            body: JSON.stringify({  variableDataId:'', 
                 reportId: rotine  , reportTypeId: routineType , deviceId: device , 
                 reportTittle: title, commitmentDate: date1, beginDate:date2,
                 endDate: this.state.now , status:status , reviewATM: ATM,
@@ -182,300 +182,300 @@ class VariablePE extends React.Component{
         this.setState({createdById:name});
     }
 
-     SaveQ1 = async e =>{
+     SaveQ1 (){
         const requestOptions1 = {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ variableId: '46' , data: this.state.Q1 , reportId: this.state.inheritedRoutine})
+            body: JSON.stringify({  variableDataId:'', variableId: '46' , data: this.state.Q1 , reportId: this.state.inheritedRoutine})
         };
         fetch('http://localhost:8090/sertresreporte/variabledata/save', requestOptions1)
             .then(response => response.json());
     }
 
-    SaveQ2 = async e =>{
+    SaveQ2 (){
         const requestOptions2 = {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ variableId: '47' , data: this.state.Q2 , reportId: this.state.inheritedRoutine})
+            body: JSON.stringify({  variableDataId:'', variableId: '47' , data: this.state.Q2 , reportId: this.state.inheritedRoutine})
         };
         fetch('http://localhost:8090/sertresreporte/variabledata/save', requestOptions2)
             .then(response => response.json());
     }
-    SaveQ3 = async e =>{
+    SaveQ3 (){
         const requestOptions1 = {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ variableId: '48' , data: this.state.Q3 , reportId: this.state.inheritedRoutine})
+            body: JSON.stringify({  variableDataId:'', variableId: '48' , data: this.state.Q3 , reportId: this.state.inheritedRoutine})
         };
         fetch('http://localhost:8090/sertresreporte/variabledata/save', requestOptions1)
             .then(response => response.json());
     }
-    SaveQ4 = async e =>{
+    SaveQ4 (){
         const requestOptions1 = {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ variableId: '49' , data: this.state.Q4 , reportId: this.state.inheritedRoutine})
+            body: JSON.stringify({  variableDataId:'', variableId: '49' , data: this.state.Q4 , reportId: this.state.inheritedRoutine})
         };
         fetch('http://localhost:8090/sertresreporte/variabledata/save', requestOptions1)
             .then(response => response.json());
     }
-    SaveQ5 = async e =>{
+    SaveQ5 (){
         const requestOptions1 = {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ variableId: '50' , data: this.state.Q5 , reportId: this.state.inheritedRoutine})
+            body: JSON.stringify({  variableDataId:'', variableId: '50' , data: this.state.Q5 , reportId: this.state.inheritedRoutine})
         };
         fetch('http://localhost:8090/sertresreporte/variabledata/save', requestOptions1)
             .then(response => response.json());
     }
-    SaveQ6 = async e =>{
+    SaveQ6 (){
         const requestOptions1 = {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ variableId: '51' , data: this.state.Q6 , reportId: this.state.inheritedRoutine})
+            body: JSON.stringify({  variableDataId:'', variableId: '51' , data: this.state.Q6 , reportId: this.state.inheritedRoutine})
         };
         fetch('http://localhost:8090/sertresreporte/variabledata/save', requestOptions1)
             .then(response => response.json());
     }
-    SaveQ7 = async e =>{
+    SaveQ7 (){
         const requestOptions1 = {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ variableId: '52' , data: this.state.Q7 , reportId: this.state.inheritedRoutine})
+            body: JSON.stringify({  variableDataId:'', variableId: '52' , data: this.state.Q7 , reportId: this.state.inheritedRoutine})
         };
         fetch('http://localhost:8090/sertresreporte/variabledata/save', requestOptions1)
             .then(response => response.json());
     }
-    SaveQ8 = async e =>{
+    SaveQ8 (){
         const requestOptions1 = {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ variableId: '53' , data: this.state.Q8 , reportId: this.state.inheritedRoutine})
+            body: JSON.stringify({  variableDataId:'', variableId: '53' , data: this.state.Q8 , reportId: this.state.inheritedRoutine})
         };
         fetch('http://localhost:8090/sertresreporte/variabledata/save', requestOptions1)
             .then(response => response.json());
     }
-    SaveQ9 = async e =>{
+    SaveQ9 (){
         const requestOptions1 = {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ variableId: '54' , data: this.state.Q9 , reportId: this.state.inheritedRoutine})
+            body: JSON.stringify({  variableDataId:'', variableId: '54' , data: this.state.Q9 , reportId: this.state.inheritedRoutine})
         };
         fetch('http://localhost:8090/sertresreporte/variabledata/save', requestOptions1)
             .then(response => response.json());
     }
-    SaveQ10 = async e =>{
+    SaveQ10 (){
         const requestOptions1 = {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ variableId: '55' , data: this.state.Q10 , reportId: this.state.inheritedRoutine})
+            body: JSON.stringify({  variableDataId:'', variableId: '55' , data: this.state.Q10 , reportId: this.state.inheritedRoutine})
         };
         fetch('http://localhost:8090/sertresreporte/variabledata/save', requestOptions1)
             .then(response => response.json());
     }
-    SaveQ11 = async e =>{
+    SaveQ11 (){
         const requestOptions1 = {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ variableId: '56' , data: this.state.Q11 , reportId: this.state.inheritedRoutine})
+            body: JSON.stringify({  variableDataId:'', variableId: '56' , data: this.state.Q11 , reportId: this.state.inheritedRoutine})
         };
         fetch('http://localhost:8090/sertresreporte/variabledata/save', requestOptions1)
             .then(response => response.json());
     }
-    SaveQ12 = async e =>{
+    SaveQ12 (){
         const requestOptions1 = {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ variableId: '57' , data: this.state.Q12 , reportId: this.state.inheritedRoutine})
+            body: JSON.stringify({  variableDataId:'', variableId: '57' , data: this.state.Q12 , reportId: this.state.inheritedRoutine})
         };
         fetch('http://localhost:8090/sertresreporte/variabledata/save', requestOptions1)
             .then(response => response.json());
     }
-    SaveQ13 = async e =>{
+    SaveQ13 (){
         const requestOptions1 = {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ variableId: '58' , data: this.state.Q13 , reportId: this.state.inheritedRoutine})
+            body: JSON.stringify({  variableDataId:'', variableId: '58' , data: this.state.Q13 , reportId: this.state.inheritedRoutine})
         };
         fetch('http://localhost:8090/sertresreporte/variabledata/save', requestOptions1)
             .then(response => response.json());
     }
-    SaveQ14 = async e =>{
+    SaveQ14 (){
         const requestOptions1 = {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ variableId: '59' , data: this.state.Q14 , reportId: this.state.inheritedRoutine})
+            body: JSON.stringify({  variableDataId:'', variableId: '59' , data: this.state.Q14 , reportId: this.state.inheritedRoutine})
         };
         fetch('http://localhost:8090/sertresreporte/variabledata/save', requestOptions1)
             .then(response => response.json());
     }
-    SaveQ15 = async e =>{
+    SaveQ15 (){
         const requestOptions1 = {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ variableId: '60' , data: this.state.Q15 , reportId: this.state.inheritedRoutine})
+            body: JSON.stringify({  variableDataId:'', variableId: '60' , data: this.state.Q15 , reportId: this.state.inheritedRoutine})
         };
         fetch('http://localhost:8090/sertresreporte/variabledata/save', requestOptions1)
             .then(response => response.json());
     }
-    SaveQ16 = async e =>{
+    SaveQ16 (){
         const requestOptions1 = {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ variableId: '61' , data: this.state.Q16 , reportId: this.state.inheritedRoutine})
+            body: JSON.stringify({  variableDataId:'', variableId: '61' , data: this.state.Q16 , reportId: this.state.inheritedRoutine})
         };
         fetch('http://localhost:8090/sertresreporte/variabledata/save', requestOptions1)
             .then(response => response.json());
     }
-    SaveQ17 = async e =>{
+    SaveQ17 (){
         const requestOptions1 = {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ variableId: '62' , data: this.state.Q17 , reportId: this.state.inheritedRoutine})
+            body: JSON.stringify({  variableDataId:'', variableId: '62' , data: this.state.Q17 , reportId: this.state.inheritedRoutine})
         };
         fetch('http://localhost:8090/sertresreporte/variabledata/save', requestOptions1)
             .then(response => response.json());
     }
-    SaveQ18 = async e =>{
+    SaveQ18 (){
         const requestOptions1 = {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ variableId: '63' , data: this.state.Q18 , reportId: this.state.inheritedRoutine})
+            body: JSON.stringify({  variableDataId:'', variableId: '63' , data: this.state.Q18 , reportId: this.state.inheritedRoutine})
         };
         fetch('http://localhost:8090/sertresreporte/variabledata/save', requestOptions1)
             .then(response => response.json());
     }
-    SaveQ19 = async e =>{
+    SaveQ19 (){
         const requestOptions1 = {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ variableId: '64' , data: this.state.Q19 , reportId: this.state.inheritedRoutine})
+            body: JSON.stringify({  variableDataId:'', variableId: '64' , data: this.state.Q19 , reportId: this.state.inheritedRoutine})
         };
         fetch('http://localhost:8090/sertresreporte/variabledata/save', requestOptions1)
             .then(response => response.json());
     }
-    SaveQ20 = async e =>{
+    SaveQ20 (){
         const requestOptions1 = {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ variableId: '65' , data: this.state.Q20 , reportId: this.state.inheritedRoutine})
+            body: JSON.stringify({  variableDataId:'', variableId: '65' , data: this.state.Q20 , reportId: this.state.inheritedRoutine})
         };
         fetch('http://localhost:8090/sertresreporte/variabledata/save', requestOptions1)
             .then(response => response.json());
     }
-    SaveQ21 = async e =>{
+    SaveQ21 (){
         const requestOptions1 = {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ variableId: '66' , data: this.state.Q21 , reportId: this.state.inheritedRoutine})
+            body: JSON.stringify({  variableDataId:'', variableId: '66' , data: this.state.Q21 , reportId: this.state.inheritedRoutine})
         };
         fetch('http://localhost:8090/sertresreporte/variabledata/save', requestOptions1)
             .then(response => response.json());
     }
-    SaveQ22 = async e =>{
+    SaveQ22 (){
         const requestOptions1 = {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ variableId: '67' , data: this.state.Q22 , reportId: this.state.inheritedRoutine})
+            body: JSON.stringify({  variableDataId:'', variableId: '67' , data: this.state.Q22 , reportId: this.state.inheritedRoutine})
         };
         fetch('http://localhost:8090/sertresreporte/variabledata/save', requestOptions1)
             .then(response => response.json());
     }
-    SaveQ23 = async e =>{
+    SaveQ23 (){
         const requestOptions1 = {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ variableId: '68' , data: this.state.Q23 , reportId: this.state.inheritedRoutine})
+            body: JSON.stringify({  variableDataId:'', variableId: '68' , data: this.state.Q23 , reportId: this.state.inheritedRoutine})
         };
         fetch('http://localhost:8090/sertresreporte/variabledata/save', requestOptions1)
             .then(response => response.json());
     }
-    SaveQ24 = async e =>{
+    SaveQ24 (){
         const requestOptions1 = {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ variableId: '69' , data: this.state.Q24 , reportId: this.state.inheritedRoutine})
+            body: JSON.stringify({  variableDataId:'', variableId: '69' , data: this.state.Q24 , reportId: this.state.inheritedRoutine})
         };
         fetch('http://localhost:8090/sertresreporte/variabledata/save', requestOptions1)
             .then(response => response.json());
     }
-    SaveQ25 = async e =>{
+    SaveQ25 (){
         const requestOptions1 = {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ variableId: '70' , data: this.state.Q25 , reportId: this.state.inheritedRoutine})
+            body: JSON.stringify({  variableDataId:'', variableId: '70' , data: this.state.Q25 , reportId: this.state.inheritedRoutine})
         };
         fetch('http://localhost:8090/sertresreporte/variabledata/save', requestOptions1)
             .then(response => response.json());
     }
-    SaveQ26 = async e =>{
+    SaveQ26 (){
         const requestOptions1 = {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ variableId: '71' , data: this.state.Q26 , reportId: this.state.inheritedRoutine})
+            body: JSON.stringify({  variableDataId:'', variableId: '71' , data: this.state.Q26 , reportId: this.state.inheritedRoutine})
         };
         fetch('http://localhost:8090/sertresreporte/variabledata/save', requestOptions1)
             .then(response => response.json());
     }
-    SaveQ27 = async e =>{
+    SaveQ27 (){
         const requestOptions1 = {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ variableId: '72' , data: this.state.Q27 , reportId: this.state.inheritedRoutine})
+            body: JSON.stringify({  variableDataId:'', variableId: '72' , data: this.state.Q27 , reportId: this.state.inheritedRoutine})
         };
         fetch('http://localhost:8090/sertresreporte/variabledata/save', requestOptions1)
             .then(response => response.json());
     }
-    SaveQ28 = async e =>{
+    SaveQ28 (){
         const requestOptions1 = {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ variableId: '73' , data: this.state.Q28 , reportId: this.state.inheritedRoutine})
+            body: JSON.stringify({  variableDataId:'', variableId: '73' , data: this.state.Q28 , reportId: this.state.inheritedRoutine})
         };
         fetch('http://localhost:8090/sertresreporte/variabledata/save', requestOptions1)
             .then(response => response.json());
     }
-    SaveQ29 = async e =>{
+    SaveQ29 (){
         const requestOptions1 = {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ variableId: '74' , data: this.state.Q29 , reportId: this.state.inheritedRoutine})
+            body: JSON.stringify({  variableDataId:'', variableId: '74' , data: this.state.Q29 , reportId: this.state.inheritedRoutine})
         };
         fetch('http://localhost:8090/sertresreporte/variabledata/save', requestOptions1)
             .then(response => response.json());
     }
-    SaveQ30 = async e =>{
+    SaveQ30 (){
         const requestOptions1 = {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ variableId: '75' , data: this.state.Q30 , reportId: this.state.inheritedRoutine})
+            body: JSON.stringify({  variableDataId:'', variableId: '75' , data: this.state.Q30 , reportId: this.state.inheritedRoutine})
         };
         fetch('http://localhost:8090/sertresreporte/variabledata/save', requestOptions1)
             .then(response => response.json());
     }
-    SaveQ31 = async e =>{
+    SaveQ31 (){
         const requestOptions1 = {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ variableId: '76' , data: this.state.Q31 , reportId: this.state.inheritedRoutine})
+            body: JSON.stringify({  variableDataId:'', variableId: '76' , data: this.state.Q31 , reportId: this.state.inheritedRoutine})
         };
         fetch('http://localhost:8090/sertresreporte/variabledata/save', requestOptions1)
             .then(response => response.json());
     }
-    SaveQ32 = async e =>{
+    SaveQ32 (){
         const requestOptions1 = {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ variableId: '77' , data: this.state.Q32 , reportId: this.state.inheritedRoutine})
+            body: JSON.stringify({  variableDataId:'', variableId: '77' , data: this.state.Q32 , reportId: this.state.inheritedRoutine})
         };
         fetch('http://localhost:8090/sertresreporte/variabledata/save', requestOptions1)
             .then(response => response.json());
     }
-    SaveQ33 = async e =>{
+    SaveQ33 (){
         const requestOptions1 = {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ variableId: '78' , data: this.state.Q33 , reportId: this.state.inheritedRoutine})
+            body: JSON.stringify({  variableDataId:'', variableId: '78' , data: this.state.Q33 , reportId: this.state.inheritedRoutine})
         };
         fetch('http://localhost:8090/sertresreporte/variabledata/save', requestOptions1)
             .then(response => response.json());

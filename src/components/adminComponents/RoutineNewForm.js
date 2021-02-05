@@ -2,6 +2,7 @@ import React from 'react';
 import axios from "axios";
 import '../styles/newRoutine.css';
 import * as moment from "moment/moment";
+import { Redirect } from 'react-router-dom';
 
 class RoutineNewForm extends React.Component{
 
@@ -13,22 +14,26 @@ class RoutineNewForm extends React.Component{
             deviceId : '',
             reportTittle : '',
             commitmentDate : '',
-            beginDate : '',
-            endDate : '',
+            beginDate : moment(new Date()).format("DD/MM/YYYY hh:mm:ss"),
+            endDate : null,
             status : '',
             now : moment(new Date()).format("DD/MM/YYYY hh:mm:ss"),
+            createdNew:false,
             //objetos
             reportStatusA : [],
             reportTypeA: [],
+            deviceList:[],
             loading: true,
             error: null,
 
         }
-        this.submitHadler = this.submitHadler.bind(this);
     }
 
     changeHadler = (e) =>{
         this.setState({[e.target.name]: e.target.value })
+    }
+    changeHadlerDevice = (e) =>{
+        this.setState({deviceId: e.target.value })
     }
 
     changeHadlerStatus = (e) =>{
@@ -39,21 +44,38 @@ class RoutineNewForm extends React.Component{
         this.setState({reportTypeId:e.target.value })
     }
 
-    submitHadler = async e => {
-        e.preventDefault()
-        console.log(this.state)
-        axios.post('http://localhost:8090/sertresreporte/reporte/save', this.state)
-            .then(response => {
-                console.log(response)
-            })
-            .catch(error => {
-                console.log(error)
-            })
-    }
+     submitHadler = async e => {
+            e.preventDefault();
+            const requestOptions = {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ 
+                    reportId:'',
+                    reportTypeId: this.state.reportTypeId,
+                    deviceId: this.state.deviceId,
+                    reportTittle: this.state.reportTittle,
+                    commitmentDate: this.state.commitmentDate,
+                    beginDate: this.state.beginDate,
+                    endDate:  this.state.endDate,
+                    status: this.state.status,
+                    reviewATM: false,
+                    createdBy: null,
+                    idCreated: null
+                    
+                })
+            };
+            console.log(requestOptions)
+            fetch('http://localhost:8090/sertresreporte/reporte/save', {requestOptions})
+                .then(response => response.json());
+                alert('Rutina creada');
+                this.setState({createdNew:true});    
+    } 
+
 
     componentDidMount() {
         this.fetchReportStatus();
         this.fetchReportType();
+        this.fetchDevice();
 
     }
 
@@ -64,6 +86,18 @@ class RoutineNewForm extends React.Component{
             const response = await fetch('http://localhost:8090/sertresreporte/reporte/status/all')
             const reportStatusPR = await response.json();
             this.setState({loading:false , reportStatusA: reportStatusPR })
+        }catch(error){
+            this.setState({loading: false , error: error })
+        }
+    }
+
+    fetchDevice = async () =>{
+        this.setState({loading:true, error: null, })
+
+        try{
+            const response = await fetch('http://localhost:8090/sertresreporte/dispositivo/all')
+            const DevicePR = await response.json();
+            this.setState({loading:false , deviceList: DevicePR })
         }catch(error){
             this.setState({loading: false , error: error })
         }
@@ -83,6 +117,7 @@ class RoutineNewForm extends React.Component{
 
     render() {
         const { reportTypeId , deviceId, reportTittle , commitmentDate , beginDate , endDate , status } = this.state
+        if(this.state.createdNew === false){
         return (
             <React.Fragment>
                 <div className = "container">
@@ -94,7 +129,8 @@ class RoutineNewForm extends React.Component{
                                 <tr>
                                     <td className="titleNewRoutine">Tipo Rutina </td>
                                     <td className="inputNewRoutine">
-                                        <select className="btn btn-outline-info" value={reportTypeId} onChange={this.changeHadlerReportType}>
+                                        <select className="btn btn-outline-info" name="reportTypeId" value={reportTypeId} onChange={this.changeHadlerReportType}>
+                                        <option value={0}></option>
                                             {this.state.reportTypeA.map((item) =>(
                                                 <option key={item.reportTypeId} value={item.reportTypeId}>{item.reportType}</option>
                                             ))}
@@ -106,12 +142,12 @@ class RoutineNewForm extends React.Component{
                                 <tr>
                                     <td className="titleNewRoutine">Dispositivo</td>
                                     <td className="inputNewRoutine">
-                                        <input
-                                            type="text"
-                                            name="deviceId"
-                                            value={deviceId} onChange={this.changeHadler}
-                                            className="btn btn-outline-info"
-                                            autoComplete="off"/>
+                                         <select className="btn btn-outline-info" name="deviceId" value={deviceId} onChange={this.changeHadlerDevice}>
+                                         <option value={0}></option>
+                                            {this.state.deviceList.map((item) =>(
+                                                <option key={item.deviceId} value={item.deviceId}>{item.deviceName}</option>
+                                            ))}
+                                        </select>    
                                     </td>
                                 </tr>
                                 
@@ -143,7 +179,8 @@ class RoutineNewForm extends React.Component{
                                     <td className="inputNewRoutine">
                                     <input 
                                         type="dateTime" disabled= "true" 
-                                        size="19" value={this.state.now} 
+                                        size="19" value={this.state.now}
+                                        name="beginDate" 
                                         className="btn btn-outline-info"/>
                                         </td>
                                 </tr>
@@ -162,7 +199,8 @@ class RoutineNewForm extends React.Component{
                                 <tr>
                                     <td className="titleNewRoutine">Status</td>
                                     <td className="inputNewRoutine">
-                                        <select className="btn btn-outline-info" value={status} onChange={this.changeHadlerStatus}>
+                                        <select className="btn btn-outline-info" name="status" value={status} onChange={this.changeHadlerStatus}>
+                                        <option value={0}></option>
                                             {this.state.reportStatusA.map((item) =>(
                                                 <option key={item.reportStatusId} value={item.reportStatusId}>{item.reportStatusDesc}</option>
                                             ))}
@@ -181,7 +219,10 @@ class RoutineNewForm extends React.Component{
                     </form>
                 </div>
             </React.Fragment>
-        )
+        )}
+        if(this.state.createdNew === true){
+            return (<Redirect to="/Routine"/>);
+        }
     }
 }
 
