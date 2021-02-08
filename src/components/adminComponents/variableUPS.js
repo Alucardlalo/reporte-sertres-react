@@ -4,6 +4,7 @@ import '../../global.css';
 import '../styles/variableUPS.css';
 import * as moment from "moment/moment";
 import PDF from '../common/PDF';
+import axios from "axios";
 
 class VariableUPS extends React.Component{
     constructor(props) {
@@ -42,6 +43,25 @@ class VariableUPS extends React.Component{
         this.statusComprovation();
         this.seleccionarData();
         this.fetchUser();
+        this.rutina();
+    }
+
+    rutina(){
+        var rotine =[], routineType =[], device = [], title = [], date1 = [], date2 = [], dateEnd = [], status =[], ATM =[];
+        this.state.inheritedRoutineS.map((routine) =>{
+            rotine.push(routine.reportId);
+            routineType.push(routine.reportTypeId);
+            device.push(routine.deviceId);
+            title.push(routine.reportTittle);
+            date1.push(routine.commitmentDate);
+            date2.push(routine.beginDate);
+            dateEnd.push(routine.endDate);
+            status.push(routine.status);
+            ATM.push(routine.reviewATM);
+        })
+        this.setState({routineAA:rotine.toString(), type: routineType.toString(), device: device.toString(), title:title.toString()
+        , date1:date1.toString() , date2:date2.toString(), dateEnd:dateEnd.toString(), stat:status.toString(), atm: ATM });
+        this.namecreated();
     }
 
     fetchUser = async () =>{
@@ -135,34 +155,27 @@ class VariableUPS extends React.Component{
         this.SaveQ13();this.SaveQ14();this.SaveQ15();this.SaveQ16();this.SaveQ17();this.SaveQ18();
         this.SaveQ19();this.SaveQ20();this.SaveQ21();this.SaveQ22();this.SaveQ23();this.SaveQ24();
         this.SaveQ25();this.SaveQ26();this.SaveRoutine();
+        window.location.reload(true);
     }
 
-    SaveRoutine = async e =>{
-        var rotine =[], routineType =[], device = [], title = [], date1 = [], date2 = [], dateEnd = [], status =[], ATM =[];
-        this.state.inheritedRoutineS.map((routine) =>{
-            rotine.push(routine.reportId);
-            routineType.push(routine.reportTypeId);
-            device.push(routine.deviceId);
-            title.push(routine.reportTittle);
-            date1.push(routine.commitmentDate);
-            date2.push(routine.beginDate);
-            dateEnd.push(routine.endDate);
-            status.push(routine.status);
-            ATM.push(routine.reviewATM);
-        })
-        this.setState({routineAA:rotine});
-        this.namecreated();
-        const requestOptions1 = {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ variableDataId:'', 
-                reportId: rotine  , reportTypeId: routineType , deviceId: device , 
-                reportTittle: title, commitmentDate: date1, beginDate:date2,
-                endDate: this.state.now , status:status , reviewATM: ATM,
-                createdBy:this.state.createdBy , idCreated: this.state.createdById})
-        };
-        fetch('http://localhost:8090/sertresreporte/reporte/save', requestOptions1)
-            .then(response => response.json());
+    SaveRoutine  = async e =>{
+        axios({
+            method: 'post',
+            url: 'http://localhost:8090/sertresreporte/reporte/save',
+            data: {
+                "reportId": this.state.routineAA,
+                "reportTypeId": this.state.type,
+                "deviceId": this.state.device,
+                "reportTittle": this.state.title,
+                "commitmentDate": moment(this.state.date1),
+                "beginDate": moment(this.state.date2),
+                "endDate": moment(new Date()),
+                "status": 1,
+                "reviewATM": false,
+                "createdBy": this.state.createdBy,
+                "idCreated": this.state.createdById
+            }
+          });
     }
 
     namecreated(){

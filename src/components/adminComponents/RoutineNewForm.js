@@ -44,33 +44,51 @@ class RoutineNewForm extends React.Component{
         this.setState({reportTypeId:e.target.value })
     }
 
-     submitHadler = async e => {
+      submitHadler = async e => {
             e.preventDefault();
-            const requestOptions = {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ 
-                    reportId:'',
-                    reportTypeId: this.state.reportTypeId,
-                    deviceId: this.state.deviceId,
-                    reportTittle: this.state.reportTittle,
-                    commitmentDate: this.state.commitmentDate,
-                    beginDate: this.state.beginDate,
-                    endDate:  this.state.endDate,
-                    status: this.state.status,
-                    reviewATM: false,
-                    createdBy: null,
-                    idCreated: null
+            if(this.state.reportTypeId !== "" &&  
+                this.state.deviceId !== "" &&
+                this.state.reportTittle !== "" &&
+                this.state.commitmentDate !== "" &&
+                this.state.status !== ""){
+                    axios({
+                        method: 'post',
+                        url: 'http://localhost:8090/sertresreporte/reporte/save',
+                        data: {
+                            "reportTypeId": this.state.reportTypeId,
+                            "deviceId": this.state.deviceId,
+                            "reportTittle": this.state.reportTittle,
+                            "commitmentDate": moment(this.state.commitmentDate),
+                            "beginDate": moment(new Date()),
+                            "endDate": moment(this.state.endDate),
+                            "status": this.state.status,
+                            "reviewATM": false,
+                            "createdBy": null,
+                            "idCreated": null
+                        }
+                      });
+                    alert('Rutina creada');
+                    window.location.reload(true);
                     
-                })
-            };
-            console.log(requestOptions)
-            fetch('http://localhost:8090/sertresreporte/reporte/save', {requestOptions})
-                .then(response => response.json());
-                alert('Rutina creada');
-                this.setState({createdNew:true});    
-    } 
-
+                }else if(this.state.reportTypeId == ""){
+                    var tipo = "El tipo de rutina no puede ser vacio \n" 
+                } if(this.state.deviceId == ""){
+                    var device = "El dispositivo no puede ser vacio \n"
+                } if( this.state.reportTittle == ""){
+                    var title = "El titulo no puede ser vacio \n"    
+                } if( this.state.commitmentDate == ""){
+                    var date = "La fecha compromiso no puede ser vacio \n" 
+                } if( this.state.status == ""){
+                    var status = "El status no puede ser vacio \n"
+                }if(this.state.reportTypeId == "" ||  
+                this.state.deviceId == "" ||
+                this.state.reportTittle == "" ||
+                this.state.commitmentDate == "" ||
+                this.state.status == ""){
+                alert((tipo? tipo: "") + (device? device:"") + (title? title:"") + (date? date:"") + (status? status:""));
+                }
+                
+            } 
 
     componentDidMount() {
         this.fetchReportStatus();
@@ -185,7 +203,7 @@ class RoutineNewForm extends React.Component{
                                         </td>
                                 </tr>
                                 
-                                <tr>
+                                {/* <tr>
                                     <td className="titleNewRoutine">Fecha Fin</td>
                                     <td className="inputNewRoutine">
                                         <input
@@ -194,7 +212,7 @@ class RoutineNewForm extends React.Component{
                                             value={endDate} onChange={this.changeHadler}
                                             className="btn btn-outline-info"/>
                                     </td>
-                                </tr>
+                                </tr> */}
                                 
                                 <tr>
                                     <td className="titleNewRoutine">Status</td>
